@@ -1,15 +1,18 @@
 <div  class="box login_box  white-bg login_position" >
+  <?php echo $this->Session->flash('auth'); ?>
   <div class="login_container">
     <h2>Login User</h2>
     <hr />
-    <?=$this->form->create('User', array('action' => 'login')); ?>
+    <?=$this->Form->create('User'); ?>
     <fieldset>
-        <?=$this->form->input('login', array('div' => array('tag' => 'p'),'label' => 'login', 'class' => 'required ') ); ?>
-        <?=$this->form->input('password', array('div' => array('tag' => 'p'), 'class' => 'required email' ) ); ?>
-        <?=$this->form->input('remember_me', array('label' => 'remember me', 'type' => 'checkbox'));   ?>
+        <?=$this->Form->input('username', array('div' => array('tag' => 'p'),'label' => 'login', 'class' => 'required ') ); ?>
+        <?=$this->Form->input('password', array('div' => array('tag' => 'p'), 'class' => 'required email' ) ); ?>
     </fieldset>      
     <?=$this->form->end('Login');?>
 
     </div>
 
   </div>
+
+
+
