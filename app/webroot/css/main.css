@@ -182,7 +182,7 @@ textarea {
 	padding: 5px;
 }
 
-
+.success,
 .message,
 .cake-error,
 .cake-debug,
@@ -210,7 +210,7 @@ p.error,
 	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
-
+.success,
 .message,
 .cake-error,
 p.error,
@@ -228,7 +228,20 @@ p.error,
 	background-image: linear-gradient(top, #ee5f5b, #c43c35);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
-
+.success {
+	clear: both;
+	color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	background: #3B8230;
+	background-repeat: repeat-x;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
+	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -ms-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -o-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: linear-gradient(top, #76BF6B, #3B8230);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
 p.error {
 	font-family: Monaco, Consolas, Courier, monospace;
 	font-size: 120%;
@@ -245,4 +258,7 @@ p.error em {
 	font-size: 120%;
 	padding: 0.8em;
 	margin: 1em 0;
+}
+.success {
+	color: #fff;
 }

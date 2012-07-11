@@ -22,6 +22,7 @@
  
  
   function index() {
+    $this->Session->setFlash(__('Se guardo el usuario con éxito', true));
     $this->set('users', $this->User->find('all'));
   }
 
