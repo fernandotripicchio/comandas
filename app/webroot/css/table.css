@@ -3,7 +3,7 @@ Table Design by Mihalcea Romeo
 www.roscripts.com
 ----------------------------------------------- */
 
-table {
+.listado table {
 		border-collapse:collapse;
 		background:#EFF4FB url(../img/teaser.gif) repeat-x;
 		border-left:1px solid #686868;
@@ -13,11 +13,11 @@ table {
                 width: 90%;
 }
 
-td, th {
+.listado td, th {
 		padding:5px;
 }
 
-caption {
+.listado caption {
 		padding: 0 0 .5em 0;
 		text-align: left;
 		font-size: 1.4em;
@@ -30,54 +30,54 @@ caption {
 /* =links
 ----------------------------------------------- */
 
-table a {
+.listado table a {
 		color:#950000;
 		text-decoration:none;
 }
 
-table a:link {}
+.listado table a:link {}
 
-table a:visited {
+.listado table a:visited {
 		font-weight:normal;
 		color:#666;
 		text-decoration: line-through;
 }
 
-table a:hover {
+.listado table a:hover {
 		border-bottom: 1px dashed #bbb;
 }
 
 /* =head =foot
 ----------------------------------------------- */
 
-thead th, tfoot th, tfoot td {
+.listado thead th, tfoot th, tfoot td {
 		background:#333 url(../img/llsh.gif) repeat-x;
 		color:#fff;
                 text-align: left;
 }
 
-tfoot td {
+.listado tfoot td {
 		text-align:right
 }
 
 /* =body
 ----------------------------------------------- */
 
-tbody th, tbody td {
+.listado tbody th, .listado tbody td {
 		border-bottom: dotted 1px #333;
                 text-align: left;
 }
 
-tbody th {
+.listado tbody th {
 		white-space: nowrap;
 }
 
-tbody th a {
+.listado tbody th a {
 		color:#333;
 }
 
-.odd {}
+.listado .odd {}
 
-tbody tr:hover {
+.listado tbody tr:hover {
 		background:#fafafa
 }

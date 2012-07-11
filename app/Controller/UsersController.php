@@ -31,10 +31,10 @@
 	$this->User->create();
         //$this->data['User']['registration_number'] = $this->User->oneWayEncryp($this->data["User"]["registration_number"], $this->data["User"]["email"]) ;
 	if ($this->User->save($this->data)) {
-		$this->Session->setFlash(__('The User has been saved', true));
+		$this->Session->setFlash(__('Se guardo el usuario con éxito', true));
 		$this->redirect(array('action'=>'index'));
 	} else {
-		$this->Session->setFlash(__('The User could not be saved. Please try again.', true));
+		$this->Session->setFlash(__('El usurio no se pudo guardar. Por favor intente de nuevo.', true));
                 $this->redirect(array('action'=>'index'));
 	}
 
@@ -54,7 +54,7 @@
         } else {
 		
 
-            $this->Session->setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');
+            $this->Session->setFlash(__('Username or password es incorrecto'), 'default', array(), 'auth');
         }
     }
 }
