@@ -30,8 +30,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
 		echo $this->Html->meta('icon');
                 echo $this->Html->css('main');
                 echo $this->Html->css('grid');
-                echo $this->Html->css('theme/jquery-ui');
-                echo $this->Html->css('table');
+                echo $this->Html->css('jquery-ui');
                 echo $this->Html->script(array('jquery','jquery.validate','jquery.ui','jquery.buttons'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -40,23 +39,8 @@ $cakeDescription = __d('La Posta', 'La Posta');
 </head>
 <body>
      <div id="headerbg">
-       <div id="contenido">
-         <div class="left">
-           <h1> <?php echo $cakeDescription ?> - Casa de Comidas </h1>
-         </div>
-         <div class="right">
-         Usuario Logueado :
-         <?=$username; ?>
-         <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('class'=> 'right')); ?>
-         </div>
-       </div>
+       
      </div>
-
-     <div id="menu">
-           <?=$this->element("menu");?>
-     </div>
-
-
 
   <!-- CENTER CONTENT -->
 <div id="container">

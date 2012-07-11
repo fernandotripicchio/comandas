@@ -50,12 +50,18 @@ If you prefer you could right or left align it.*/
 
 }
 
+#headerbg #contenido{
+  padding-left:  100px;
+  padding-right: 300px;
+  padding-top: 10px;
+}
+
 
 /*Center Content*/
 #container {
   position:relative;
   margin:0 auto;
-  width:800px;
+  width:900px;
          
 }
 
@@ -73,15 +79,11 @@ If you prefer you could right or left align it.*/
 /*These are just styles used for the example for the content.*/
 .left {
 	float:left;
-	width:500px;
-	background:#ccff66;
+
 	}
 
 .right {
-	float:left;
-	width:200px;
-	clear:right;
-	background:#66ff33;
+	float:right;
 	}
 
 .left p, .right p {
@@ -162,3 +164,7 @@ textarea {
    width: 150px !important;
 }
 
+
+.listado{
+  padding:20px;
+}
