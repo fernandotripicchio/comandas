@@ -1,0 +1,164 @@
+/* 
+    Document   : main
+    Created on : 11/07/2012, 01:04:52
+    Author     : fernando
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+/*Simple CSS reset for items we will use JUST for this example.
+Please use full reset when designing!
+Reseting the margin and padding is important for the body tag so the
+header and footer will hug the whole screen.*/
+
+h1, p, body, html {
+	margin:0;
+	padding:0;}
+
+/*Just visual styles*/
+body {
+	background: #FAFAFA;
+	font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color:#000;
+	}
+
+/*Our full length header.
+We align the text center so it shows up in the middle.
+If you prefer you could right or left align it.*/
+#headerbg {
+/*	background:#cccc66;
+	text-align:center;
+	padding:20px;*/
+
+  width: 100%;
+  height: 58px;
+  border-bottom: 1px solid #cbced1;
+  border-top: 1px solid #cbced1;
+  background: white url(../img/bg-header.png) 0 0 repeat-x;
+  overflow: visible;
+  position: relative;
+  z-index: 900; 
+
+}
+
+
+/*Center Content*/
+#container {
+  position:relative;
+  margin:0 auto;
+  width:800px;
+         
+}
+
+
+
+
+
+/*Full width footer*/
+#footer {
+	background:#FAFAFA;
+	padding:10px;
+	text-align:center;
+	}
+
+/*These are just styles used for the example for the content.*/
+.left {
+	float:left;
+	width:500px;
+	background:#ccff66;
+	}
+
+.right {
+	float:left;
+	width:200px;
+	clear:right;
+	background:#66ff33;
+	}
+
+.left p, .right p {
+	padding:10px;
+	}
+
+/*If you are going to use floats then you will NEED to clear the
+footer so it doesn't bunch the content up*/
+.clear {clear:both;}
+
+
+/* General Fields */
+input[type="text"], input[type="password"],
+textarea {
+  background: #dde7ed;
+  border: 1px solid #b2b7b9;
+  padding: 3px 5px 3px 5px;
+  font-size: 12px;
+  color: #535252;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  outline: none;
+  -webkit-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #e2e1e1;
+  -moz-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #e2e1e1; }
+  input[type="text"]:focus, input[type="password"]:focus,
+  textarea:focus {
+    outline: none;
+    border: 1px solid #85898A;
+    -webkit-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #bfbfbf;
+    -moz-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #bfbfbf; }
+  input[type="text"]:disabled, input[type="password"]:disabled,
+  textarea:disabled {
+    background: #DDD;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none; }
+
+textarea {
+  resize: none;
+  overflow: auto; }
+
+
+
+/* Success, info, notice and error/alert boxes
+-------------------------------------------------------------- */
+
+.error,
+.alert,
+.notice,
+.success,
+.info { padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
+
+.error, .alert { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+.notice        { background: #fff6bf; color: #514721; border-color: #ffd324; }
+.success       { background: #e6efc2; color: #264409; border-color: #c6d880; }
+.info          { background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error a, .alert a { color: #8a1f11; }
+.notice a          { color: #514721; }
+.success a         { color: #264409; }
+.info a            { color: #205791; }
+
+
+/* Login */
+
+.login {
+  padding: 20px;
+}
+
+.login fieldset{
+   padding: 20px;
+}
+
+.login p {
+   width: 400px;
+}
+
+.login div.input label {
+   width: 150px !important;
+}
+

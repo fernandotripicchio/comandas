@@ -1,0 +1,248 @@
+/* <3 CSS by Eric Boyer @ One Design Company */
+/*
+----------------------------------------------------------------
+  F O N T  F A C E
+---------------------------------------------------------------- */
+/*
+* html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
+* v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
+* html5doctor.com/html-5-reset-stylesheet/
+*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none; }
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold; }
+
+del {
+  text-decoration: line-through; }
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+input, select {
+  vertical-align: middle; }
+
+.clearfix:before, .clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  visibility: hidden; }
+
+.clearfix:after {
+  clear: both; }
+
+.clearfix {
+  zoom: 1; }
+
+/*
+----------------------------------------------------------------
+  B A S E
+---------------------------------------------------------------- */
+html, body {
+  height: 100%;
+  width: 100%;
+  position: relative; }
+
+body {
+  font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #FAFAFA;
+  position: relative; }
+
+body, select, input, textarea {
+  color: #393939;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif; }
+
+select, input, textarea, button {
+  font: 99%;
+  font-family: 'Helvetica Neue', Helvetica, Arial, serif; }
+
+pre, code, kbd, samp {
+  font-family: monospace, sans-serif; }
+
+nav ul, nav li {
+  margin: 0;
+  list-style: none;
+  list-style-image: none; }
+
+ul, ol {
+  margin-left: 2em; }
+
+ol {
+  list-style-type: decimal; }
+
+p.right {
+  text-align: right; }
+
+:focus {
+  outline: none; }
+
+/*
+----------------------------------------------------------------
+  T Y P O G R A P H Y
+---------------------------------------------------------------- */
+small {
+  font-size: 85%; }
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: pre-line;
+  word-wrap: break-word;
+  padding: 15px; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 10px 0; }
+
+h1 {
+  font-size: 32px;
+  font-weight: bold; }
+
+h1.intro {
+  font-family: QuicksandBook, Arial, sans-serif;
+  font-size: 70px;
+  letter-spacing: -0.07em;
+  margin: 0 0 15px 0; }
+
+h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: bold;
+  padding: 5px 10px 5px 10px;
+  margin: 0 0 15px 0;
+  border: 1px solid #cbced1;
+  background: #e4e4e4;
+  width: 100%;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.02, #ededed), color-stop(0.65, #fefefe));
+  background-image: -moz-linear-gradient(center bottom, #ededed 2%, #fefefe 65%); }
+  h2 small {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 20px; }
+  h2 form {
+    display: inline-block; }
+  h2 span {
+    float: left; }
+
+h3 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 20px 0;
+  padding: 0 10px 14px 10px; }
+  h3.sub {
+    margin: 0; }
+  h3.inline {
+    display: inline;
+    margin: 0;
+    padding: 0; }
+  h3.error {
+    color: red; }
+  h3 small {
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+h3 span,
+span.opt {
+  font-size: 12px; }
+
+span.opt {
+  color: #a2a6a8; }
+
+h3 a {
+  font-size: 12px; }
+
+h4 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  margin: 0 0 10px 0; }
+
+h5 {
+  font-size: 13px; }
+
+h6 {
+  font-size: 12px; }
+
+p {
+  margin: 0 0 10px 0;
+  padding: 0 10px 0 10px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  font-size: 12px; }
+
+ul, li {
+  list-style: none;
+  margin: 0; }
+
+li {
+  margin: 0 0 10px 0; }
+
+a, a:active, a:visited {
+  color: #f67716;
+  text-decoration: underline; }
+
+a:hover, a:active {
+  outline: none; }
+
+a:hover {
+  color: #ed924d; }
+
+a:link {
+  -webkit-tap-highlight-color: #acbe72; }
+
+::-moz-selection {
+  background: #c0d6ed;
+  color: #fff;
+  text-shadow: none; }
+
+::selection {
+  background: #c0d6ed;
+  color: #fff;
+  text-shadow: none; }
+

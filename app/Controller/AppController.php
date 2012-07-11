@@ -35,23 +35,10 @@ class AppController extends Controller {
    public $components = array('RequestHandler',
                            'Auth'=> array('autoRedirect' => false,
                            'loginAction' => array ('controller' => 'users', 'action' => 'login'),
-                           'loginRedirect' => array('controller' => 'users', 'action' => 'index') ),
-
-                           'Session');
+                           'loginRedirect' => array('controller' => 'users', 'action' => 'index') ));
    //var $components = array('RequestHandler','Session');
-   var $helpers = array('Html', 'Session');
-   //var $uses = array('Activity','Accessrule');
+   var $helpers = array('Html');
 
-//
-//   function beforeFilter() {
-//
-//
-////     $this->Auth->userModel = 'User';
-////     $this->Auth->autoRedirect = false;
-////     $this->Auth->loginAction = ;
-////     $this->Auth->loginRedirect = ;
-//
-//  }
 
 
 }

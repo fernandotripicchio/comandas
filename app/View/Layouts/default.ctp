@@ -28,31 +28,49 @@ $cakeDescription = __d('La Posta', 'La Posta');
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
-		//echo $this->Html->css('cake.generic');
-                echo $this->Html->css('blueprint/screen');
+                echo $this->Html->css('main');
+                echo $this->Html->css('grid');
+                echo $this->Html->css('jquery-ui');
+                echo $this->Html->script(array('jquery','jquery.validate','jquery.ui','jquery.buttons'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
 </head>
 <body>
+     <div id="headerbg">
+       
+     </div>
+
+  <!-- CENTER CONTENT -->
+<div id="container">
+
+			<?php echo $this->Session->flash(); ?>
+
+			<?php echo $this->fetch('content'); ?>
+
+</div>
+	<!--CLEAR FOOTER TO PREVENT BUNCHING-->
+	<div class="clear"></div>
+ <div id="footer"><p>La Posta</p></div>
+
+<!--
 	<div id="container">
 		<div id="header">
 			
 		</div>
 		<div id="content">
 
-			<?php echo $this->Session->flash(); ?>
+			<?//php echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
+			<?//php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-		<?php echo $this->element('sql_dump'); ?>
+		<?//php echo $this->element('sql_dump'); ?>
                   
 
 		</div>
 	</div>
-	
+	-->
 </body>
 </html>
