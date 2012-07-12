@@ -30,14 +30,14 @@
                <tr >
                  <td >Password:</td>
                  <td class="last">
-                     <?=$this->form->input('password', array('label'=>false, 'type'=>'text', 'size'=>30, 'class' => 'required', 'id' => 'password', 'div' => array('tag' => '')));?>
+                     <?=$this->form->input('password', array('label'=>false, 'type'=>'password', 'size'=>30, 'class' => 'required', 'id' => 'password', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
 
                <tr >
                  <td >Confirmar Password:</td>
                  <td class="last">
-                     <?=$this->form->input('confirm_password', array('label'=>false, 'type'=>'text', 'size'=>30, 'class' => '', 'id' => 'confirm_password', 'div' => array('tag' => '')));?>
+                     <?=$this->form->input('password_confirm', array('label'=>false, 'type'=>'password', 'size'=>30, 'class' => '', 'id' => 'confirm_password', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr>

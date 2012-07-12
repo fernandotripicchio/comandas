@@ -10,7 +10,7 @@ www.roscripts.com
 		border-right:1px solid #686868;
 		font:0.8em/145% 'Trebuchet MS',helvetica,arial,verdana;
 		color: #333;
-                width: 90%;
+                width: 100%;
 }
 
 .listado td, th {
@@ -31,7 +31,7 @@ www.roscripts.com
 ----------------------------------------------- */
 
 .listado table a {
-		color:#950000;
+		color:#666;
 		text-decoration:none;
 }
 

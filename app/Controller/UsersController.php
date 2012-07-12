@@ -11,6 +11,7 @@
      
      parent::beforeFilter();
      $this->Auth->allow(array("add", "logout"));
+     
  } 
  
 
@@ -22,11 +23,13 @@
  
  
   function index() {
-    $this->Session->setFlash(__('Se guardo el usuario con éxito', true));
-    $this->set('users', $this->User->find('all'));
+    #$this->Session->setFlash(__('Se guardo el usuario con éxito', true));
+    #$this->set('users', $this->User->find('all'));
+    $this->User->recursive = 0;
+    $this->set('users', $this->paginate());
   }
 
- function add(){
+public function add(){
     
     if (!empty($this->data)) {
 	$this->User->create();
@@ -36,13 +39,41 @@
 		$this->redirect(array('action'=>'index'));
 	} else {
 		$this->Session->setFlash(__('El usurio no se pudo guardar. Por favor intente de nuevo.', true));
-                $this->redirect(array('action'=>'index'));
+                
 	}
 
     }
 
  }
  
+
+ public function edit($id = null) {
+    $this->User->id = $id;
+    if (!$this->User->exists()) {
+            throw new NotFoundException(__('Usuario invalido'));
+    }
+    if ($this->request->is('get')) {
+        $this->request->data = $this->User->read();
+       
+    } else {
+        if ($this->User->save($this->request->data)) {
+            $this->Session->setFlash('Se modifico el usuario con éxito');
+            $this->redirect(array('action' => 'index'));
+        } else {
+            $this->Session->setFlash('No se pudo modificar el usuario.');
+        }
+    }
+}
+
+public function delete($id) {
+    if ($this->request->is('get')) {
+        throw new MethodNotAllowedException();
+    }
+    if ($this->User->delete($id)) {
+        $this->Session->setFlash('El usuario: ' . $id . ' ha sido eliminado.');
+        $this->redirect(array('action' => 'index'));
+    }
+}
 
  public function login() {
 

@@ -61,7 +61,7 @@ If you prefer you could right or left align it.*/
 #container {
   position:relative;
   margin:0 auto;
-  width:900px;
+  width:90%;
          
 }
 
@@ -262,3 +262,11 @@ p.error em {
 .success {
 	color: #fff;
 }
+
+
+
+fieldset {padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
+legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
+fieldset, #IE8#HACK {padding-top:1.4em;}
+legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
+
