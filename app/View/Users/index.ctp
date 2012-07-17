@@ -1,7 +1,5 @@
 <!-- File: /app/View/Posts/index.ctp -->
 <div class="listado">
-
-
 <hr />
 <table >
   <caption>Usuarios</caption>
@@ -19,7 +17,7 @@
     <?php foreach ($users as $user): ?>
        <tr>
          <td ><?php echo $user['User']['id']; ?></td>
-        <td >
+         <td>
            <?php echo $user['User']['username'] ?>
         </td>
         <td><?php echo $user['User']['email']; ?></td>

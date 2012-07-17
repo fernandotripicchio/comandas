@@ -10,8 +10,11 @@
   function beforeFilter() {
      
      parent::beforeFilter();
-     $this->Auth->allow(array("add", "logout"));
-     
+     $this->Auth->allow(array("add", "logout", "login"));
+//     $user = $this->Auth->user();
+//     if (!parent::isAuthorized($user)){
+//         throw new CakeException('Ud no tiene permiso de acceder a esta sección');
+//     }
  } 
  
 
@@ -22,7 +25,7 @@
 
  
  
-  function index() {
+public  function index() {
     #$this->Session->setFlash(__('Se guardo el usuario con éxito', true));
     #$this->set('users', $this->User->find('all'));
     $this->User->recursive = 0;

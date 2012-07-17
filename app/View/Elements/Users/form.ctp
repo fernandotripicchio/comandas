@@ -40,6 +40,14 @@
                      <?=$this->form->input('password_confirm', array('label'=>false, 'type'=>'password', 'size'=>30, 'class' => '', 'id' => 'confirm_password', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
+
+               <tr >
+                 <td >Administrador:</td>
+                 <td class="last">
+                     <?=$this->form->checkbox('admin', array('label'=>false, 'div' => array('tag' => '')));?>
+                 </td>
+               </tr>
+
                <tr>
                  <td colspan="2">
                    <hr />

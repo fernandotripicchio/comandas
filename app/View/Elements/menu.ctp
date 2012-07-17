@@ -21,6 +21,17 @@
             </ul>
             </div>
         </li>
+
+        <li>
+          <?=$this->Html->link('<span>Clientes</span>', array('controller' => 'clientes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+            <div>
+              <ul>
+                <li>
+                   <?=$this->Html->link('<span>Agregar Clientes</span>', array('controller' => 'clientes', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                 </li>
+            </ul>
+            </div>
+        </li>
         <li class="last"><a href="#"><span>Pedidos</span></a></li>
     </ul>
 </div>

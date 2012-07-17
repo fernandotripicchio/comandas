@@ -45,4 +45,15 @@ class AppController extends Controller {
 
     $this->set('username', $this->Auth->User("username"));
  }
+
+
+ public function isAuthorized($user) {
+    // Admin can access every action
+    if ($user['admin']) {
+        return true;
+    }
+
+    // Default deny
+    return false;
+}
 }
