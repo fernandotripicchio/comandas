@@ -35,7 +35,7 @@ class AppController extends Controller {
    public $components = array('RequestHandler',
                            'Auth'=> array('autoRedirect' => false,
                            'loginAction' => array ('controller' => 'users', 'action' => 'login'),
-                           'loginRedirect' => array('controller' => 'users', 'action' => 'index') ),
+                           'loginRedirect' => array('controller' => 'board', 'action' => 'index') ),
                             'Session');
    //var $components = array('RequestHandler','Session');
    var $helpers = array('Html');

@@ -11,10 +11,6 @@
      
      parent::beforeFilter();
      $this->Auth->allow(array("add", "logout", "login"));
-//     $user = $this->Auth->user();
-//     if (!parent::isAuthorized($user)){
-//         throw new CakeException('Ud no tiene permiso de acceder a esta sección');
-//     }
  } 
  
 
@@ -89,7 +85,7 @@ public function delete($id) {
         } else {
 		
 
-            $this->Session->setFlash(__('Username or password es incorrecto'), 'default', array(), 'auth');
+            $this->Session->setFlash(__('Usuario or password es incorrecto'), 'default', array(), 'auth');
         }
     }
 }
