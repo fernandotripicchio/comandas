@@ -23,8 +23,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
+		Login
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -38,22 +37,19 @@ $cakeDescription = __d('La Posta', 'La Posta');
 	?>
 </head>
 <body>
-     <div id="headerbg">
-       
-     </div>
+
 
   <!-- CENTER CONTENT -->
 <div id="container">
-
 			<?php echo $this->Session->flash(); ?>
-
+                        <?=$this->Html->image("logo.png",array("width"=>260, "height"=>150, "class"=> "center_image"))?>
 			<?php echo $this->fetch('content'); ?>
 
 </div>
  <!--CLEAR FOOTER TO PREVENT BUNCHING-->
  <div class="clear"></div>
  <div id="footer">
- 
+ <?php echo $this->element('sql_dump'); ?>
  </div>
 
 

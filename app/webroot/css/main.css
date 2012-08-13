@@ -40,10 +40,11 @@ If you prefer you could right or left align it.*/
 	padding:20px;*/
 
   width: 100%;
-  height: 58px;
+  height: 100px;
+   /*sheight: 58px;*/
   border-bottom: 1px solid #cbced1;
   border-top: 1px solid #cbced1;
-  background: white url(../img/bg-header.png) 0 0 repeat-x;
+  /*background: white url(../img/bg-header.png) 0 0 repeat-x;*/
   overflow: visible;
   position: relative;
   z-index: 900; 
@@ -51,11 +52,12 @@ If you prefer you could right or left align it.*/
 }
 
 #headerbg #contenido{
-  padding-left:  100px;
-  padding-right: 300px;
+  padding-left:  30px;
+/*  padding-right: 300px;*/
   padding-top: 10px;
+  width: 95%;
+  height: 80px;
 }
-
 
 /*Center Content*/
 #container {
@@ -94,7 +96,13 @@ If you prefer you could right or left align it.*/
 footer so it doesn't bunch the content up*/
 .clear {clear:both;}
 
-
+.center_image{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto
+}
 /* General Fields */
 input[type="text"], input[type="password"],
 textarea {
@@ -149,8 +157,14 @@ textarea {
 /* Login */
 
 .login {
-  padding: 20px;
+/*  padding: 20px;
+  width: 200px;*/
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
+
+
 
 .login fieldset{
    padding: 20px;

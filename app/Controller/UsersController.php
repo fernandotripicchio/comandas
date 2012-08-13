@@ -8,28 +8,21 @@
  
   
   function beforeFilter() {
-     
-     parent::beforeFilter();
-     $this->Auth->allow(array("add", "logout", "login"));
+      parent::beforeFilter();
+      $this->Auth->allow(array("admin_add", "logout", "login", "admin_login"));
  } 
  
 
   /**
    * Admin functions, only the admin user can uses these functions
-   */
+   */ 
  
-
- 
- 
-public  function index() {
-    #$this->Session->setFlash(__('Se guardo el usuario con éxito', true));
-    #$this->set('users', $this->User->find('all'));
+ public  function admin_index() {
     $this->User->recursive = 0;
     $this->set('users', $this->paginate());
   }
 
-public function add(){
-    
+ public function admin_add() {
     if (!empty($this->data)) {
 	$this->User->create();
         //$this->data['User']['registration_number'] = $this->User->oneWayEncryp($this->data["User"]["registration_number"], $this->data["User"]["email"]) ;
@@ -46,7 +39,7 @@ public function add(){
  }
  
 
- public function edit($id = null) {
+ public function admin_edit($id = null) {
     $this->User->id = $id;
     if (!$this->User->exists()) {
             throw new NotFoundException(__('Usuario invalido'));
@@ -64,7 +57,7 @@ public function add(){
     }
 }
 
-public function delete($id) {
+public function admin_delete($id) {
     if ($this->request->is('get')) {
         throw new MethodNotAllowedException();
     }
@@ -74,17 +67,26 @@ public function delete($id) {
     }
 }
 
+
+
  public function login() {
-
     $this->layout = "login";
-
-    if ($this->request->is('post')) {
-        
+    if ($this->request->is('post')) {        
         if ($this->Auth->login()) {
             return $this->redirect($this->Auth->redirect());
         } else {
-		
+            $this->Session->setFlash(__('Usuario or password es incorrecto'), 'default', array(), 'auth');
+        }
+    }
+}
 
+
+ public function admin_login() {
+    $this->layout = "login";
+    if ($this->request->is('post')) {
+        if ($this->Auth->login()) {
+            return $this->redirect($this->Auth->redirect());
+        } else {
             $this->Session->setFlash(__('Usuario or password es incorrecto'), 'default', array(), 'auth');
         }
     }
@@ -95,7 +97,11 @@ public function delete($id) {
 public function logout() {
     $this->redirect($this->Auth->logout());
 }
-    
+
+
+public function admin_logout() {
+    $this->redirect($this->Auth->logout());
+}
  
 }
 ?>

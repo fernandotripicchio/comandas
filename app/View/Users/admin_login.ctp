@@ -21,7 +21,7 @@
         <tr>
           <td> <strong> <?=$this->Form->label("Password:") ?> </strong> </td>
           <td>
-            <?=$this->Form->input('password', array('div' => array('tag' => 'div'),'type'=> 'password','size'=> '50', 'label' => false, 'class' => 'required' ) ); ?>
+            <?=$this->Form->input('Password:', array('div' => array('tag' => 'div'),'size'=> '50', 'label' => false, 'class' => 'required' ) ); ?>
           </td>
         </tr>
         <tr>

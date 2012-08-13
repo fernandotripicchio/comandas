@@ -18,14 +18,14 @@
 
  
  
-public  function index() {
+public  function admin_index() {
     $this->Cliente->recursive = 0;
     $this->set('clientes', $this->paginate());
  
    }
 
 
-public function add(){
+public function admin_add(){
 
     if (!empty($this->data)) {
 	$this->Cliente->create();
@@ -43,7 +43,7 @@ public function add(){
  }
 
 
-  public function edit($id = null) {
+  public function admin_edit($id = null) {
     $this->Cliente->id = $id;
     if (!$this->Cliente->exists()) {
             throw new NotFoundException(__('Cliente invalido'));

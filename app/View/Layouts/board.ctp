@@ -6,7 +6,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>
+		La Posta
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -25,32 +25,36 @@ $cakeDescription = __d('La Posta', 'La Posta');
      <div id="headerbg">
        <div id="contenido">
          <div class="left">
-           <h1> <?php echo $cakeDescription ?> - Casa de Comidas </h1>
+           <?=$this->Html->image("logo.png",array("width"=>170, "height"=>80))?>
          </div>
          <div class="right">
-         Usuario Logueado :
-         <?=$username; ?>
-         <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('class'=> 'right')); ?>
+           <table>
+             <tr>
+               <td>
+                    <strong> Usuario: <?=$username; ?> </strong>
+               </td>
+               <td>
+                   <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('div'=> false,'class'=> 'right')); ?>
+               </td>
+             </tr>
+           </table>             
+         
          </div>
+         <?=$this->element("menu_board");?>
        </div>
      </div>
 
      <div id="menu">
-           <?=$this->element("menu_board");?>
+           <?//=$this->element("menu_board");?>
      </div>
-
-
-
-  <!-- CENTER CONTENT -->
+<div class="clear"></div>
+ <!-- CENTER CONTENT -->
 <div id="tabContent">
-
     <div id="contentHolder">
-
         <!-- The AJAX fetched content goes here -->
 	<?php echo $this->Session->flash(); ?>
 	<?php echo $this->fetch('content'); ?>
     </div>
-
 </div>
 
  <div class="clear"></div>

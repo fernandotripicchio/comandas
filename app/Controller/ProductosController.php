@@ -19,14 +19,14 @@
 
  
  
-  function index() {
+  function admin_index() {
     $this->Producto->recursive = 0;
     $this->set('productos', $this->paginate());
  
    }
 
 
-public function add(){
+public function admin_add(){
 
     if (!empty($this->data)) {
 	$this->Producto->create();
@@ -44,7 +44,7 @@ public function add(){
  }
 
 
-  public function edit($id = null) {
+  public function admin_edit($id = null) {
     $this->Producto->id = $id;
     if (!$this->Producto->exists()) {
             throw new NotFoundException(__('Producto invalido'));
