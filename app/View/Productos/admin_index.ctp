@@ -7,6 +7,7 @@
     <tr>
         <th scope="col">Id</th>
         <th scope="col">Producto</th>
+        <th scope="col">Tipo</th>
         <th scope="col">Descripción</th>
         <th scope="col">Precio Local</th>
         <th scope="col">Precio Normal</th>
@@ -21,14 +22,17 @@
          <td>
            <?php echo $producto['Producto']['nombre'] ?>
         </td>
+        <td>
+           <?php echo $producto['Tipo']['nombre'] ?>
+        </td>
          <td>
            <?php echo $producto['Producto']['descripcion'] ?>
         </td>
          <td>
-           <?php echo $producto['Producto']['precio_local'] ?>
+           $ <?php echo number_format( $producto['Producto']['precio_local'], 2, ".", "" )  ?>
         </td>
          <td>
-           <?php echo $producto['Producto']['precio_normal'] ?>
+           $ <?php echo number_format( $producto['Producto']['precio_normal'], 2, ".", "" ) ?>
         </td>
         
         <td>

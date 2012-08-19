@@ -18,7 +18,12 @@
             )
         ) );
 
-  
+    public $hasMany = array(
+        'Pedidos' => array(
+            'className'  => 'Pedido',
+            'order'      => 'Pedidos.id DESC'
+        )
+    );
   
    
 }

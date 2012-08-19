@@ -1,0 +1,33 @@
+/* consent form styles */
+
+div.popupBG {
+	background: rgba(0,0,0,0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left: 0;
+	display: none;
+}
+
+div.popup {
+	border-radius: 0px;
+	width: 580px;
+	background: #fff;
+	margin: 100px auto 10px auto;
+	padding: 10px 10px;
+}
+
+div.popup > span.dotted {
+	border-width: 1px;
+	padding: 10px 10px;
+}
+
+div.popup > span.dotted > span.scrollArea {
+	height:400px;
+	overflow: auto;
+	display: block;
+	margin: 5px auto;
+	width: 460px;
+	padding: 0px 30px;
+}

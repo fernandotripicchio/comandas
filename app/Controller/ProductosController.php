@@ -3,7 +3,7 @@
   var $name = 'Productos';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('Producto');
+  var $uses = array('Producto', 'Tipo');
   var $paginate = array('limit' => 50,'order' => array('Producto.id' => 'asc'));
  
   
@@ -25,9 +25,19 @@
  
    }
 
+public function getTipos(){
+    $tipos = $this->Tipo->find("all", array("order" => "nombre ASC","recursive" => -1));
+    $new_tipos = array();
+    foreach ($tipos as $tipo){
+      $new_tipos[$tipo["Tipo"]["id"]] = $tipo["Tipo"]["nombre"];
+    }
+    $tipos = $new_tipos;
+    $this->set(compact("tipos"));
+}
+
 
 public function admin_add(){
-
+    $this->getTipos();
     if (!empty($this->data)) {
 	$this->Producto->create();
         //$this->data['User']['registration_number'] = $this->User->oneWayEncryp($this->data["User"]["registration_number"], $this->data["User"]["email"]) ;
@@ -40,11 +50,13 @@ public function admin_add(){
 	}
 
     }
+  
 
  }
 
 
   public function admin_edit($id = null) {
+   $this->getTipos();
     $this->Producto->id = $id;
     if (!$this->Producto->exists()) {
             throw new NotFoundException(__('Producto invalido'));
@@ -62,7 +74,15 @@ public function admin_add(){
     }
 }
 
-
+public function admin_delete($id) {
+    if ($this->request->is('get')) {
+        throw new MethodNotAllowedException();
+    }
+    if ($this->Producto->delete($id)) {
+        $this->Session->setFlash('El producto: ' . $id . ' ha sido eliminado.');
+        $this->redirect(array('action' => 'index'));
+    }
+}
 
 public function delete($id) {
     if ($this->request->is('get')) {

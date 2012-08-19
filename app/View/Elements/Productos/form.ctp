@@ -2,6 +2,12 @@
         <legend><?=$title?> </legend>  
         <table class="span-17">
              <tbody>
+               <tr>
+                 <td>Tipo: </td>
+                 <td>
+                   <?echo $this->form->select('tipo_id', $tipos) ?>
+                 </td>
+               </tr>
                <tr >
                  <td>Nombre:</td>
                  <td class="last">
@@ -36,8 +42,8 @@
                
                <tr>
                  <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Enviar" , array('div' => false,'class' => 'button sleft' ) )?>
-                     <?=$this->html->link('Listado','/productos/', array('class' => 'button sleft'));?>
+                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button sleft' ) )?>
+                     <?=$this->html->link('Listado',array("controller"=>"productos", "action" => "index", "admin" => true), array('class' => 'button sleft'));?>
                  </td>
                </tr>
                 

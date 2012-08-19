@@ -1,5 +1,3 @@
 $(document).ready(function() {
-  var validator =  $("#UserLoginForm").validate();
-
- 
+  var validator =  $("#UserLoginForm").validate(); 
 })

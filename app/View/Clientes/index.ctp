@@ -1,5 +1,6 @@
-<!-- File: /app/View/Posts/index.ctp -->
 <div class="listado">
+<?php echo $this->Html->link("Nuevo Cliente", array("controller" => "clientes", "action" =>"add", "admin"=>false), array("class" => "button a_nuevo_cliente") )?>
+
 <hr />
 <table >
   <caption>Clientes</caption>
@@ -30,7 +31,7 @@
          <td>
            <?php echo $cliente['Cliente']['observaciones'] ?>
         </td>
-        
+
         <td>
           <?php echo $this->html->link("Editar", array("controller" => "clientes", "action" => "edit", $cliente['Cliente']['id']), array("class" => "button"))?>
           <?php echo $this->Form->postLink(

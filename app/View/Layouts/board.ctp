@@ -15,7 +15,15 @@ $cakeDescription = __d('La Posta', 'La Posta');
                 echo $this->Html->css('theme/jquery-ui');
                 echo $this->Html->css('table');
                 echo $this->Html->css('menu_board/menu_board');
-                echo $this->Html->script(array('jquery','jquery.validate','jquery.ui','jquery.buttons', 'menu_board'));
+                echo $this->Html->css('popup');
+                echo $this->Html->css('colorbox/colorbox');
+                echo $this->Html->script(array('jquery',
+                                               'jquery.validate',
+                                               'jquery.colorbox',
+                                               'jquery.ui',
+                                               'jquery.buttons',
+                                               
+                                               'pedidos'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -25,28 +33,35 @@ $cakeDescription = __d('La Posta', 'La Posta');
      <div id="headerbg">
        <div id="contenido">
          <div class="left">
-           <?=$this->Html->image("logo.png",array("width"=>170, "height"=>80))?>
+           <?=$this->Html->image("logo.png",array("width"=>170, "height"=>80, "style" => "padding:5px;marging:10px"))?>
+           <br />
          </div>
          <div class="right">
-           <table>
-             <tr>
-               <td>
-                    <strong> Usuario: <?=$username; ?> </strong>
-               </td>
-               <td>
-                   <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('div'=> false,'class'=> 'right')); ?>
-               </td>
-             </tr>
-           </table>             
-         
+           <div>
+             <table style="float: right">
+                 <tr>
+                   <td>
+                        <strong> Usuario: <?=$username; ?> </strong>
+                   </td>
+                   <td>
+                       <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('div'=> false,'class'=> 'right')); ?>
+                   </td>
+                   <td>
+                       <?=$this->html->link('Admin' , array('controller' => 'Admin', 'action' => 'index'), array('div'=> false,'class'=> 'right')); ?>
+                   </td>
+                 </tr>
+               </table>
+           </div>
+           <div>
+             <?=$this->element("menu_board");?>
+           </div>
+           
          </div>
-         <?=$this->element("menu_board");?>
+         
        </div>
      </div>
 
-     <div id="menu">
-           <?//=$this->element("menu_board");?>
-     </div>
+
 <div class="clear"></div>
  <!-- CENTER CONTENT -->
 <div id="tabContent">

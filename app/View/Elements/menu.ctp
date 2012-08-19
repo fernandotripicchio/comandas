@@ -32,6 +32,8 @@
             </ul>
             </div>
         </li>
-        <li class="last"><a href="#"><span>Pedidos</span></a></li>
+        <li class="last">
+          <?=$this->Html->link('<span>Pedidos</span>', array('admin' => true,'controller' => 'Pedidos', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+        </li>
     </ul>
 </div>

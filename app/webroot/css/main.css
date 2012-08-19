@@ -52,11 +52,10 @@ If you prefer you could right or left align it.*/
 }
 
 #headerbg #contenido{
-  padding-left:  30px;
-/*  padding-right: 300px;*/
-  padding-top: 10px;
-  width: 95%;
-  height: 80px;
+  width: 97%;
+  padding-left: 10px;
+  padding-right:  20px;
+
 }
 
 /*Center Content*/
