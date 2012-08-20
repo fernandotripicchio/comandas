@@ -55,6 +55,32 @@
   }
 
 
+  function edit($id = null) {
+//      $options=array('delivery'=>'Delivery','mostrador'=>'Mostrador', 'mesa' => 'Mesa');
+//    $attributes=array('legend'=>false, 'default'=> 'delivery', 'class' => 'radioTipoPedido');
+//    $mesas = array();
+//    for($i=1; $i < 16; $i++){
+//        $mesas[$i] = "Mesa $i";
+//    }
+//    $attributes_mesas=array('legend'=>false, 'id' => 'pedidosMesa');
+
+    $this->Pedido->id = $id;
+    if (!$this->Pedido->exists()) {
+            throw new NotFoundException(__('Pedido invalido'));
+    }
+    if ($this->request->is('get')) {
+        $this->request->data = $this->Pedido->read();
+
+    } else {
+        if ($this->Pedido->save($this->request->data)) {
+            $this->Session->setFlash('Se modifico el pedido con éxito');
+            $this->redirect(array('action' => 'index'));
+        } else {
+            $this->Session->setFlash('No se pudo modificar el pedido.');
+        }
+    }
+}
+
 
   function add_productos(){
     $this->layout = 'ajax';
@@ -92,7 +118,7 @@ private function saveData($data) {
   }
   $pedido["tipo"]  = $data["Pedidos"]["tipo"];
   
-  $pedido["total_pedido"]  = $data["Pedidos"]["total_pedido"];  
+  $pedido["total"]  = $data["Pedidos"]["total_pedido"];  
   $pedido["observaciones"]  = $data["Pedidos"]["observaciones"];
   $pedido["fecha"] = date('Y-m-d H:i:s');
 
@@ -101,6 +127,7 @@ private function saveData($data) {
     $pedido["paga_con"]  = 0;
     $pedido["vuelto"]  = 0;
     $pedido["mesa"] =$data["Pedidos"]["mesa"];
+
   }
   else {
     $estado = "En Cocina";

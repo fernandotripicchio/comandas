@@ -100,7 +100,7 @@ public function logout() {
 
 
 public function admin_logout() {
-    $this->redirect($this->Auth->logout());
+    $this->redirect("/users/login");
 }
  
 }
