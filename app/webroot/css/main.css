@@ -283,3 +283,73 @@ legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
 fieldset, #IE8#HACK {padding-top:1.4em;}
 legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 
+.tablaProductos{
+  margin: 10px;
+  width: 95%;
+}
+.tablaProductos th{
+  font-size: 20px;
+  border: 1px solid;
+}
+
+
+.filtros{
+  padding:5px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  width: 95%;
+}
+
+.productosListadoPedidos{
+ overflow: auto;
+ width: 95%
+}
+
+
+.productosListadoPedidos .columnaProductos{
+  width: 35%;
+}
+
+.productosListadoPedidos .columnaProductosSeleccionados{
+  width: 50%;
+}
+.productosListadoPedidos .columnaProductosSeleccionados th{
+  text-align: left;
+}
+
+.pedidoTotal{
+  font-size: 2.0em;
+  color: red;
+}
+
+#productos_seleccionados{
+  width: 100%;
+ border: 1px solid;
+}
+
+
+#tablaPedidos{
+  background: #BEBEBE;
+}
+
+#tablaPedidos th{
+   color:#fff;
+   text-align: center;
+   font-weight: bold;
+   font-size: 1.2em;
+}
+
+#tablaPedidos td{
+   color:#fffA;
+   text-align: left;
+   font-weight: bold;
+   font-size: 1.3em;
+}
+
+
+.buttonEliminar{
+  font-size: 0.7em !important;
+  height: 30px !important;
+  color: red !important;
+  background: white;
+}

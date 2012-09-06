@@ -84,8 +84,8 @@
 
   function add_productos(){
     $this->layout = 'ajax';
-    $productos = $this->Producto->find("all",array("order" => array("Tipo.nombre ASC"),"recursive" => 1));
-    $tipos     = $this->Tipo->find("all", array("recursive" => -1));
+    $productos = $this->Producto->find("all",array("order" => array("Tipo.nombre, Producto.nombre ASC"),"recursive" => 1));
+    $tipos     = $this->Tipo->find("all", array("order" => array("Tipo.nombre ASC"),  "recursive" => -1));
     $this->set(compact("productos"));
     $this->set(compact("tipos"));
   }

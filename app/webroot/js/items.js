@@ -3,9 +3,6 @@ function obtenerTotal(){
   $(".precio").each(function(){
     total = total + parseFloat($(this).html());
   });
-
-
-
   $("#total").html(total);
   
 }
@@ -26,18 +23,19 @@ function actualizarTotal(){
   $("#total_pedido").attr("value",total );
 }
 
+
 $(document).ready(function(){
     $(function() {
-          //$( "input:submit, a, button", ".button" ).button();
           $( "a.button" ).button();
           $( "input:button" ).button();
-	  //$( "a", ".demo" ).click(function() { return false; });
     });
 
-    $(".filtros").on("click", "a", function (event) {
+    $(".filtros").on("click", "span", function (event) {
                  var tipo = $(this).attr("tipo");
+                
                  if (tipo!="todos") {
                         $(".row_productos").hide();
+                        
                         $(".row_tipo_"+tipo).show();
                  } else {
                         $(".row_productos").show();
@@ -47,12 +45,13 @@ $(document).ready(function(){
 
     //Select productos
     $(".row_productos").click(function() {
+         
          var producto_id = $(this).attr("id").split("_")[1];
          
          var nombre = $("#nombre_"+producto_id).attr("value");
          var precio = $("#precio_normal_"+producto_id).attr("value");
          var new_html = "";
-
+       
          new_html += "<tr id='row_item_"+producto_id+"'>";
 
          new_html += "<input  class='productos_hidden' type='hidden' name='producto_elegido_"+producto_id+"' value ='"+producto_id+"'/>";
@@ -60,10 +59,7 @@ $(document).ready(function(){
          new_html += "<input  type='hidden' id='producto_elegido_precio_"+producto_id+"' name='producto_elegido_precio_"+producto_id+"' value ='"+precio+"'/>";
      
          new_html += "<td>";
-         new_html +=  "&nbsp;";
-         new_html += "</td>";
-         new_html += "<td>";
-         new_html +=  "<input type='text' name='cantidad' value='1' size='2' id='cantidad_"+producto_id+"' class='cantidad' />";
+         new_html +=  "<input type='text' name='cantidad' value='1' size='1' id='cantidad_"+producto_id+"' class='cantidad' />";
          new_html += "</td>";
          //Nombre producto
          new_html += "<td>";
@@ -81,6 +77,8 @@ $(document).ready(function(){
          new_html += "<input type='button' name='eliminar' value='Eliminar' id='eliminar_button_"+producto_id+"' class='eliminarItem'>";
          new_html += "</td>";
          new_html += "</tr>";
+
+         
          $("#productos_seleccionados").append(new_html);
 
 
@@ -124,7 +122,7 @@ $(document).ready(function(){
               new_html += observaciones;
               new_html += "</td>";
               new_html += "<td>";
-              new_html += "<input type='button' name='eliminar' value='Eliminar'>";
+              new_html += "<input type='button' name='eliminar' value='X' class='buttonEliminar'>";
               new_html += "</td>";
               new_html += "</tr>";
               $("#tablaPedidos").append(new_html);

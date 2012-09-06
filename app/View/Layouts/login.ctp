@@ -25,7 +25,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
   <!-- CENTER CONTENT -->
 <div id="container">
 			<?php echo $this->Session->flash(); ?>
-                        <?=$this->Html->image("logo.png",array("width"=>260, "height"=>150, "class"=> "center_image"))?>
+                        <?=$this->Html->image("logo2.png",array("width"=>260, "height"=>170, "class"=> "center_image"))?>
 			<?php echo $this->fetch('content'); ?>
 
 </div>

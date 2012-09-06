@@ -6,13 +6,25 @@
         <legend><?=$title?> </legend>  
         <table class="span-19">
              <tbody>
-               <tr>
+               <tr style="height: 60px">
                  <td><strong>Tipo de Pedido:</strong></td>
                  <td>
-                   <?php  echo $this->Form->radio('Pedidos.tipo',$options,$attributes);   ?>
+                   <?//php  echo $this->Form->radio('Pedidos.tipo',$options,$attributes);   ?>
+                   <input type="radio" name="data[Pedidos][tipo]" id="PedidosTipoDelivery" class="radioTipoPedido" value="delivery" checked="checked">
+                   <label for="PedidosTipoDelivery">
+                     <span class="buttonOrange">Delivery</span>
+                   </label>
+                   <input type="radio" name="data[Pedidos][tipo]" id="PedidosTipoMostrador" class="radioTipoPedido" value="mostrador">
+                   <label for="PedidosTipoMostrador">
+                     <span class="buttonGreen">Mostrador</span>
+                   </label>
+                   <input type="radio" name="data[Pedidos][tipo]" id="PedidosTipoMesa" class="radioTipoPedido" value="mesa">
+                   <label for="PedidosTipoMesa">
+                     <span class="buttonYellow">Mesa</span>
+                   </label>
                  </td>
                </tr>
-               <tr id="rowPedidoCliente" >
+               <tr id="rowPedidoCliente" style="height: 60px">
                  <td><strong>Cliente:</strong></td>
                  <td>
                     <?php echo $this->Html->link("Agregar Cliente",array("controller" => "pedidos", "action" => "add_clientes"),array('class' => 'button', 'id' =>"buttonCliente"))?>
@@ -23,7 +35,7 @@
                  <td>
                    <table id="tablaCliente">
                      <tr>
-                       <td>No ha seleccionado ningun cliente</td>
+                       <td><strong>Todavia no ha seleccionado ningun cliente</strong></td>
                      </tr>
                    </table>
                  </td>
@@ -31,15 +43,23 @@
                
                <tr id="rowPedidoMesa"  style="display: none">
                  <td><strong>Mesa:</strong></td>
+                 
                  <td>
-                      <?php                      
-                      echo $this->Form->select('Pedidos.mesa', $mesas, $attributes_mesas)
-                      ?>
+                   <? for($i=1; $i<11; $i++) { ?>
+                   <div class="column last">
+                       <input type="radio" name="mesa" id="radioMesa<?=$i?>" class="radioTipoMesa" value="mesa <?=$i?>">
+                       <label for="radioMesa<?=$i?>">
+                         <span class="buttonYellow">Mesa <?=$i?></span>
+                       </label>
+                   </div>
+
+                   <? } ?>
                  </td>
+
                </tr>
 
 
-               <tr>
+               <tr style="height: 60px">
                <td><strong>Productos:</strong></td>
                  <td>
                     <?php echo $this->Html->link("Agregar Productos",array("controller" => "pedidos", "action" => "add_productos"),array('class' => 'button', 'id' =>"buttonAgregar"))?>
@@ -48,13 +68,13 @@
                <tr>
                  <td> &nbsp; </td>
                  <td>
-                   <table id="tablaPedidos" style="width: 100%; background-color: white">
+                   <table id="tablaPedidos" >
                      <tr>
-                       <td style="width: 10%">Cantidad</td>
-                       <td style="width: 20%">Producto</td>
-                       <td style="width: 10%">Precio</td>
-                       <td>Observaciones</td>
-                       <td>&nbsp;</td>
+                       <th style="width: 10%">Cantidad</th>
+                       <th style="width: 20%">Producto</th>
+                       <th style="width: 10%">Precio</th>
+                       <th>Observaciones</th>
+                       <th>&nbsp;</th>
                      </tr>
                    </table>
                  </td>

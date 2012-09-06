@@ -16,6 +16,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
                 echo $this->Html->css('table');
                 echo $this->Html->css('menu_board/menu_board');
                 echo $this->Html->css('popup');
+                 echo $this->Html->css('buttons');
                 echo $this->Html->css('colorbox/colorbox');
                 echo $this->Html->script(array('jquery',
                                                'jquery.validate',
@@ -33,7 +34,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
      <div id="headerbg">
        <div id="contenido">
          <div class="left">
-           <?=$this->Html->image("logo.png",array("width"=>170, "height"=>80, "style" => "padding:5px;marging:10px"))?>
+           <?=$this->Html->image("logo2.png",array("width"=>160, "height"=>90, "style" => "padding:5px;marging:10px"))?>
            <br />
          </div>
          <div class="right">
