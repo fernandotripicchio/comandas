@@ -22,7 +22,7 @@
  
   function index() {
 
-     $pedidos = $this->Pedido->find("all", array("order" => "Pedido.fecha ASC"));
+     $pedidos = $this->Pedido->find("all", array("conditions" => array("estado !=" => "Cancelado"),"order" => "Pedido.fecha ASC"));
      $this->set(compact("pedidos"));
   }
 
@@ -55,15 +55,34 @@
   }
 
 
-  function edit($id = null) {
-//      $options=array('delivery'=>'Delivery','mostrador'=>'Mostrador', 'mesa' => 'Mesa');
-//    $attributes=array('legend'=>false, 'default'=> 'delivery', 'class' => 'radioTipoPedido');
-//    $mesas = array();
-//    for($i=1; $i < 16; $i++){
-//        $mesas[$i] = "Mesa $i";
-//    }
-//    $attributes_mesas=array('legend'=>false, 'id' => 'pedidosMesa');
+ function cancelar($id = null) {
+    $this->Pedido->id = $id;
+    if (!$this->Pedido->exists()) {
+            throw new NotFoundException(__('Pedido invalido'));
+    }
 
+    if ($this->request->is('get')) {
+        $this->request->data = $this->Pedido->read();
+        $pedido = $this->request->data["Pedido"];
+        $this->set(compact("pedido"));
+    } else {
+         
+         $ok = $this->Pedido->save($this->request->data["Pedidos"]);
+         
+        
+        if ($ok) {
+           
+            $this->Session->setFlash('Se cancelo con éxito');
+            $this->redirect(array('action' => 'index'));
+        } else {
+            $this->Session->setFlash('No se pudo cancelar el pedido.');
+        }
+    }
+ }
+
+
+
+  function edit($id = null) {
     $this->Pedido->id = $id;
     if (!$this->Pedido->exists()) {
             throw new NotFoundException(__('Pedido invalido'));
@@ -92,11 +111,6 @@
 
   function add_clientes(){
     $this->layout = 'ajax';
-    //$clientes = $this->Cliente->find("all",array("order" => array("nombre ASC"),"recursive" => -1));
-    
-    // similar to findAll(), but fetches paged results
-  //  
-   
     $this->paginate = array(
         'Cliente' => array(
             'limit' => 20,

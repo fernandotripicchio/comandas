@@ -32,6 +32,17 @@
             </ul>
             </div>
         </li>
+
+        <li>
+          <?=$this->Html->link('<span>Cadetes</span>', array('admin' => true,'controller' => 'cadetes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+            <div>
+              <ul>
+                <li>
+                   <?=$this->Html->link('<span>Agregar Cadete</span>', array('admin' => true,'controller' => 'cadetes', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                 </li>
+            </ul>
+            </div>
+        </li>
         <li class="last">
           <?=$this->Html->link('<span>Pedidos</span>', array('admin' => true,'controller' => 'Pedidos', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
         </li>

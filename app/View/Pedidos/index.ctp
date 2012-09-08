@@ -43,11 +43,8 @@
         <td>
           <?php echo $this->html->link("Cerrar", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button"))?>
           <?php echo $this->html->link("Editar", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button"))?>
-          <?php echo $this->Form->postLink(
-                'Eliminar',
-                array('action' => 'delete', $pedido['Pedido']['id']),array("class" => "button"),
-                array('confirm' => 'Estas seguro?'));
-            ?>
+          <?php echo $this->html->link("Cancelar", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button"))?>
+
         </td>
     </tr>
     <?php endforeach; ?>
