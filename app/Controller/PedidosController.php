@@ -3,7 +3,7 @@
   var $name = 'Pedidos';
   public $helpers = array("Html","Form", "Paginator");
   var $components = array("RequestHandler");
-  var $uses = array('Pedido', 'Producto', 'Tipo','User', 'Cliente');
+  var $uses = array('Pedido', 'Producto', 'Tipo','User', 'Cliente', 'Cadete');
   //var $paginate = array('limit' => 50,'order' => array('Cliente.id' => 'asc'));
  
   
@@ -17,13 +17,22 @@
    * Admin functions, only the admin user can uses these functions
    */
  
-
+public function getCadetes(){
+    $cadetes = $this->Cadete->find("all", array("order" => "nombre ASC","recursive" => -1));
+    $new_cadetes = array();
+    foreach ($cadetes as $cadete){
+      $new_cadetes[$cadete["Cadete"]["id"]] = $cadete["Cadete"]["nombre"];
+    }
+    $cadetes = $new_cadetes;
+    $this->set(compact("cadetes"));
+}
  
  
   function index() {
-
+     $this->getCadetes();
      $pedidos = $this->Pedido->find("all", array("conditions" => array("estado !=" => "Cancelado"),"order" => "Pedido.fecha ASC"));
      $this->set(compact("pedidos"));
+     
   }
 
   function add(){

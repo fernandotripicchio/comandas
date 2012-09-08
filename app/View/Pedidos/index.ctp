@@ -11,6 +11,7 @@
         <th scope="col">Fecha</th>
         <th scope="col">Atraso</th>
         <th scope="col">Estado</th>
+        <th scope="col">Cadete</th>
         <th scope="col">&nbsp;</th>
     </tr>
 </thead>
@@ -36,8 +37,12 @@
          <td>
            <?php echo round( (mktime() - strtotime($pedido['Pedido']['fecha']))/60 ) ?> Min.
          </td>
+
          <td>
-            <?php echo $pedido['Pedido']['estado'] ?>
+           <?php echo $pedido['Pedido']['estado'] ?>
+         </td>
+         <td>
+            <?echo $this->form->select('cadete_id', $cadetes) ?>
         </td>
 
         <td>
