@@ -5,7 +5,7 @@ $(document).ready(function(){
     $("#pedidoForm").submit(function(){
        var ret = true;
        
-       if ($("#pedidosClienteId").attr("value") =="" && ( $("#PedidosTipoDelivery").attr("checked") == "checked" || $("#PedidosTipoMostrador").attr("checked") == "checked" ) ){
+       if ( ( $("#PedidosDireccion").attr("value") == "" &&  $("#pedidosClienteId").attr("value") =="" ) && ( $("#PedidosTipoDelivery").attr("checked") == "checked" || $("#PedidosTipoMostrador").attr("checked") == "checked" ) ){
          ret = false;
          alert("Debe seleccionar un cliente")
        }
@@ -23,9 +23,9 @@ $(document).ready(function(){
        }
 
        //Si no es mesa controlo el paga con
-       if ( ret && $("#PedidosTipoMesa").attr("checked") != "checked" && $("#paga_con").attr("value") == "") {
+       if ( ret && $("#PedidosTipoMesa").attr("checked") != "checked" && $("#paga_con_hidden").attr("value") == "") {
          ret = false
-         alert("Ingrese un valor en Paga Con");
+         alert("Ingrese un monto con el que paga el cliente ");
        }
        return ret;
     })
@@ -33,13 +33,32 @@ $(document).ready(function(){
     $(".radioTipoPedido").click(function(){
        if ( $(this).attr("value") == "mesa"){
          $("#rowPedidoMesa").show();
-         $("#rowPedidoCliente").hide();
-         $("#rowTableCliente").hide();
+         //$("#rowPedidoCliente").hide();
+         $(".rowCliente").hide();
+         //$("#rowDireccionCliente").hide();
+         //$("#rowTableCliente").hide();
+
        } else {
          $("#rowPedidoMesa").hide();
-         $("#rowPedidoCliente").show();
-         $("#rowTableCliente").show();
+         //$("#rowPedidoCliente").show();
+         //$("#rowDireccionCliente").show();
+         //$("#rowTableCliente").show();
+         $(".rowCliente").show();
          
+       }
+    })
+
+
+    $(".buttonPaga").click(function(){
+       var paga_con = $(this).attr("money");
+       var total = parseFloat($("#total_pedido").attr("value"));
+
+       if (paga_con=="justo"){
+         $("#vuelto").attr("value", 0);
+         $("#paga_con_hidden").attr("value", total);
+       } else {
+         $("#vuelto").attr("value", parseFloat(paga_con-total));
+         $("#paga_con_hidden").attr("value", paga_con);
        }
     })
 
@@ -48,6 +67,7 @@ $(document).ready(function(){
        var total = parseFloat($("#total_pedido").attr("value"));
        
        $("#vuelto").attr("value", parseFloat(paga_con-total));
+       $("#paga_con_hidden").attr("value", parseFloat(paga_con));
     })
 
 

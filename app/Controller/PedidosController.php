@@ -115,12 +115,16 @@ private function saveData($data) {
  // Array ( [Pedidos] => Array ( [Cliente] => Array ( [id] => 2 [nombre] => Enzo Francescolli ) [Productos] => Array ( [id] => 5 [precio] => 45.00 [cantidad] => 1 ) [total_pedido] => 173 [paga_con] => 200 [vuelto] => 27 [observaciones] => ) [tipo] => delivery [data[Pedidos] => Array ( [Mesa] => ) )
   if ($data["Pedidos"]["tipo"]!="mesa"){
       $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
+      $pedido['nombre'] =  $data["Pedidos"]["nombre"];
+      $pedido['direccion'] =  $data["Pedidos"]["direccion"];
+      $pedido['telefono'] =  $data["Pedidos"]["telefono"];
   }
-  $pedido["tipo"]  = $data["Pedidos"]["tipo"];
-  
+  $pedido["tipo"]  = $data["Pedidos"]["tipo"];  
   $pedido["total"]  = $data["Pedidos"]["total_pedido"];  
   $pedido["observaciones"]  = $data["Pedidos"]["observaciones"];
   $pedido["fecha"] = date('Y-m-d H:i:s');
+
+
 
   if ($pedido["tipo"] == "mesa"){
     $estado = "Abierto";
@@ -136,8 +140,10 @@ private function saveData($data) {
     $pedido["mesa"] = 0;
   }
   $pedido["estado"] = $estado;
+
+
   $ok =  $this->Pedido->save($pedido);
-  $this->redirect(array('action'=>'index'));
+  //$this->redirect(array('action'=>'index'));
   return true;
 }
 

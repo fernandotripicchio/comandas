@@ -24,22 +24,44 @@
                    </label>
                  </td>
                </tr>
-               <tr id="rowPedidoCliente" style="height: 60px">
+               <tr id="rowPedidoCliente" style="height: 60px" class="rowCliente">
                  <td><strong>Cliente:</strong></td>
                  <td>
-                    <?php echo $this->Html->link("Agregar Cliente",array("controller" => "pedidos", "action" => "add_clientes"),array('class' => 'button', 'id' =>"buttonCliente"))?>
+                    <?php echo $this->Html->link("Seleccionar Cliente",array("controller" => "pedidos", "action" => "add_clientes"),array('class' => 'button', 'id' =>"buttonCliente"))?>
+
                  </td>
                </tr>
+               <tr id="rowNombreCliente" class="rowCliente">
+                 <td><strong>Nombre:</strong></td>
+                 <td>
+                     <?=$this->form->input('Pedidos.nombre',    array('label'=> false,'type'=>'text','size' => 120, 'div' => array('tag' => '')));?>
+                 </td>
+               </tr>
+               <tr id="rowDireccionCliente" class="rowCliente">
+                 <td><strong>Direccion:</strong></td>
+                 <td>
+                     <?=$this->form->input('Pedidos.direccion',    array('label'=> false,'type'=>'text','size' => 120, 'div' => array('tag' => '')));?>
+                 </td>
+               </tr>
+               <tr id="rowTelefonoCliente" class="rowCliente">
+                 <td><strong>Telefono:</strong></td>
+                 <td>
+                     <?=$this->form->input('Pedidos.telefono',    array('label'=> false,'type'=>'text','size' => 120, 'div' => array('tag' => '')));?>
+                 </td>
+               </tr>
+                                  
+<!--
                <tr id="rowTableCliente">
                  <td>&nbsp;</td>
                  <td>
                    <table id="tablaCliente">
                      <tr>
-                       <td><strong>Todavia no ha seleccionado ningun cliente</strong></td>
+                       <td></td>
                      </tr>
                    </table>
                  </td>
                </tr>
+               -->
                
                <tr id="rowPedidoMesa"  style="display: none">
                  <td><strong>Mesa:</strong></td>
@@ -86,19 +108,25 @@
                      <tr>
                        <td>Total : </td>
                        <td>
-                          <?php  echo $this->Form->input('Pedidos.total_pedido', array("id"=> "total_pedido","type" => "text", "label" => false, "div" => false));   ?>
+                          $ <?php  echo $this->Form->input('Pedidos.total_pedido', array("id"=> "total_pedido","type" => "text", "label" => false, "div" => false, "readonly"=>true));   ?>
                        </td>
                      </tr>
                      <tr>
                        <td>Paga con : </td>
                        <td>
-                          <?php  echo $this->Form->input('Pedidos.paga_con', array("id"=> "paga_con","type" => "text", "label" => false, "div" => false));   ?>
+                         <input type="button" value="$10"  money="10" name="10" id="pagaCon10" class="buttonPaga">
+                          <input type="button" value="$20" money="20" name="20" id="pagaCon20" class="buttonPaga">
+                          <input type="button" value="$50" money="50" name="50" id="pagaCon50" class="buttonPaga">
+                          <input type="button" value="$100" money="100"  name="100" id="pagaCon100" class="buttonPaga">
+                          <input type="button" value="Justo" money="justo" name="justo" id="pagaJusto" class="buttonPaga">
+                          $<?php  echo $this->Form->input('paga_con', array("id"=> "paga_con","type" => "text", "label" => false, "div" => false));   ?>
+                          <?php   echo $this->Form->input('Pedidos.paga_con', array("id"=> "paga_con_hidden","type" => "hidden", "label" => false, "div" => false));   ?>
                        </td>
                      </tr>
                      <tr>
                        <td>Vuelto : </td>
                        <td>
-                          <?php  echo $this->Form->input('Pedidos.vuelto', array("id"=> "vuelto","type" => "text", "label" => false, "div" => false));   ?>
+                          $ <?php  echo $this->Form->input('Pedidos.vuelto', array("id"=> "vuelto","type" => "text", "label" => false, "div" => false));   ?>
                        </td>
                      </tr>
                    </table>
@@ -119,7 +147,7 @@
                <tr>
                  <td colspan="2" style="text-align: center">
                      <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button left', 'id' => 'guardarPedido' ) )?>
-                     <?=$this->html->link('Listado Pedidos','/pedidos/', array('class' => 'button left'));?>
+                     <?=$this->html->link('Cancelar Pedido','/pedidos/', array('class' => 'button left'));?>
                  </td>
                </tr>
                 
