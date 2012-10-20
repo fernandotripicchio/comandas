@@ -43,6 +43,18 @@
             </ul>
             </div>
         </li>
+
+        <li>
+          <?=$this->Html->link('<span>Tipo Movimientos</span>', array('admin' => true,'controller' => 'tipo_movimientos', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+            <div>
+              <ul>
+                <li>
+                   <?=$this->Html->link('<span>Agregar Tipo</span>', array('admin' => true,'controller' => 'tipo_movimientos', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                 </li>
+            </ul>
+            </div>
+        </li>
+
         <li class="last">
           <?=$this->Html->link('<span>Pedidos</span>', array('admin' => true,'controller' => 'Pedidos', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
         </li>

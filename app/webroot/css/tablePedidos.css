@@ -3,7 +3,7 @@ Table Design by Mihalcea Romeo
 www.roscripts.com
 ----------------------------------------------- */
 
-.listado table {
+.listado_pedidos table {
 		border-collapse:collapse;
 		background:#EFF4FB url(../img/teaser.gif) repeat-x;
 		border-left:1px solid #686868;
@@ -13,11 +13,11 @@ www.roscripts.com
                 width: 100%;
 }
 
-.listado td, th {
+.listado_pedidos td, th {
 		padding:5px;
 }
 
-.listado caption {
+.listado_pedidos caption {
 		padding: 0 0 .5em 0;
 		text-align: left;
 		font-size: 1.4em;
@@ -30,56 +30,71 @@ www.roscripts.com
 /* =links
 ----------------------------------------------- */
 
-.listado table a {
+.listado_pedidos table a {
 		color:#666;
 		text-decoration:none;
 }
 
-.listado table a:link {}
+.listado_pedidos table a:link {}
 
-.listado table a:visited {
+.listado_pedidos table a:visited {
 		font-weight:normal;
 		color:#666;
 		text-decoration: line-through;
 }
 
-.listado table a:hover {
+.listado_pedidos table a:hover {
 		border-bottom: 1px dashed #bbb;
 }
 
 /* =head =foot
 ----------------------------------------------- */
 
-.listado thead th, tfoot th, tfoot td {
+.listado_pedidos thead th, tfoot th, tfoot td {
 		background:#333 url(../img/llsh.gif) repeat-x;
 		color:#fff;
+                font-size: 1.6em;
                 text-align: left;
 }
 
-.listado tfoot td {
-		text-align:right
+.listado_pedidos tfoot td {
+		text-align:right;
+                font-size: 1.6em;
 }
 
 /* =body
 ----------------------------------------------- */
 
-.listado tbody th, .listado tbody td {
+.listado_pedidos tbody th, .listado_pedidos tbody td {
 		border-bottom: dotted 1px #333;
                 text-align: left;
+                font-size: 1.6em;
 }
 
-.listado tbody th {
+.listado_pedidos tbody th {
 		white-space: nowrap;
 }
 
-.listado tbody th a {
+.listado_pedidos tbody th a {
 		color:#333;
 }
 
-.listado .odd {}
+.listado_pedidos .odd {}
 
-.listado tbody tr:hover {
+.listado_pedidos tbody tr:hover {
 		background:#fafafa
 }
 
 
+.listado_pedidos .en_tiempo{
+  background: #D3D3D3 !important;
+}
+
+
+.listado_pedidos .mas_20{
+  background: #FFD39B !important;
+}
+
+.listado_pedidos .mas_40{
+  background: #FF4040 !important;
+}

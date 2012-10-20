@@ -69,7 +69,7 @@
                  <td>
                    <? for($i=1; $i<11; $i++) { ?>
                    <div class="column last">
-                       <input type="radio" name="mesa" id="radioMesa<?=$i?>" class="radioTipoMesa" value="mesa <?=$i?>">
+                       <input type="radio" name="data[Pedidos][mesa]" id="radioMesa<?=$i?>" class="radioTipoMesa" value="<?=$i?>">
                        <label for="radioMesa<?=$i?>">
                          <span class="buttonYellow">Mesa <?=$i?></span>
                        </label>
@@ -111,7 +111,7 @@
                           $ <?php  echo $this->Form->input('Pedidos.total_pedido', array("id"=> "total_pedido","type" => "text", "label" => false, "div" => false, "readonly"=>true));   ?>
                        </td>
                      </tr>
-                     <tr>
+                     <tr id="rowPagaCon" >
                        <td>Paga con : </td>
                        <td>
                          <input type="button" value="$10"  money="10" name="10" id="pagaCon10" class="buttonPaga">
@@ -119,11 +119,11 @@
                           <input type="button" value="$50" money="50" name="50" id="pagaCon50" class="buttonPaga">
                           <input type="button" value="$100" money="100"  name="100" id="pagaCon100" class="buttonPaga">
                           <input type="button" value="Justo" money="justo" name="justo" id="pagaJusto" class="buttonPaga">
-                          $<?php  echo $this->Form->input('paga_con', array("id"=> "paga_con","type" => "text", "label" => false, "div" => false));   ?>
-                          <?php   echo $this->Form->input('Pedidos.paga_con', array("id"=> "paga_con_hidden","type" => "hidden", "label" => false, "div" => false));   ?>
+                          $<?php  echo $this->Form->input('paga_con', array("id"=> "paga_con","type" => "text", "label" => false, "div" => false, 'value' => '0'));   ?>
+                          <?php   echo $this->Form->input('Pedidos.paga_con', array("id"=> "paga_con_hidden","type" => "hidden", "label" => false, "div" => false, 'value' => '0'));   ?>
                        </td>
                      </tr>
-                     <tr>
+                     <tr id="rowVuelto">
                        <td>Vuelto : </td>
                        <td>
                           $ <?php  echo $this->Form->input('Pedidos.vuelto', array("id"=> "vuelto","type" => "text", "label" => false, "div" => false));   ?>

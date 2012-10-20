@@ -1,65 +1,30 @@
-<div id="producto_add">
+<div id="pedido_edit">
     <?=$this->form->create('Pedido',array('action'=>'edit', 'id' => 'pedidoForm'));?>
-
  <fieldset>
-        <legend>Pedidos </legend>
-        <table class="span-17">
-             <tbody>
-               <tr>
-                 <td>Tipo: </td>
-                 <td>
-                   <?=$this->form->input('tipo',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
-                 </td>
-               </tr>
+        <legend>Editar Pedido Nro:<?=$pedido["id"]?>  </legend>
+        <div class="span-21">
+                 <?=$this->element("Pedidos/pedidosTable", array("pedido" => $pedido))?>
+        </div>
+        <div class="span-21">
+          <table class="span-20">
                <tr >
-                 <td>Fecha Y Hora:</td>
-                 <td class="last">
-                     <?=$this->form->input('fecha',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
+                 <td valign="top" class="span-8"><strong>Motivo Cancelacion:</strong></td>
+                 <td class="last" style="float: left" class="span-15">
+                     <?=$this->form->textarea('Pedidos.motivo_cancelacion',    array('label'=> false,'type'=>'text', 'rows'=>5, 'cols' => 50, 'class' => 'required', ' style' => 'width: 100%' , 'div' => array('tag' => '')));?>
                  </td>
                </tr>
-
+          </table>
+        </div>
+        <div class="span-21">
+          <table class="span-20">
                <tr >
-                 <td>Total</td>
-                 <td class="last">
-                     <?=$this->form->input('total',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
-                 </td>
-               </tr>
-               <tr >
-                 <td>Paga con:</td>
-                 <td class="last">
-                     <?=$this->form->input('paga_con',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => '', 'div' => array('tag' => '')));?>
-                 </td>
-               </tr>
-               <tr >
-                 <td>Vuelto:</td>
-                 <td class="last">
-                     <?=$this->form->input('vuelto',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => '', 'div' => array('tag' => '')));?>
-                 </td>
-               </tr>
-               <tr >
-                 <td>Observaciones:</td>
-                 <td class="last">
-                     <?=$this->form->textarea('observaciones',    array('label'=> false,'type'=>'text', 'rows'=>10, 'cols' => 40, 'class' => 'required', 'div' => array('tag' => '')));?>
-                 </td>
-               </tr>
-
-                <tr>
-                 <td colspan="2">
-                   <hr />
-                 </td>
-               </tr>
-
-               <tr>
                  <td colspan="2" style="text-align: center">
                      <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button left' ) )?>
                      <?=$this->html->link('Listado',array("controller"=>"pedidos", "action" => "index", "admin" => false), array('class' => 'button left'));?>
                  </td>
                </tr>
-
-
-             </tbody>
-
-           </table>
+          </table>
+        </div>
  </fieldset>
     <?=$this->form->end();?>
 </div>

@@ -14,6 +14,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
                 echo $this->Html->css('grid');
                 echo $this->Html->css('theme/jquery-ui');
                 echo $this->Html->css('table');
+                 echo $this->Html->css('tablePedidos');
                 echo $this->Html->css('menu_board/menu_board');
                 echo $this->Html->css('popup');
                  echo $this->Html->css('buttons');
