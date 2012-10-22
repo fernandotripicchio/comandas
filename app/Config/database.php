@@ -64,7 +64,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => '12345678',
+		'password' => '3833105m',
 		'database' => 'laposta_dev',
 		'prefix' => '',
 		//'encoding' => 'utf8',
