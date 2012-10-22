@@ -353,3 +353,96 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
   color: red !important;
   background: white;
 }
+
+.tipoMesa{
+  color: red;
+  font-style: italic;
+  
+}
+
+.PedidosForm{
+  font-size: 1.8em;
+}
+
+.PedidosForm .red{
+  color: red;
+}
+
+.PedidosForm .button{
+  font-size: 1.0em !important;
+}
+
+.PedidosForm .center{
+  text-align: center;
+}
+
+.total{
+  width: 100%;
+}
+
+.buttons_actions {
+  padding: 10px;
+  margin: 10px;
+  text-align: right;
+}
+
+
+
+/*Tabs */
+ #tabs {
+ border-bottom: .5em solid #03c;
+ margin: 0;
+ padding: 0;
+ }
+ #tabs li {
+ display:inline;
+ border-top: .1em solid #03c;
+ border-left: .1em solid #03c;
+ border-right: .1em solid #03c;
+ }
+ #tabs li a {
+ text-decoration: none;
+ padding: 0.45em 2em;
+ color: #000;
+ }
+
+
+ .formulario_busqueda{
+   padding: 5px;
+   margin: 2px;
+}
+
+.formulario_busqueda caption {
+		padding: 0 0 .5em 0;
+		text-align: left;
+		font-size: 1.4em;
+		font-weight: bold;
+		text-transform: uppercase;
+		color: #333;
+		background: transparent;
+}
+
+.formulario_busqueda table {
+		
+		border:1px solid #686868;
+		
+		font:1em/145% 'Trebuchet MS',helvetica,arial,verdana;
+		color: #333;
+                width: 100%;
+}
+
+
+.buttonActions{
+  padding-left: 1px;
+  margin-left: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  width: auto;
+  float: left;
+  text-align: left;
+
+}
+
+
+

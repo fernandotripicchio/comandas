@@ -73,7 +73,7 @@ public function admin_delete($id) {
     $this->layout = "login";
     if ($this->request->is('post')) {        
         if ($this->Auth->login()) {
-            return $this->redirect($this->Auth->redirect());
+            return $this->redirect(array("controller" => "pedidos", "action" => "index"));
         } else {
             $this->Session->setFlash(__('Usuario or password es incorrecto'), 'default', array(), 'auth');
         }

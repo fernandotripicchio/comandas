@@ -103,12 +103,12 @@ $(document).ready(function(){
             var precio   = $("#producto_elegido_precio_"+id).attr("value");
             var observaciones   = $("#observaciones_"+id).attr("value");
             var cantidad   =  $("#cantidad_"+id).attr("value");
-            
+            var row_number = $('#tablaPedidos >tbody >tr').length - 1;
             new_html = "<tr>";
-              new_html += "<input  type='hidden' class='dataPedidosProductosId' name='Producto.id' value ='"+id+"'/>";
-              new_html += "<input  type='hidden' class='dataPedidosProductosPrecio' name='Producto.precio' value ='"+precio+"'/>";
-              new_html += "<input  type='hidden' class='dataPedidosProductosCantidad' name='Producto.cantidad' value ='"+cantidad+"'/>";
-
+              new_html += "<input  type='hidden' class='dataPedidosProductosId' name='Producto["+row_number+"][id]' value ='"+id+"'/>";
+              new_html += "<input  type='hidden' class='dataPedidosProductosPrecio' name='Producto["+row_number+"][precio]' value ='"+precio+"'/>";
+              new_html += "<input  type='hidden' class='dataPedidosProductosCantidad' name='Producto["+row_number+"][cantidad]' value ='"+cantidad+"'/>";
+              new_html += "<input  type='hidden' class='dataPedidosProductosCantidad' name='Producto["+row_number+"][observaciones]' value ='"+observaciones+"'/>";
               new_html += "<td>";
               new_html += cantidad;
               new_html += "</td>";

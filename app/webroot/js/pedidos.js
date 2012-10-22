@@ -33,33 +33,36 @@ $(document).ready(function(){
     $(".radioTipoPedido").click(function(){
        if ( $(this).attr("value") == "mesa"){
          $("#rowPedidoMesa").show();
-         //$("#rowPedidoCliente").hide();
          $(".rowCliente").hide();
-         //$("#rowDireccionCliente").hide();
-         //$("#rowTableCliente").hide();
+         $("#rowPagaCon").hide();
+         $("#rowVuelto").hide();
 
        } else {
          $("#rowPedidoMesa").hide();
-         //$("#rowPedidoCliente").show();
-         //$("#rowDireccionCliente").show();
-         //$("#rowTableCliente").show();
          $(".rowCliente").show();
+         $("#rowPagaCon").show();
+         $("#rowVuelto").show();
          
        }
     })
 
 
     $(".buttonPaga").click(function(){
+       //paga_con es el valor con el cual hace click
        var paga_con = $(this).attr("money");
        var total = parseFloat($("#total_pedido").attr("value"));
 
        if (paga_con=="justo"){
-         $("#vuelto").attr("value", 0);
-         $("#paga_con_hidden").attr("value", total);
+             paga_con = total;
        } else {
-         $("#vuelto").attr("value", parseFloat(paga_con-total));
-         $("#paga_con_hidden").attr("value", paga_con);
+           var valor_actual =    parseFloat($("#paga_con").attr("value"));
+           paga_con = parseFloat(paga_con);
+           paga_con = paga_con + valor_actual;
        }
+
+      $("#paga_con_hidden").attr("value", paga_con);
+      $("#paga_con").attr("value",paga_con);
+      $("#vuelto").attr("value", parseFloat(paga_con-total));
     })
 
     $("#paga_con").blur(function(){

@@ -1,4 +1,5 @@
-    <fieldset>  
+   <input type="hidden" name="data[caja][user_id]"
+   <fieldset>
         <legend><?=$title?> </legend>  
         <table class="span-17">
              <tbody>
