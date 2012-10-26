@@ -22,13 +22,34 @@
                <tr >
                  <td colspan="2" class="center"> <strong> Productos </strong></td>
                </tr>
-
-               <tr >
-                 <td> <strong> Total </strong></td>
+               <tr>
+             <td colspan="2">
+                 <table class="span-12"  >
+                     <tr>
+                         <td><strong>Descripcion</strong></td>
+                         <td><strong>Precio</strong></td>
+                     </tr>
+                     <? foreach ($items as $item) { ?>
+                     <?//print_r($item);?>
+                     <tr>
+                         <td><?=$item["Producto"]["nombre"]?></td>
+                         <td>$<?=$item["Item"]["precio"]?></td>
+                     </tr>
+                     
+                     <?}?>
+                     <tr>
+                         <td colspan="2"><hr /></td>
+                     </tr>
+                     <tr>
+                         <td>Total</td>
                  <td class="last">
                      $ <?=$pedido["total"]?>
-                 </td>
-               </tr>
+                 </td>                         
+                     </tr>
+                 </table>
+             </td>
+        </tr>
+ 
                <tr >
                  <td> <strong> Observaciones: </strong></td>
                  <td class="last">

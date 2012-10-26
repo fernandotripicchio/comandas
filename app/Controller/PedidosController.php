@@ -141,6 +141,8 @@ public function getProductos(){
     if ($this->request->is('get')) {
         $this->request->data = $this->Pedido->read();
         $pedido = $this->request->data["Pedido"];
+        $items = $this->getItems($id);
+        $this->set(compact("items"));        
         $this->set(compact("pedido"));
     } else {
          
@@ -167,6 +169,8 @@ public function getProductos(){
     if ($this->request->is('get')) {
         $this->request->data = $this->Pedido->read();
         $pedido = $this->request->data["Pedido"];
+        $items = $this->getItems($id);
+        $this->set(compact("items"));        
         $this->set(compact("pedido"));
     } else {
          $ok = $this->Pedido->save($this->request->data["Pedidos"]);
@@ -184,6 +188,13 @@ public function getProductos(){
     }
  }
 
+ 
+function show($id = null) {
+    $pedido = $this->Pedido->find("first", array("conditions" => array("Pedido.id" => $id),"recursive" => -1));
+    $items = $this->getItems($id);
+    $this->set(compact("items"));
+    $this->set(compact("pedido"));
+} 
 
 function edit($id = null) {
     $this->Pedido->id = $id;
@@ -193,6 +204,8 @@ function edit($id = null) {
     if ($this->request->is('get')) {
         $this->request->data = $this->Pedido->read();
         $pedido = $this->request->data["Pedido"];
+        $items = $this->getItems($id);
+        $this->set(compact("items"));         
         $this->set(compact("pedido"));
     } else {
         if ($this->Pedido->save($this->request->data)) {
@@ -204,6 +217,14 @@ function edit($id = null) {
     }
 }
 
+
+function getItems($pedidoId){
+    $sql = "Select Item.precio, Producto.nombre from items Item
+            inner join productos Producto on Producto.id = Item.producto_id
+            where Item.pedido_id = $pedidoId";
+    $items = $this->Item->query($sql);
+    return $items;
+}
 
   function add_productos(){
     $this->layout = 'ajax';

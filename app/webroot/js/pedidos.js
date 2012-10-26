@@ -1,6 +1,21 @@
 $(document).ready(function(){
     $("#buttonAgregar").colorbox({width:"100%", heigth: "900px", initialHeight: "900px", top: '1px'});
     $("#buttonCliente").colorbox({width:"100%", heigth: "900px", initialHeight: "900px", top: '1px'});
+  
+    $("#datepickerDesde" ).datepicker({
+                  changeMonth: true,
+                  changeYear: true,
+                  dateformat: 'dd-mm-yy',
+                  firstDay: 1
+    });
+    $("#datepickerHasta" ).datepicker({
+                  changeMonth: true,
+                  changeYear: true,
+                  dateformat: 'dd-mm-yy',
+                  firstDay: 1
+    });    
+    $("#datepickerDesde" ).datepicker($.datepicker.regional['es']);
+    $("#datepickerHasta" ).datepicker($.datepicker.regional['es']);
 
     $("#pedidoForm").submit(function(){
        var ret = true;

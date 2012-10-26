@@ -52,6 +52,12 @@
       </td>
     </tr>
     <tr>
+        <td>Fecha Desde</td>
+        <td><input type="text" name="fecha_desde" id="datepickerDesde" /></td>
+        <td>Fecha Hasta</td>
+        <td><input type="text" name="fecha_desde" id="datepickerHasta" /></td>
+    </tr>
+    <tr>
       <td><input type="submit" name="Buscar" value="Buscar"></td>
     </tr>
   </tbody>
@@ -152,10 +158,11 @@
              }}?>
         </td>
 
-        
-        <? if ($estado == "activos")  { ?>
         <td>
-  
+         <? echo $this->html->link("Ver", array("controller" => "pedidos", "action" => "show", $pedido['Pedido']['id']), array("class" => "button"))?>            
+        <? if ($estado == "activos")  { ?>
+        
+          
             
            <? if ( ($pedido['Pedido']['tipo'] == "delivery" &&  $pedido['Pedido']['estado'] == "En Camino" ) || ($pedido['Pedido']['tipo'] == "mesa") || ($pedido['Pedido']['tipo'] == "mostrador")) { ?> 
                <? echo $this->html->link("Cerrar", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button"))?>
@@ -166,11 +173,9 @@
           <? if ($pedido['Pedido']['tipo'] == "mesa") {?>
           <? echo $this->html->link("Editar", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button"))?>
           <?} ?>
-        </td>
+   
         
-        <? } else {?>
-        <td> &nbsp;</td<
-        <? } ?>
+        <? } else echo "&nbsp;"?>
     </tr>
     <?php endforeach; ?>
     </tbody>
