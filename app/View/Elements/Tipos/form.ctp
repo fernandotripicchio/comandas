@@ -10,7 +10,7 @@
                </tr>
                <tr>
                  <td >
-                     <?=$this->form->radio('tipo', array("ingreso" => "Ingreso", "egreso" => "Egreso"),   array('default'=>'egreso','label'=> false, 'class' => 'required', 'div' => array('tag' => '')));?>
+                     <?=$this->form->radio('tipo', array("ingreso" => "Ingreso", "egreso" => "Egreso", "ingreso/egreso" => "Ingreso/Egreso"),   array('default'=>'ingreso','label'=> false, 'class' => 'required', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr>

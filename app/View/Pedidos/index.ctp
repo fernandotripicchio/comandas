@@ -88,8 +88,14 @@
     <tbody>
     <?php foreach ($pedidos as $pedido): ?>
     <? 
-    $atraso = round( (mktime() - strtotime($pedido['Pedido']['fecha']))/60 );
-
+    
+    if ($pedido['Pedido']['estado'] == "En Camino" ) {
+      $tiempo_demora = $pedido['Pedido']['demora_pedido'];     
+    } else {
+      $tiempo_demora = $pedido['Pedido']['fecha'];
+    }
+    
+    $atraso = round( (mktime() - strtotime($tiempo_demora))/60 );      
     if ($estado=="activos" ){
             $class = "en_tiempo";
             if((int)$atraso > 20) {
@@ -112,7 +118,7 @@
          <? } ?>
          <td >
            <?php echo $pedido['Pedido']['id']; ?></td>
-         <td>
+         <td style="background: white">
            <?php echo $this->element("tipo_pedido", array("tipo" => $pedido['Pedido']['tipo'], "mesa" => $pedido['Pedido']['mesa'] ))?>
         </td>
          <td>
@@ -131,6 +137,7 @@
          <td>
            <?php echo $pedido['Pedido']['estado'] ?>
          </td>
+    
          <td>
             <? if ($pedido['Pedido']['tipo'] == "delivery" && ( $pedido['Pedido']['estado'] == "En Cocina")  ) { ?>
                <select name="Cadetes[<?=$pedido['Pedido']['id']?>]">
@@ -145,13 +152,25 @@
              }}?>
         </td>
 
+        
+        <? if ($estado == "activos")  { ?>
         <td>
-         
-          <?php echo $this->html->link("Cerrar", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button"))?>
-          <?php echo $this->html->link("Editar", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button"))?>
-          <?php echo $this->html->link("Cancelar", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button"))?>
-
+  
+            
+           <? if ( ($pedido['Pedido']['tipo'] == "delivery" &&  $pedido['Pedido']['estado'] == "En Camino" ) || ($pedido['Pedido']['tipo'] == "mesa") || ($pedido['Pedido']['tipo'] == "mostrador")) { ?> 
+               <? echo $this->html->link("Cerrar", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button"))?>
+           <?} ?>
+            
+           <? echo $this->html->link("Cancelar", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button"))?>
+            
+          <? if ($pedido['Pedido']['tipo'] == "mesa") {?>
+          <? echo $this->html->link("Editar", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button"))?>
+          <?} ?>
         </td>
+        
+        <? } else {?>
+        <td> &nbsp;</td<
+        <? } ?>
     </tr>
     <?php endforeach; ?>
     </tbody>
@@ -159,6 +178,7 @@
     </tfoot>
 
 </table>
+
 <div class="buttons_actions">
   <input type="submit" name="asignar_cadete" value="Asignar Cadetes">
 </div>

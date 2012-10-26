@@ -43,6 +43,7 @@ class AppController extends Controller {
 
   function beforeFilter() {
     $this->set('username', $this->Auth->User("username"));
+    $this->set('is_admin',$this->Auth->User("admin"));
  }
 
 

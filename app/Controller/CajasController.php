@@ -13,12 +13,12 @@
 
 
  public function getTipos(){
-    $tipos = $this->TipoMovimiento->find("all", array("order" => "nombre ASC","recursive" => -1));
+    $tipos = $this->TipoMovimiento->find("all", array("conditions" => array("activo" => "1"),"order" => "nombre ASC","recursive" => -1));
 
     $new_tipos = array();
     $i = 0;
     foreach ($tipos as $tipo){
-      $new_tipos[$tipo["TipoMovimiento"]["id"]] =  $tipo["TipoMovimiento"]["nombre"];
+      $new_tipos[$i] = array("id" => $tipo["TipoMovimiento"]["id"], "tipo" => $tipo["TipoMovimiento"]["tipo"],"nombre" => $tipo["TipoMovimiento"]["nombre"]);
       $i++;
     }
     $tipos = $new_tipos;
@@ -44,7 +44,16 @@
    */
   public  function admin_index() {
     $this->Caja->recursive = 0;
-    $this->set('cajas', $this->paginate());
+    $this->getTipos();
+    $this->getUsers();  
+   $conditions = " 1 ";    
+    $conditions .= " AND  Caja.fecha >= CURDATE()";
+    $cajas = $this->Caja->query("Select * from cajas as Caja
+                                       left join users as User on Caja.user_id = User.id
+                                       left join tipo_movimientos TipoMovimiento on Caja.tipo_movimiento_id = TipoMovimiento.id
+                                       where $conditions
+                                       order by Caja.fecha DESC");
+     $this->set(compact("cajas"));
  
    }
 
@@ -55,7 +64,7 @@
     $this->getUsers();
     $conditions = " 1 ";
 
-    $conditions .= " AND  Caja.fecha like CURDATE()";
+    $conditions .= " AND  Caja.fecha >= CURDATE()";
     $cajas = $this->Caja->query("Select * from cajas as Caja
                                        left join users as User on Caja.user_id = User.id
                                        left join tipo_movimientos TipoMovimiento on Caja.tipo_movimiento_id = TipoMovimiento.id

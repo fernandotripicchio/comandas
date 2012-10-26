@@ -1,7 +1,5 @@
-<div class="buttonActions">
-   <?=$this->html->link('Nuevo Movimiento',array("controller"=>"cajas", "action" => "add", "admin" => false), array('class' => 'button left'));?>
-</div>
-<div class="formulario_busqueda">
+<div >
+<hr />
   <table >
   <caption>Filtrar Datos</caption>
   <tbody>
@@ -32,12 +30,13 @@
 
 <br />
 <br />
-<div class="listado_pedidos">
+<div class="listado">
 <?//= $this->form->create('Pedido',array('action'=>'actions_pedidos', 'id' => 'pedidoFormActions'));?>
 <?
 $total_ingresos = $total_egresos = 0;
 ?>    
 <table >
+    <hr />
   <caption>Movimientos de Caja</caption>
   <thead>
     <tr>

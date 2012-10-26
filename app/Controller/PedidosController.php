@@ -235,6 +235,7 @@ function edit($id = null) {
               $pedido["Pedido"]["id"] = $key;
               $pedido["Pedido"]["cadete_id"] = $cadete;
               $pedido["Pedido"]["estado"] = "En Camino";
+              $pedido["Pedido"]["demora_pedido"] = date("Y-m-d H:i:s");
               $this->Pedido->save($pedido);
               
        }

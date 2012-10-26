@@ -5,22 +5,29 @@
                <tr >
                  <td>Tipo</td>
                  <td class="last">
-                   <?echo $this->form->select('tipo_movimiento_id', $tipos) ?>
+                     <select name="data[Caja][tipo_movimiento_id]" id="CajaTipoMovimientoId">
+                         <option value=""></option>
+                         <? foreach ($tipos as $tipo) { ?>
+                             <option value="<?=$tipo["id"]?>" tipo-mov="<?=$tipo["tipo"]?>"> <?=$tipo["nombre"]?></option>
+                         <? }?>
+                     </select>
+               
+                   <?//echo $this->form->select('tipo_movimiento_id', $tipos) ?>
                  </td>
                </tr>
-               <tr >
+               <tr id="rowIngresos" style="display: none">
                  <td>Ingreso</td>
                  <td class="last">
                      <?=$this->form->input('ingresos',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required','value' => '0', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
-               <tr >
+               <tr id="rowEgresos" style="display: none">
                  <td>Egresos</td>
                  <td class="last">
                      <?=$this->form->input('egresos',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required','value' => '0', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
-               <tr >
+               <tr id="rowEmpleados" style="display: none">
                  <td>Empleado</td>
                  <td class="last">
                    <?echo $this->form->select('empleado_id', $users) ?>

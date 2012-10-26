@@ -24,7 +24,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
                                                'jquery.colorbox',
                                                'jquery.ui',
                                                'jquery.buttons',
-                                               
+                                               'caja',
                                                'pedidos'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -49,7 +49,9 @@ $cakeDescription = __d('La Posta', 'La Posta');
                        <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('div'=> false,'class'=> 'right')); ?>
                    </td>
                    <td>
+                       <? if ($is_admin=="1") { ?> 
                        <?=$this->html->link('Admin' , array('controller' => 'Admin', 'action' => 'index'), array('div'=> false,'class'=> 'right')); ?>
+                       <? } ?>
                    </td>
                  </tr>
                </table>
