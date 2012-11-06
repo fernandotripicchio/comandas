@@ -1,0 +1,78 @@
+/* 
+    Document   : tableboard
+    Created on : 03/11/2012, 19:52:13
+    Author     : fernando
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.listados table {
+    border-left:1px solid #686868;
+    border-right:1px solid #686868;    
+    border-bottom: 1px solid #686868;    
+    border-top: 1px solid #686868;    
+    width: 100%;
+}
+
+.listados table caption {
+		padding: 1.0em 0 0.5em 0;
+		text-align: center;
+		font-size: 1.1em;
+		font-weight: bold;
+                
+		text-transform: uppercase;
+		color: red;
+		background:transparent;
+}
+
+.listados table  td {
+                font-size: 1.0em;
+                font-weight: bold;
+                text-align: left;
+                height: 50px;
+}
+
+.listados table .center{
+  text-align: center !important;
+}
+
+.listados table .right{
+  text-align: right !important;
+}
+
+.listados table .last{
+  margin-left:  0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.listados table a {
+		color:#666;
+		text-decoration:none;
+}
+
+
+ .listados table a {
+		color:#666;
+		text-decoration:none;
+}
+
+.listados table a:link {}
+
+.listados table a:visited {
+		font-weight:normal;
+		color:#666;
+		text-decoration: line-through;
+}
+
+.listados table a:hover {
+		border-bottom: 1px dashed #bbb;
+}
+.listados table th        {background-color: #999999}
+.listados table tr.odd    {background-color: #cccccc}
+.listados table tr.even   {background-color: #ffffff}
+.listados table th, td    {padding: 0.1em 1em}

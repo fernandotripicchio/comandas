@@ -389,7 +389,8 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 
 
 /*Tabs */
- #tabs {
+
+/* #tabs {
  border-bottom: .5em solid #03c;
  margin: 0;
  padding: 0;
@@ -399,13 +400,41 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
  border-top: .1em solid #03c;
  border-left: .1em solid #03c;
  border-right: .1em solid #03c;
+ margin-top: 20px;
+  height: 70px !important;
+
  }
  #tabs li a {
  text-decoration: none;
  padding: 0.45em 2em;
  color: #000;
- }
+ 
+ margin-left: 20px;
+ margin-top: 20px;
+ margin-right: 20px;
+ font-size:  15px !important;
+  
+ }*/
+ 
 
+ 
+.tabset_tabs	{ margin:0; padding:0; list-style-type:none; position:relative; z-index:2; white-space:nowrap }
+.tabset_tabs li	{ margin:0; padding:0; display:inline;  }
+.tabset_tabs a	{ color:#339 ! important; background-color:#def ! important; border:1px solid #99c; text-decoration:none; padding:0 2em; border-left-width:1px; border-bottom:none }
+.tabset_tabs a:hover	{ color:#00c ! important; background-color:#eff ! important }
+.tabset_tabs a.active	{ color:black ! important; background-color:white ! important; border-color:black; border-left-width:1px; cursor:default; border-bottom:white; padding-top:1px; padding-bottom:1px }
+
+.tabset_tabs li.firstchild a	{ border-left-width:1px }
+
+.tabset_content	{ border:1px solid black; background-color:white; position:relative; z-index:1; padding:0.5em 1em; display:none }
+.tabset_label	{ display:none }
+
+.tabset_content_active	{ display:block }
+
+@media aural{
+	.tabset_content,
+	.tabset_label	{ display:block }
+}
 
  .formulario_busqueda{
    padding: 5px;
@@ -446,3 +475,15 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 
 
 
+ .en_tiempo{
+  background: #D3D3D3 !important;
+}
+
+
+ .mas_20{
+  background: #FFD39B !important;
+}
+
+ .mas_40{
+  background: #FF4040 !important;
+}

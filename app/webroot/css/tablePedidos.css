@@ -53,7 +53,7 @@ www.roscripts.com
 .listado_pedidos thead th, tfoot th, tfoot td {
 		background:#333 url(../img/llsh.gif) repeat-x;
 		color:#fff;
-                font-size: 1.6em;
+                font-size: 1.0em;
                 text-align: left;
 }
 
@@ -68,15 +68,16 @@ www.roscripts.com
 .listado_pedidos tbody th, .listado_pedidos tbody td {
 		border-bottom: dotted 1px #333;
                 text-align: left;
-                font-size: 1.6em;
+                font-size: 1.4em;
 }
 
 .listado_pedidos tbody th {
 		white-space: nowrap;
 }
 
-.listado_pedidos tbody th a {
+.listado_pedidos  a {
 		color:#333;
+                font-size: 1.0em !important;
 }
 
 .listado_pedidos .odd {}
@@ -86,15 +87,9 @@ www.roscripts.com
 }
 
 
-.listado_pedidos .en_tiempo{
-  background: #D3D3D3 !important;
-}
 
 
-.listado_pedidos .mas_20{
-  background: #FFD39B !important;
-}
-
-.listado_pedidos .mas_40{
-  background: #FF4040 !important;
-}
+th        {background-color: #999999}
+tr.odd    {background-color: #cccccc}
+tr.even   {background-color: #ffffff}
+th, td    {padding: 0.1em 1em}

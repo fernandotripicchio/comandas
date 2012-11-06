@@ -151,6 +151,12 @@
         $this->redirect(array('action' => 'index'));
     }
  }
+ 
+ 
+ public function cerrar(){
+   $this->layout = "board";     
+     
+ }
 
     
  

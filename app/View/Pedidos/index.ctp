@@ -1,82 +1,98 @@
+<?php echo $this->Html->script('listado_pedidos'); ?>
 <div class="formulario_busqueda">
 <?= $this->form->create('Pedido',array('action'=>'index', 'id' => 'pedidoFormBusqueda'));?>
-  <input type="hidden" name="estado" value="<?=$estado?>">
+  <input type="hidden" name="keys[estado]" value="<?=$pedidosSession["estado"]?>">
 <table >
   <caption>Busqueda de Pedidos</caption>
   <tbody>
     <tr>
       <td>Cliente:</td>
-      <td><input type="text" name="cliente" value="<?=$cliente?>"></td>
+      <td><input type="text" name="keys[cliente]" value="<?=$pedidosSession["cliente"]?>"></td>
 
       <td>Tipo de Pedido:</td>
       <td>
-         <select name="tipo_pedido">
-                 <option value="todos"     <?=(($tipo_pedido == "todos") ? "selected": "")?>>Todos</option>
-                 <option value="delivery"  <?=(($tipo_pedido == "delivery") ? "selected": "")?>>Delivery</option>
-                 <option value="mesa"      <?=(($tipo_pedido == "mesa") ? "selected": "")?>>Mesa</option>
-                 <option value="mostrador" <?=(($tipo_pedido == "mostrador") ? "selected": "")?> >Mostrador</option>
+         <select name="keys[tipo_pedido]">
+                 <option value="todos"     <?=(($pedidosSession["tipo_pedido"] == "todos") ? "selected": "")?>>Todos</option>
+                 <option value="delivery"  <?=(($pedidosSession["tipo_pedido"] == "delivery") ? "selected": "")?>>Delivery</option>
+                 <option value="mesa"      <?=(($pedidosSession["tipo_pedido"] == "mesa") ? "selected": "")?>>Mesa</option>
+                 <option value="mostrador" <?=(($pedidosSession["tipo_pedido"] == "mostrador") ? "selected": "")?> >Mostrador</option>
         </select>
       </td>
 
       <td>Demora:</td>
       <td>
-         <select name="demora">
-                 <option value="0">Todos</option>
-                 <option value="en_tiempo" >En Tiempo</option>
-                 <option value="mas_20" >Mas de 20 Min</option>
-                 <option value="mas_40" >Mas de 40 Min</option>
+         <select name="keys[demora]">
+                 <option value="0"         <?=(($pedidosSession["demora"] == "0") ? "selected": "")?>>Todos</option>
+                 <option value="en_tiempo" <?=(($pedidosSession["demora"] == "en_tiempo") ? "selected": "")?>>En Tiempo</option>
+                 <option value="mas_20"    <?=(($pedidosSession["demora"] == "mas_20") ? "selected": "")?>>Mas de 20 Min</option>
+                 <option value="mas_40"    <?=(($pedidosSession["demora"] == "mas_40") ? "selected": "")?>>Mas de 40 Min</option>
         </select>
       
       </td>
     </tr>
     <tr>
       <td>Nro Pedido:</td>
-      <td><input type="text" name="numero_pedido" value="<?=$numero_pedido?>"></td>
+      <td><input type="text" name="keys[numero_pedido]" value="<?=$pedidosSession["numero_pedido"]?>"></td>
       <td>Cadete:</td>
       <td>
-        <select name="cadete">
+        <select name="keys[cadete]">
                  <option value="0">Todos</option>
                  <?php for($i=0; $i < count($cadetes); $i++){ ?>
-                 <option value="<?=$cadetes[$i]["id"]?>" ><?=$cadetes[$i]["nombre"]?></option>
+                       <option value="<?=$cadetes[$i]["id"]?>" <?=(($pedidosSession["cadete"] == $cadetes[$i]["id"]) ? "selected": "")?>><?=$cadetes[$i]["nombre"]?></option>
                  <?php }?>
         </select>
       </td>
       <td>Producto:</td>
       <td>
-        <select name="producto">
+        <select name="keys[producto]">
                  <option value="0">Todos</option>
                  <?php for($i=0; $i < count($productos); $i++){ ?>
-                 <option value="<?=$productos[$i]["id"]?>" ><?=$productos[$i]["nombre"]?></option>
+                 <option value="<?=$productos[$i]["id"]?>" <?=(($pedidosSession["producto"] == $productos[$i]["id"]) ? "selected": "")?>><?=$productos[$i]["nombre"]?></option>
                  <?php }?>
         </select>
       </td>
     </tr>
     <tr>
         <td>Fecha Desde</td>
-        <td><input type="text" name="fecha_desde" id="datepickerDesde" /></td>
+        <td><input type="text" name="keys[fecha_desde]" id="datepickerDesde" value="<?= $pedidosSession["fecha_desde"]?>" /></td>
         <td>Fecha Hasta</td>
-        <td><input type="text" name="fecha_desde" id="datepickerHasta" /></td>
+        <td><input type="text" name="keys[fecha_hasta]" id="datepickerHasta" value="<?= $pedidosSession["fecha_hasta"]?>"/></td>
     </tr>
     <tr>
-      <td><input type="submit" name="Buscar" value="Buscar"></td>
+      <td colspan="2">
+          <input type="submit" name="Reset" value="Limpiar Formulario">
+          <input type="submit" name="Buscar" value="Buscar">
+          
+      </td>
     </tr>
   </tbody>
 </table>
 <?= $this->form->end(); ?>
 </div>
 <br />
-<div class="listado_pedidos">
-<?= $this->form->create('Pedido',array('action'=>'actions_pedidos', 'id' => 'pedidoFormActions'));?>
-<div id="navigation_tab">
- <ul id="tabs">
- <li id="tab1"><?php echo $this->html->link("Activos", array("controller" => "pedidos", "action" => "index", "activos"))?></li>
- <li id="tab2"><?php echo $this->html->link("No Activos", array("controller" => "pedidos", "action" => "index", "no_activos"))?></li>
- <li id="tab4"><?php echo $this->html->link("Todos", array("controller" => "pedidos", "action" => "index", "todos"))?></li>
- </ul>
+<div class="halffull box ">
+    <table >
+        <tr>
+        <td class="span-1 mas_20" > &nbsp;</td>
+        <td> <strong> Más de 20 min de atraso </strong> </td>
+        <td class="span-1 mas_40" > &nbsp;</td>
+        <td> <strong> Más de 40 min de atraso </strong> </td>
+        </tr>
+        
+    </table>
 </div>
-  <hr />
+<div class="clear"></div>
+<div class="listados">
+<ul class="tabset_tabs">
+   <li><?php echo $this->html->link("Pedido  Activos", array("controller" => "pedidos", "action" => "index", "activos"), array("class" =>($pedidosSession["estado"]=="activos")?"active":""))?></li>
+   <li><?php echo $this->html->link("Peditos No Activos", array("controller" => "pedidos", "action" => "index", "no_activos"),array("class" =>($pedidosSession["estado"]=="no_activos")?"active":""))?></li>
+   <li><?php echo $this->html->link("Todos Los Pedidos", array("controller" => "pedidos", "action" => "index", "todos"),array("class" =>($pedidosSession["estado"]=="todos")?"active":""))?></li>
+</ul>
+    
+<?= $this->form->create('Pedido',array('action'=>'actions_pedidos', 'id' => 'pedidoFormActions'));?>
+
 <table >
-  <caption>Pedidos</caption>
+  
   <thead>
     <tr>
         <th scope="col">&nbsp;</th>
@@ -92,59 +108,49 @@
 </thead>
     <!-- Here is where we loop through our $posts array, printing out post info -->
     <tbody>
+    <? $i = 0;?>    
     <?php foreach ($pedidos as $pedido): ?>
-    <? 
-    
-    if ($pedido['Pedido']['estado'] == "En Camino" ) {
-      $tiempo_demora = $pedido['Pedido']['demora_pedido'];     
-    } else {
-      $tiempo_demora = $pedido['Pedido']['fecha'];
-    }
-    
-    $atraso = round( (mktime() - strtotime($tiempo_demora))/60 );      
-    if ($estado=="activos" ){
+     <? 
+     $tiempo_demora =  ($pedido['Pedido']['estado'] == "En Camino" )  ?  $pedido['Pedido']['demora_pedido'] :  $tiempo_demora = $pedido['Pedido']['fecha'];
+     $atraso = round( (mktime() - strtotime($tiempo_demora))/60 );      
+    if ($pedidosSession["estado"]=="activos" ) {
             $class = "en_tiempo";
             if((int)$atraso > 20) {
-               $class = "mas_20";
+                  $class = "mas_20";
             }
             if ((int)$atraso > 40) {
-               $class = "mas_40";
+                  $class = "mas_40";
             }
     } else {
-      $class = "";
+           $class = "";
     }
 
     ?>
       
-      <tr class="<?=$class?>">
+      <tr class='<?= (($i++%2)? "odd": "even") ?>'>
             
-         <td>
+         <td style="width:1px">
           <? if ($pedido['Pedido']['tipo'] == "delivery") { ?>
            <input type="checkbox" name="Pedidos[id][]" value="<?=$pedido['Pedido']['id']?>">
          <? } ?>
-         <td >
+         <td class="<?=$class?> center">
            <?php echo $pedido['Pedido']['id']; ?></td>
-         <td style="background: white">
+         <td style="width:60px">
            <?php echo $this->element("tipo_pedido", array("tipo" => $pedido['Pedido']['tipo'], "mesa" => $pedido['Pedido']['mesa'] ))?>
         </td>
          <td>
            <?php echo $pedido['Cliente']['nombre'] ?>
         </td>
-         <td>
+         <td class="center">
            <?php echo $pedido['Pedido']['fecha'] ?>
          </td>
-         <td>
-           <? if ($estado == "activos")
-           echo $atraso."Min";
-           else echo "No Activo";
-           ?>
+         <td class="right">
+           <?= ($pedidosSession["estado"] == "activos") ?  $atraso."Min" :  "No Activo"; ?>
          </td>
-
-         <td>
+         <td class="center">
            <?php echo $pedido['Pedido']['estado'] ?>
          </td>
-    
-         <td>
+         <td class="center">
             <? if ($pedido['Pedido']['tipo'] == "delivery" && ( $pedido['Pedido']['estado'] == "En Cocina")  ) { ?>
                <select name="Cadetes[<?=$pedido['Pedido']['id']?>]">
                  <option value="0"></option>
@@ -157,25 +163,24 @@
                echo $pedido['Cadete']['nombre'];
              }}?>
         </td>
+        <td class="last" style="width: 200px">
+             
+            
+         <? echo $this->html->link("V", array("controller" => "pedidos", "action" => "show", $pedido['Pedido']['id']), array("class" => "button"))?>            
+         <? 
 
-        <td>
-         <? echo $this->html->link("Ver", array("controller" => "pedidos", "action" => "show", $pedido['Pedido']['id']), array("class" => "button"))?>            
-        <? if ($estado == "activos")  { ?>
-        
-          
-            
-           <? if ( ($pedido['Pedido']['tipo'] == "delivery" &&  $pedido['Pedido']['estado'] == "En Camino" ) || ($pedido['Pedido']['tipo'] == "mesa") || ($pedido['Pedido']['tipo'] == "mostrador")) { ?> 
-               <? echo $this->html->link("Cerrar", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button"))?>
-           <?} ?>
-            
-           <? echo $this->html->link("Cancelar", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button"))?>
-            
-          <? if ($pedido['Pedido']['tipo'] == "mesa") {?>
-          <? echo $this->html->link("Editar", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button"))?>
-          <?} ?>
-   
-        
-        <? } else echo "&nbsp;"?>
+         if ($pedidosSession["estado"] == "activos")  { 
+                    //if ( ($pedido['Pedido']['tipo'] == "delivery" &&  $pedido['Pedido']['estado'] == "En Camino" ) || ($pedido['Pedido']['tipo'] == "mesa") || ($pedido['Pedido']['tipo'] == "mostrador")) { 
+                          echo $this->html->link("C", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button"));
+                    // } 
+                    echo $this->html->link("Ca", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button"));
+                    if ($pedido['Pedido']['tipo'] == "mesa") {
+                          echo $this->html->link("E", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button"));
+                    } 
+          } 
+          else 
+              echo "&nbsp;"
+         ?>
     </tr>
     <?php endforeach; ?>
     </tbody>

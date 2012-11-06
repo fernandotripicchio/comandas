@@ -8,7 +8,7 @@ switch ($tipo ) {
         echo "<span class='tipoMesa'>MESA ".$mesa."</span>";
         break;
     case "mostrador":
-        echo "MOS";
+        echo "MOSTRA";
         break;
 }
 

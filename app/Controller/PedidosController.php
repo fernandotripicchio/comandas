@@ -43,64 +43,116 @@ public function getProductos(){
     $this->set(compact("productos"));
 }
 
-
+ public function resetForm(){
+     $pedidosSession = Array (  "cliente" => "", "estado" => "activos" ,"tipo_pedido" => "todos", "demora" => "0", "numero_pedido" =>"", "cadete" => 0, "producto" => 0,  "fecha_desde" =>"",  "fecha_hasta" =>"" );             
+     $this->setSessionKeys("Pedidos", $pedidosSession);
+     return $pedidosSession;
+ }
  
+ 
+ public function builtCondition($keys){
+     $condition = " 1 ";
+     foreach ($keys as $key => $value) {
+         echo "$key --- $value";
+         if ($key == "cliente") {
+             $condition.= " AND Cliente.nombre like '$value%' ";
+         }
+         if ($key == "tipo_pedido" && $value != "todos") {
+             $condition.= " AND Pedido.tipo = '$value' ";
+         }      
+         
+         if ($key == "numero_pedido" && $value){
+             $condition.= " AND Pedido.id = $value ";
+         }
+         if ($key == "estado" && $value == "activos") {
+             $condition .= " AND Pedido.estado = 'Mesa Abierta' or Pedido.estado = 'En Cocina' or Pedido.estado = 'En Camino' ";
+         }
+         if ($key == "estado" && $value == "no_activos") {
+             $condition .= " AND Pedido.estado = 'Cancelado' or Pedido.estado = 'Cerrado'  ";
+         }         
+         
+     }
+     return $condition;
+ }
  
   function index($estado = "activos") {
      $this->getCadetes();
      $this->getProductos();
-
-     $condition_form = " 1  ";
-     $cliente = "";
-     $numero_pedido = "";
-     $tipo_pedido = "todos";
-
-     //Armo el filtro de busqueda
+     //Set Session variables
      if ($this->request->is('post') ){
-         $data =  $this->data;
-         $condition_form = "1 ";
-
-         //Estado
-         $estado = $data["estado"];
-         //Cliente
-         $cliente = $data["cliente"];
-         $condition_form .= " AND Cliente.nombre like '%".$cliente."%'";
-
-         if ($data["numero_pedido"]) {
-             $numero_pedido = $data["numero_pedido"];
-             $condition_form .= " AND Pedido.id = ".$numero_pedido;
-         }
-         if ($data["tipo_pedido"] != "todos"){
-             $tipo_pedido = $data["tipo_pedido"];
-             $condition_form .= " AND Pedido.tipo = '".$tipo_pedido."'";
-
-         }
+                    if (isset($this->data["keys"])) {
+                          $this->setSessionKeys("Pedidos", $this->data["keys"]);
+                          $pedidosSession = $this->Session->read("Pedidos");
+                          
+                    } else {
+                        die("Error en la busqueda");
+                    }
      } else {
-           //Pedidos Activos: Mesa Abierta, En Cocina, En Camino
-           //Pedidos No Activos: Cerrado, Cancelado          
-              $condition_estado = " 1 and ";       
-              if ($estado == "activos") {
-                  $condition_form .= " AND Pedido.estado = 'Mesa Abierta' or Pedido.estado = 'En Cocina' or Pedido.estado = 'En Camino' ";
-               }
-              if ($estado == "no_activos") {
-                  $condition_form .= " AND Pedido.estado = 'Cancelado' or Pedido.estado = 'Cerrado'  ";
-               }
-     }
+         $pedidosSession = $this->Session->read("Pedidos");
+         if (!isset($pedidosSession)){
+              $pedidosSession = $this->resetForm();   
+         }
+     }     
+     
+     if ($this->request->is('post')  && isset($this->data["Reset"])){
+         $pedidosSession = $this->resetForm();
+         
+     }     
+     
+     if ($this->request->is('get') ){
+          $this->Session->write("Pedidos.estado", $estado );
+          $pedidosSession["estado"] = $estado;
+     }    
+     
+     $condition_form = $this->builtCondition($pedidosSession);
+//     //Armo el filtro de busqueda
+//     if ($this->request->is('post') ){
+//         $data =  $this->data;
+//         $condition_form = "1 ";
+//
+//         //Estado
+//         $estado = $data["estado"];
+//         //Cliente
+//         $cliente = $data["cliente"];
+//         $condition_form .= " AND Cliente.nombre like '%".$cliente."%'";
+//
+//         if ($data["numero_pedido"]) {
+//             $numero_pedido = $data["numero_pedido"];
+//             $condition_form .= " AND Pedido.id = ".$numero_pedido;
+//         }
+//         if ($data["tipo_pedido"] != "todos"){
+//             $tipo_pedido = $data["tipo_pedido"];
+//             $condition_form .= " AND Pedido.tipo = '".$tipo_pedido."'";
+//
+//         }
+//     } else {
+//           //Pedidos Activos: Mesa Abierta, En Cocina, En Camino
+//           //Pedidos No Activos: Cerrado, Cancelado          
+//              if ($estado == "activos") {
+//                  $condition_form .= " AND Pedido.estado = 'Mesa Abierta' or Pedido.estado = 'En Cocina' or Pedido.estado = 'En Camino' ";
+//               }
+//              if ($estado == "no_activos") {
+//                  $condition_form .= " AND Pedido.estado = 'Cancelado' or Pedido.estado = 'Cerrado'  ";
+//               }
+//     }
 
 
      //Consulta principal
-     $pedidos = $this->Pedido->query("Select * from pedidos as Pedido
+     $pedidos = $this->Pedido->query("Select Pedido.id, Pedido.estado, Pedido.fecha, Pedido.tipo, Pedido.demora_pedido,Pedido.mesa,Pedido.cadete_id,
+                                       Cliente.nombre, Cadete.nombre from pedidos as Pedido
                                        left join clientes as Cliente on Pedido.cliente_id = Cliente.id
                                        left join cadetes as Cadete on Pedido.cadete_id = Cadete.id
                                        where $condition_form
                                        order by Pedido.fecha ASC");
 
      //Seteo las variables
-     $this->set(compact("numero_pedido"));
-     $this->set(compact("pedidos"));
-     $this->set(compact("estado"));
-     $this->set(compact("cliente"));
-     $this->set(compact("tipo_pedido"));
+//     $this->set(compact("numero_pedido"));
+
+//     $this->set(compact("estado"));
+//     $this->set(compact("cliente"));
+//     $this->set(compact("tipo_pedido"));
+     $this->set(compact("pedidos"));     
+     $this->set(compact("pedidosSession"));
      
   }
 
@@ -291,10 +343,12 @@ private function saveData($data) {
   //print_r($data);
  // Array ( [Pedidos] => Array ( [Cliente] => Array ( [id] => 2 [nombre] => Enzo Francescolli ) [Productos] => Array ( [id] => 5 [precio] => 45.00 [cantidad] => 1 ) [total_pedido] => 173 [paga_con] => 200 [vuelto] => 27 [observaciones] => ) [tipo] => delivery [data[Pedidos] => Array ( [Mesa] => ) )
   if ($data["Pedidos"]["tipo"]!="mesa"){
+      //Cambiar ESTO!!!!!!
+      //Cuando se agrega desde ahi se agrege en clientes y eliminar estas columnas
       $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
-      $pedido['nombre'] =  $data["Pedidos"]["nombre"];
-      $pedido['direccion'] =  $data["Pedidos"]["direccion"];
-      $pedido['telefono'] =  $data["Pedidos"]["telefono"];
+      $pedido['nombre']     =  $data["Pedidos"]["nombre"];
+      $pedido['direccion']  =  $data["Pedidos"]["direccion"];
+      $pedido['telefono']   =  $data["Pedidos"]["telefono"];
   }
   $pedido["tipo"]  = $data["Pedidos"]["tipo"];  
   $pedido["total"]  = $data["Pedidos"]["total_pedido"];  

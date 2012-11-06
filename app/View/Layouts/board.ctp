@@ -13,8 +13,9 @@ $cakeDescription = __d('La Posta', 'La Posta');
                 echo $this->Html->css('main');
                 echo $this->Html->css('grid');
                 echo $this->Html->css('theme/jquery-ui');
-                echo $this->Html->css('table');
-                 echo $this->Html->css('tablePedidos');
+                //echo $this->Html->css('table');
+                // echo $this->Html->css('tablePedidos');
+                echo $this->Html->css('tableboard');
                 echo $this->Html->css('menu_board/menu_board');
                 echo $this->Html->css('popup');
                  echo $this->Html->css('buttons');
@@ -23,9 +24,8 @@ $cakeDescription = __d('La Posta', 'La Posta');
                                                'jquery.validate',
                                                'jquery.colorbox',
                                                'jquery.ui',
-                                               'jquery.buttons',
-                                               'caja',
-                                               'pedidos'));
+                                               'jquery.buttons'
+                                             ));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

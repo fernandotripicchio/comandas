@@ -1,5 +1,6 @@
 <div class="buttonActions">
    <?=$this->html->link('Nuevo Movimiento',array("controller"=>"cajas", "action" => "add", "admin" => false), array('class' => 'button left'));?>
+   <?=$this->html->link('Cerrar Caja',array("controller"=>"cajas", "action" => "cerrar", "admin" => false), array('class' => 'button left'));?>    
 </div>
 <div class="formulario_busqueda">
   <table >
@@ -32,7 +33,7 @@
 
 <br />
 <br />
-<div class="listado_pedidos">
+<div class="listados">
 <?//= $this->form->create('Pedido',array('action'=>'actions_pedidos', 'id' => 'pedidoFormActions'));?>
 <?
 $total_ingresos = $total_egresos = 0;
@@ -52,10 +53,11 @@ $total_ingresos = $total_egresos = 0;
 </thead>
     <!-- Here is where we loop through our $posts array, printing out post info -->
     <tbody>
+     <?$i=0;?>   
     <?php foreach ($cajas as $caja): ?>
     <? $total_ingresos +=$caja["Caja"]["ingresos"]; ?>
     <? $total_egresos +=$caja["Caja"]["egresos"]; ?>
-    <tr>
+    <tr class='<?= (($i++%2)? "odd": "even") ?>'>
       <td>
         <?=$caja["Caja"]["id"]?>
       </td>

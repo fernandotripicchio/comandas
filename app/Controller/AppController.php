@@ -56,4 +56,24 @@ class AppController extends Controller {
     // Default deny
     return false;
 }
+
+
+// public function builtCondition($keys){
+//    
+//   $condition = "1";
+//   foreach ($keys as $key => $value) {
+//       echo "$key --- $value";
+//   }
+//   return $condition;
+// }
+
+
+ public function setSessionKeys($module, $keys){
+     
+     foreach ($keys as $key => $value) {
+         //echo "$key --- $value <br>";
+         $this->Session->write("$module.$key", $value );
+     }
+ }
+
 }
