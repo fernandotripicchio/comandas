@@ -59,7 +59,10 @@ $cakeDescription = __d('La Posta', 'La Posta');
 
 </div>
 	<!--CLEAR FOOTER TO PREVENT BUNCHING-->
-	<div class="clear"></div>
- <div id="footer"><p>La Posta</p></div>
+      <div class="clear"></div>
+      <div id="footer">
+          <p>La Posta</p>
+          <?php echo $this->element('sql_dump'); ?>
+      </div>
 </body>
 </html>
