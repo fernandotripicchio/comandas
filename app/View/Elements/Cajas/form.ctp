@@ -16,15 +16,15 @@
                  </td>
                </tr>
                <tr id="rowIngresos" style="display: none">
-                 <td>Ingreso</td>
+                 <td>Ingresos</td>
                  <td class="last">
-                     <?=$this->form->input('ingresos',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required','value' => '0', 'div' => array('tag' => '')));?>
+                      $ <?=$this->form->input('ingresos',    array('label'=> false,'type'=>'text', 'size'=>6, 'class' => 'required','value' => '0', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr id="rowEgresos" style="display: none">
-                 <td>Egresos</td>
+                 <td>Egresos </td>
                  <td class="last">
-                     <?=$this->form->input('egresos',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required','value' => '0', 'div' => array('tag' => '')));?>
+                     $ <?=$this->form->input('egresos',    array('label'=> false,'type'=>'text', 'size'=>6, 'class' => 'required','value' => '0', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr id="rowEmpleados" style="display: none">
@@ -49,8 +49,8 @@
 
                <tr>
                  <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button left' ) )?>
-                     <?=$this->html->link('Volver al Listado','/cajas/', array('class' => 'button left'));?>
+                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button ' ) )?>
+                     <?=$this->html->link('Volver al Listado','/cajas/', array('class' => 'button '));?>
                  </td>
                </tr>
 

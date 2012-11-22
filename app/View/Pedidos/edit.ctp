@@ -2,25 +2,16 @@
     <?=$this->form->create('Pedido',array('action'=>'edit', 'id' => 'pedidoForm'));?>
  <fieldset>
         <legend>Editar Pedido Nro:<?=$pedido["id"]?>  </legend>
-        <div class="span-21">
+        <div class="full">
                  <?=$this->element("Pedidos/pedidosTable", array("pedido" => $pedido))?>
         </div>
-        <div class="span-21">
-          <table class="span-20">
+        <div class="clear">&nbsp;</div>
+        <div class="full">
+          <table class="full">
                <tr >
-                 <td valign="top" class="span-8"><strong>Motivo Cancelacion:</strong></td>
-                 <td class="last" style="float: left" class="span-15">
-                     <?=$this->form->textarea('Pedidos.motivo_cancelacion',    array('label'=> false,'type'=>'text', 'rows'=>5, 'cols' => 50, 'class' => 'required', ' style' => 'width: 100%' , 'div' => array('tag' => '')));?>
-                 </td>
-               </tr>
-          </table>
-        </div>
-        <div class="span-21">
-          <table class="span-20">
-               <tr >
-                 <td colspan="2" style="text-align: center">
+                 <td  class="center">
                      <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button left' ) )?>
-                     <?=$this->html->link('Listado',array("controller"=>"pedidos", "action" => "index", "admin" => false), array('class' => 'button left'));?>
+                     <?=$this->html->link('Volver al Listado',array("controller"=>"pedidos", "action" => "index", "admin" => false), array('class' => 'button left'));?>
                  </td>
                </tr>
           </table>

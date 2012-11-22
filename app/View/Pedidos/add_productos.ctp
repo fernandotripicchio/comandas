@@ -3,12 +3,10 @@
   <hr />
   <div class="filtros" >
      <div>
-       <?//php echo $this->Html->link("Todos", "#", array("class" => "button a_filtro", "tipo"=>"todos") )?>
       <span class="bigButtonYellow a_filtro" tipo="todos">Todos</span>
       </div> <br />
      <?php foreach ($tipos as $tipo): ?>
         <div class="column">
-          <?//php echo $this->Html->link($tipo["Tipo"]["nombre"], "#", array("class" => "button a_filtro", "tipo" => $tipo["Tipo"]["id"]) )?>
           <span class="bigButtonPink" tipo="<?=$tipo["Tipo"]["id"]?>"><?=$tipo["Tipo"]["nombre"]?></span>
         </div>
       <?php endforeach; ?>

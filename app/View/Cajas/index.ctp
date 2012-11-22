@@ -1,13 +1,14 @@
+<?php echo $this->Html->script('caja'); ?>
 <div class="buttonActions">
    <?=$this->html->link('Nuevo Movimiento',array("controller"=>"cajas", "action" => "add", "admin" => false), array('class' => 'button left'));?>
    <?=$this->html->link('Cerrar Caja',array("controller"=>"cajas", "action" => "cerrar", "admin" => false), array('class' => 'button left'));?>    
 </div>
 <div class="formulario_busqueda">
-  <table >
+  <table class ="span-10">
   <caption>Filtrar Datos</caption>
   <tbody>
     <tr>
-     <td>Tipo de Movimiento</td>
+     <td>Tipo de Movimiento:</td>
      <td>
                      <select name="data[Caja][tipo_movimiento_id]" id="CajaTipoMovimientoId">
                          <option value=""></option>
@@ -17,7 +18,7 @@
                      </select>
      </td>
      <td>
-       Usuario Realizo Movimiento
+       Usuario que realizo el movimiento:
      </td>
      <td>
        <?echo $this->form->select('usuario', $users) ?>
@@ -34,10 +35,7 @@
 <br />
 <br />
 <div class="listados">
-<?//= $this->form->create('Pedido',array('action'=>'actions_pedidos', 'id' => 'pedidoFormActions'));?>
-<?
-$total_ingresos = $total_egresos = 0;
-?>    
+<? $total_ingresos = $total_egresos = 0;?>    
 <table >
   <caption>Movimientos de Caja</caption>
   <thead>
@@ -82,20 +80,23 @@ $total_ingresos = $total_egresos = 0;
 
     </tr>
     <?php endforeach; ?>
-    <tr>
-        <td colspan="6">Saldos</td>
-    </tr>
-    <tr>
-        <td>Totales:</td>
-        <td> $ <?=$total_ingresos?></td>
-        <td> $ <?=$total_egresos?></td>
-        <td colspan="3"> Saldo $ <?=$total_ingresos-$total_egresos?></td>        
-    </tr>
+   
     </tbody>
     <tfoot>
     </tfoot>
 </table>
 
-        
+<table class="tablaSaldos">
+      <caption>Saldos</caption>  
+      <tr>
+        <td class="textSaldos">Ingresos: $</td>
+        <td> $ <?=$total_ingresos?></td>
+        <td class="textSaldos">Egresos: $ </td>
+        <td> $ <?=$total_egresos?></td>
+        <td class="textSaldos"> Saldo: $ <?=$total_ingresos-$total_egresos?></td>        
+      </tr>        
+</table>
+       </div>
+<hr /> 
 <?//= $this->form->end(); ?>
-</div>
+

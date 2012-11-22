@@ -1,3 +1,4 @@
+<?php echo $this->Html->script('caja'); ?>
 <div id="cajaAdd" class="CajasForm">
     <?= $this->form->create('Caja',array('action'=>'add', 'id' => 'cajaFormActions'));?>
      <?=$this->form->input("user_id", array("type" => "hidden", "value" => $user_id));?>

@@ -18,13 +18,15 @@ $cakeDescription = __d('La Posta', 'La Posta');
                 echo $this->Html->css('tableboard');
                 echo $this->Html->css('menu_board/menu_board');
                 echo $this->Html->css('popup');
-                 echo $this->Html->css('buttons');
+                echo $this->Html->css('buttons');
+                echo $this->Html->css('pedidosShow'); 
                 echo $this->Html->css('colorbox/colorbox');
                 echo $this->Html->script(array('jquery',
                                                'jquery.validate',
                                                'jquery.colorbox',
                                                'jquery.ui',
-                                               'jquery.buttons'
+                                               'jquery.buttons',
+                                               'calendar-spanish'
                                              ));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -82,3 +84,4 @@ $cakeDescription = __d('La Posta', 'La Posta');
    </div>
 </body>
 </html>
+<?=$this->Html->scriptBlock("var root = '".$this->Html->url('/')."';");?>

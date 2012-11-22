@@ -1,0 +1,64 @@
+
+root { 
+    display: block;
+}
+
+
+table.pedidoTable {
+    border:1px solid #686868;
+    width: 100%;
+    background-color: #E6EFC2 !important;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+table.pedidoTable td {
+    font-size: 1.0em;                
+    text-align: left;
+}
+.pedidoTable .title {
+    font-weight: bold;
+}
+
+.pedidoTable .red {
+    color: red !important;
+}
+
+.pedidoTable .productosTitle {
+    color: black !important;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.pedidoTable .productos {
+    background-color: #ffffff !important;
+    border:1px solid #000000;
+    font-size: 1.2em;
+    color: black;
+   
+    margin: 5px;
+    padding: 5px;
+}
+
+.pedidoTable .productos .title {
+ font-weight: bold;
+ color: blue !important;
+ margin-bottom: 4px;
+}
+
+.pedidoTable table .center{
+  text-align: center !important;
+}
+
+
+.motivo_cancelacion {
+    border:1px solid #686868;
+    width: 99%;
+    background-color: #E6EFC2 !important;
+    top: -50px;
+    margin: 10px;
+    padding: 10px;
+    
+    
+}

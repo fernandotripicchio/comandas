@@ -1,10 +1,5 @@
-
-<div class="column" class="span-15">
-      <?php echo $this->Html->link("Nuevo Cliente", "#", array("id" => "buttonNuevoCliente","class" => "button a_nuevo_cliente") )?>
-</div>
-<br />
 <div id="cliente_listado">
-        <div class="listado" >
+        <div class="listados" >
         <h1>Seleccione Cliente</h1>
         <hr />
        <?php echo  $this->Paginator->counter('Pagina {:page} of {:pages}');; ?>

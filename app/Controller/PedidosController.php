@@ -17,6 +17,13 @@
    * Admin functions, only the admin user can uses these functions
    */
  
+public function county()  {
+    $sql  = "select * from country order by printable_name ASC";
+    $county = $this->User->query($sql);
+    $this->set(compact("county"));
+}
+        
+  
 public function getCadetes(){
     $cadetes   = $this->Cadete->find("all", array("order" => "nombre ASC","recursive" => -1));
     
@@ -53,8 +60,8 @@ public function getProductos(){
  public function builtCondition($keys){
      $condition = " 1 ";
      foreach ($keys as $key => $value) {
-         echo "$key --- $value";
-         if ($key == "cliente") {
+         //echo "$key --- $value";
+         if ($key == "cliente" && $value!="") {
              $condition.= " AND Cliente.nombre like '$value%' ";
          }
          if ($key == "tipo_pedido" && $value != "todos") {
@@ -65,12 +72,33 @@ public function getProductos(){
              $condition.= " AND Pedido.id = $value ";
          }
          if ($key == "estado" && $value == "activos") {
-             $condition .= " AND Pedido.estado = 'Mesa Abierta' or Pedido.estado = 'En Cocina' or Pedido.estado = 'En Camino' ";
+             $condition .= " AND (Pedido.estado = 'Mesa Abierta' or Pedido.estado = 'En Cocina' or Pedido.estado = 'En Camino' )";
          }
          if ($key == "estado" && $value == "no_activos") {
-             $condition .= " AND Pedido.estado = 'Cancelado' or Pedido.estado = 'Cerrado'  ";
-         }         
+             $condition .= " AND (Pedido.estado = 'Cancelado' or Pedido.estado = 'Cerrado')  ";
+         }   
          
+         if ($key == "fecha_desde" && $value != "") {             
+             $fechaformatoingles= $this->fechaSpanishDB($value);
+             $condition .= " AND Pedido.fecha >= '$fechaformatoingles'";
+         }   
+         
+         if ($key == "fecha_hasta" && $value != "") {             
+             $fechaformatoingles= $this->fechaSpanishDB($value);
+             $condition .= " AND Pedido.fecha <= '$fechaformatoingles'";
+         }   
+         
+         
+         if ($key == "producto" && $value != "0") {             
+             
+             $condition .= " AND Pedido.id in  ( select pedido_id as id from items where producto_id = $value )";
+         }           
+         
+         
+         if ($key == "cadete" && $value != "0") {             
+             
+             $condition .= " AND Pedido.cadete_id = $value";
+         }           
      }
      return $condition;
  }
@@ -105,38 +133,6 @@ public function getProductos(){
      }    
      
      $condition_form = $this->builtCondition($pedidosSession);
-//     //Armo el filtro de busqueda
-//     if ($this->request->is('post') ){
-//         $data =  $this->data;
-//         $condition_form = "1 ";
-//
-//         //Estado
-//         $estado = $data["estado"];
-//         //Cliente
-//         $cliente = $data["cliente"];
-//         $condition_form .= " AND Cliente.nombre like '%".$cliente."%'";
-//
-//         if ($data["numero_pedido"]) {
-//             $numero_pedido = $data["numero_pedido"];
-//             $condition_form .= " AND Pedido.id = ".$numero_pedido;
-//         }
-//         if ($data["tipo_pedido"] != "todos"){
-//             $tipo_pedido = $data["tipo_pedido"];
-//             $condition_form .= " AND Pedido.tipo = '".$tipo_pedido."'";
-//
-//         }
-//     } else {
-//           //Pedidos Activos: Mesa Abierta, En Cocina, En Camino
-//           //Pedidos No Activos: Cerrado, Cancelado          
-//              if ($estado == "activos") {
-//                  $condition_form .= " AND Pedido.estado = 'Mesa Abierta' or Pedido.estado = 'En Cocina' or Pedido.estado = 'En Camino' ";
-//               }
-//              if ($estado == "no_activos") {
-//                  $condition_form .= " AND Pedido.estado = 'Cancelado' or Pedido.estado = 'Cerrado'  ";
-//               }
-//     }
-
-
      //Consulta principal
      $pedidos = $this->Pedido->query("Select Pedido.id, Pedido.estado, Pedido.fecha, Pedido.tipo, Pedido.demora_pedido,Pedido.mesa,Pedido.cadete_id,
                                        Cliente.nombre, Cadete.nombre from pedidos as Pedido
@@ -146,11 +142,6 @@ public function getProductos(){
                                        order by Pedido.fecha ASC");
 
      //Seteo las variables
-//     $this->set(compact("numero_pedido"));
-
-//     $this->set(compact("estado"));
-//     $this->set(compact("cliente"));
-//     $this->set(compact("tipo_pedido"));
      $this->set(compact("pedidos"));     
      $this->set(compact("pedidosSession"));
      
@@ -213,6 +204,7 @@ public function getProductos(){
 
 
  function cerrar($id = null) {
+     
     $this->Pedido->id = $id;
     if (!$this->Pedido->exists()) {
             throw new NotFoundException(__('Pedido invalido'));
@@ -225,14 +217,15 @@ public function getProductos(){
         $this->set(compact("items"));        
         $this->set(compact("pedido"));
     } else {
+        
          $ok = $this->Pedido->save($this->request->data["Pedidos"]);
          //Cierro la caja
-     
-         $this->ingresarCaja($this->Pedido->id);
+         
+         $this->ingresarCaja($id);
        
 
         if ($ok) {
-            $this->Session->setFlash('Se Cerro el pedido con éxito');
+            $this->Session->setFlash("Se Cerro el pedido $id con éxito");
             $this->redirect(array('action' => 'index'));
         } else {
             $this->Session->setFlash('No se pudo cancelar el pedido.');
@@ -322,10 +315,16 @@ function getItems($pedidoId){
 
 private function ingresarCaja($pedidoId){
   $caja = array();
-  $pedido = $this->Pedido->find("first", array("condition" => array("id" => $pedidoId)));
-  $ingreso = $pedido["Pedido"]["paga_con"];
+
+  $pedido = $this->Pedido->find("first", array("conditions" => array("Pedido.id" => $pedidoId), "recursive" => -1));
+  
+  $ingreso = ($pedido["Pedido"]["tipo"] == "mesa") ? $pedido["Pedido"]["total"] : $pedido["Pedido"]["paga_con"];
   $egreso  = $pedido["Pedido"]["vuelto"];
   $total   = $pedido["Pedido"]["total"];
+  
+  //print_r($pedido["Pedido"]);
+  //echo $ingreso.".....";
+  //die;
   $caja["Caja"]["ingresos"] = $ingreso;
   $caja["Caja"]["egresos"]  = $egreso;
   $caja["Caja"]["pedido_id"] = $pedidoId;
@@ -333,22 +332,41 @@ private function ingresarCaja($pedidoId){
   $caja["Caja"]["user_id"] = $this->Auth->user("id");
   $caja["Caja"]["fecha"] = date("Y-m-d H:i:s");
   $caja["Caja"]["motivo"] = "Ingreso correspondiente al pedido nro $pedidoId, de un total de $total, el cliente pago con $ingreso y se dio un vuelto de $egreso";
+  //print_r($caja);
+  //die;
   $this->Caja->Create();
   $this->Caja->save($caja);
 }
 
+
+
+//Function que guarda el nuevo pedido
 private function saveData($data) {
   $pedido = array();
   $items = array();
   //print_r($data);
  // Array ( [Pedidos] => Array ( [Cliente] => Array ( [id] => 2 [nombre] => Enzo Francescolli ) [Productos] => Array ( [id] => 5 [precio] => 45.00 [cantidad] => 1 ) [total_pedido] => 173 [paga_con] => 200 [vuelto] => 27 [observaciones] => ) [tipo] => delivery [data[Pedidos] => Array ( [Mesa] => ) )
   if ($data["Pedidos"]["tipo"]!="mesa"){
-      //Cambiar ESTO!!!!!!
-      //Cuando se agrega desde ahi se agrege en clientes y eliminar estas columnas
-      $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
-      $pedido['nombre']     =  $data["Pedidos"]["nombre"];
-      $pedido['direccion']  =  $data["Pedidos"]["direccion"];
-      $pedido['telefono']   =  $data["Pedidos"]["telefono"];
+      if ($data["Pedidos"]["Cliente"]["nuevo"] == "1") {
+          $cliente = array();
+          $cliente["nombre"]    = $data["Pedidos"]["nombre"];
+          $cliente["direccion"] = $data["Pedidos"]["direccion"];
+          $cliente["telefono"] = $data["Pedidos"]["telefono"];
+
+          $this->Cliente->create();
+          $this->Cliente->save($cliente);
+          $pedido["cliente_id"] = $this->Cliente->id;
+          //print_r($pedido);
+          //die();
+
+      } else {
+          $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
+      }
+      
+//      $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
+//      $pedido['nombre']     =  $data["Pedidos"]["nombre"];
+//      $pedido['direccion']  =  $data["Pedidos"]["direccion"];
+//      $pedido['telefono']   =  $data["Pedidos"]["telefono"];
   }
   $pedido["tipo"]  = $data["Pedidos"]["tipo"];  
   $pedido["total"]  = $data["Pedidos"]["total_pedido"];  

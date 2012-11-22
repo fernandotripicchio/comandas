@@ -135,7 +135,7 @@
          <? } ?>
          <td class="<?=$class?> center">
            <?php echo $pedido['Pedido']['id']; ?></td>
-         <td style="width:60px">
+         <td class="with-2">
            <?php echo $this->element("tipo_pedido", array("tipo" => $pedido['Pedido']['tipo'], "mesa" => $pedido['Pedido']['mesa'] ))?>
         </td>
          <td>
@@ -144,7 +144,7 @@
          <td class="center">
            <?php echo $pedido['Pedido']['fecha'] ?>
          </td>
-         <td class="right">
+         <td class="center">
            <?= ($pedidosSession["estado"] == "activos") ?  $atraso."Min" :  "No Activo"; ?>
          </td>
          <td class="center">
@@ -163,19 +163,17 @@
                echo $pedido['Cadete']['nombre'];
              }}?>
         </td>
-        <td class="last" style="width: 200px">
+        <td class="last with-5" >
              
             
-         <? echo $this->html->link("V", array("controller" => "pedidos", "action" => "show", $pedido['Pedido']['id']), array("class" => "button"))?>            
+         <? echo $this->html->link("Ver", array("controller" => "pedidos", "action" => "show", $pedido['Pedido']['id']), array("class" => "button", "title" => "Ver Pedido"))?>            
          <? 
 
          if ($pedidosSession["estado"] == "activos")  { 
-                    //if ( ($pedido['Pedido']['tipo'] == "delivery" &&  $pedido['Pedido']['estado'] == "En Camino" ) || ($pedido['Pedido']['tipo'] == "mesa") || ($pedido['Pedido']['tipo'] == "mostrador")) { 
-                          echo $this->html->link("C", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button"));
-                    // } 
-                    echo $this->html->link("Ca", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button"));
+                    echo $this->html->link("Cerr", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button", "title" => "Cerrar Pedido"));
+                    echo $this->html->link("Canc", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button", "title" => "Cancelar Pedido"));
                     if ($pedido['Pedido']['tipo'] == "mesa") {
-                          echo $this->html->link("E", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button"));
+                          echo $this->html->link("Edi", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button", "title" => "Editar Pedido"));
                     } 
           } 
           else 

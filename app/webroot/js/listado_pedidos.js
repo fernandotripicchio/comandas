@@ -8,7 +8,7 @@ $(document).ready(function() {
     $("#datepickerDesde" ).datepicker({
                   changeMonth: true,
                   changeYear: true,
-                  dateformat: 'dd-mm-yy',
+                  dateformat: 'dd/mm/yy',
                   firstDay: 1
     });
     $("#datepickerHasta" ).datepicker({

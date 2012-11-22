@@ -36,8 +36,8 @@
                
                <tr>
                  <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button sleft' ) )?>
-                     <?=$this->html->link('Listado','/admin/clientes/', array('class' => 'button sleft'));?>
+                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button ' ) )?>
+                     <?=$this->html->link('Listado','/admin/clientes/', array('class' => 'button'));?>
                  </td>
                </tr>
                 

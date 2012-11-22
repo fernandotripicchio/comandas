@@ -9,6 +9,10 @@
 root { 
     display: block;
 }
+
+.listados {
+    min-height: 400px;
+}
 .listados table {
     border-left:1px solid #686868;
     border-right:1px solid #686868;    
@@ -76,3 +80,43 @@ root {
 .listados table tr.odd    {background-color: #cccccc}
 .listados table tr.even   {background-color: #ffffff}
 .listados table th, td    {padding: 0.1em 1em}
+
+
+#tablaTotales td {
+                font-size: 1.0em;
+                font-weight: bold;
+                text-align: left;
+
+}
+    
+
+
+.tablaSaldos {
+    border-left:1px solid #686868 !important;
+    border-right:1px solid #686868 !important;    
+    border-bottom: 1px solid #686868 !important;    
+    border-top: 1px solid #686868 !important;    
+    background-color: white !important;
+    width: 40% !important;
+    float: left;
+    
+}
+
+.tablaSaldos caption {
+		padding: 1.0em 0 0.5em 0;
+		text-align: left;
+		font-size: 1.1em;
+		font-weight: bold;                
+		text-transform: uppercase;
+		color: red;
+		background:transparent;
+}
+
+
+.textSaldos {
+                font-size: 1.0em !important;
+                font-weight: bold !important;
+                text-align: right !important;
+                color: blue !important;
+                
+}

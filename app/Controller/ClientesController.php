@@ -112,6 +112,28 @@
         $this->redirect(array('action' => 'index'));
     }
  }
+ 
+ 
+ public function findCliente(){
+
+     if($this->RequestHandler->isAjax()) {
+         $key = $this->params["pass"][0];
+         Configure::write('debug', 2);
+         $this->layout = 'ajax';
+         $query = "select cliente.id , cliente.nombre, cliente.telefono, cliente.direccion 
+                   from clientes as cliente where telefono = '$key' limit 1";
+         $cliente = $this->Cliente->query($query);
+         if (count($cliente)){
+              $cliente = array("cliente" => $cliente[0]["cliente"], "no_data" => false);
+         } else {
+             $cliente = array("no_data" =>true);
+         }
+         
+         $cliente = json_encode(compact('cliente'));
+         $this->set(compact("cliente"));
+     }     
+     
+ }
 
     
  

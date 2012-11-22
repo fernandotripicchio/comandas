@@ -75,5 +75,18 @@ class AppController extends Controller {
          $this->Session->write("$module.$key", $value );
      }
  }
+ 
+ 
+ public function fechaSpanishDB($fecha){
+     $new_fecha = explode("/", $fecha);
+     return $new_fecha[2]."-".$new_fecha[1]."-".$new_fecha[0];
+ }
+ 
+ public function fechaHumana($fecha){
+     $new_fecha = explode(" ", $fecha);
+     $new_fecha = $new_fecha[0];
+     return $new_fecha[2]."/".$new_fecha[1]."/".$new_fecha[0];
+ }
+ 
 
 }
