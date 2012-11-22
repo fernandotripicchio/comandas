@@ -53,11 +53,9 @@ $(document).ready(function(){
          var new_html = "";
        
          new_html += "<tr id='row_item_"+producto_id+"'>";
-
          new_html += "<input  class='productos_hidden' type='hidden' name='producto_elegido_"+producto_id+"' value ='"+producto_id+"'/>";
          new_html += "<input  type='hidden' id='producto_elegido_nombre_"+producto_id+"' name='producto_elegido_nombre_"+producto_id+"' value ='"+nombre+"'/>";
          new_html += "<input  type='hidden' id='producto_elegido_precio_"+producto_id+"' name='producto_elegido_precio_"+producto_id+"' value ='"+precio+"'/>";
-     
          new_html += "<td>";
          new_html +=  "<input type='text' name='cantidad' value='1' size='1' id='cantidad_"+producto_id+"' class='cantidad' />";
          new_html += "</td>";
@@ -96,7 +94,6 @@ $(document).ready(function(){
 
      $("#terminarPedido").click(function(){
           var new_html = "";
-
           $(".productos_hidden").each(function(){
             var id = $(this).attr("value");
             var producto = $("#producto_elegido_nombre_"+id).attr("value");
@@ -126,14 +123,11 @@ $(document).ready(function(){
               new_html += "</td>";
               new_html += "</tr>";
               $("#tablaPedidos").append(new_html);
-
-
           })
-             actualizarTotal();
-            
-            $("#rowTotales").show();
-            $( "input:button" ).button();
-            $.colorbox.close();
+          actualizarTotal();
+          $("#rowTotales").show();
+          $( "input:button" ).button();
+          $.colorbox.close();
      });
 
 })

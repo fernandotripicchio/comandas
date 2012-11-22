@@ -2,6 +2,7 @@
 <?php echo $this->Html->link("Nuevo Cliente", array("controller" => "clientes", "action" =>"add", "admin"=>false), array("class" => "button a_nuevo_cliente") )?>
 
 <hr />
+<div class="listados">
 <table >
   <caption>Clientes</caption>
   <thead>
@@ -16,8 +17,9 @@
 </thead>
     <!-- Here is where we loop through our $posts array, printing out post info -->
     <tbody>
+     <?$i=0;?>     
     <?php foreach ($clientes as $cliente): ?>
-       <tr>
+       <tr class='<?= (($i++%2)? "odd": "even") ?>'>
          <td ><?php echo $cliente['Cliente']['id']; ?></td>
          <td>
            <?php echo $cliente['Cliente']['nombre'] ?>
@@ -33,7 +35,7 @@
         </td>
 
         <td>
-          <?php echo $this->html->link("Editar", array("controller" => "clientes", "action" => "edit", $cliente['Cliente']['id']), array("class" => "button"))?>
+          <?php echo $this->html->link("Editar", array("admin" => false, "controller" => "clientes", "action" => "edit", $cliente['Cliente']['id']), array("class" => "button"))?>
           <?php echo $this->Form->postLink(
                 'Eliminar',
                 array('action' => 'delete', $cliente['Cliente']['id']),array("class" => "button"),

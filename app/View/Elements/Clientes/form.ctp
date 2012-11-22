@@ -5,14 +5,14 @@
                <tr >
                  <td>Nombre:</td>
                  <td class="last">
-                     <?=$this->form->input('nombre',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
+                     <?=$this->form->input('nombre',    array('label'=> false,'type'=>'text', 'size'=>100, 'class' => 'required', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
 
                <tr >
                  <td>Direccion:</td>
                  <td class="last">
-                     <?=$this->form->input('direccion',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
+                     <?=$this->form->input('direccion',    array('label'=> false,'type'=>'text', 'size'=>100, 'class' => 'required', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr >
@@ -33,14 +33,6 @@
                    <hr />
                  </td>
                </tr>
-               
-               <tr>
-                 <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button ' ) )?>
-                     <?=$this->html->link('Listado','/admin/clientes/', array('class' => 'button'));?>
-                 </td>
-               </tr>
-                
                
              </tbody>
 

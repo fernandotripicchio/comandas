@@ -35,6 +35,7 @@
  }
 
   public function edit($id = null) {
+    $this->layout = "board";  
     $this->Cliente->id = $id;
     if (!$this->Cliente->exists()) {
             throw new NotFoundException(__('Cliente invalido'));

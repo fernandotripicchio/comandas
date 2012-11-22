@@ -46,15 +46,6 @@
                    <hr />
                  </td>
                </tr>
-
-               <tr>
-                 <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button ' ) )?>
-                     <?=$this->html->link('Volver al Listado','/cajas/', array('class' => 'button '));?>
-                 </td>
-               </tr>
-
-
              </tbody>
 
            </table>
