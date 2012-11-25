@@ -5,7 +5,7 @@
                <tr >
                  <td>Tipo</td>
                  <td class="last">
-                     <select name="data[Caja][tipo_movimiento_id]" id="CajaTipoMovimientoId">
+                     <select name="data[Caja][tipo]" id="CajaTipoMovimientoId">
                          <option value=""></option>
                          <? foreach ($tipos as $tipo) { ?>
                              <option value="<?=$tipo["id"]?>" tipo-mov="<?=$tipo["tipo"]?>"> <?=$tipo["nombre"]?></option>

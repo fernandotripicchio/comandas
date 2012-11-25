@@ -2,10 +2,8 @@ $(document).ready(function(){
     $("#CajaTipoMovimientoId").change(function(data){
         var option = $("#CajaTipoMovimientoId option:selected");
         var tipo = option.attr("tipo-mov");
-        var value = option.attr("value");
-        
-        
-        
+        var value = option.attr("value");      
+               
         if (tipo == "ingreso"){
             $("#rowIngresos").show();
             $("#rowEgresos").hide();

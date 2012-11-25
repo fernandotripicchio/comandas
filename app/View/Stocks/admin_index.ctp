@@ -1,8 +1,31 @@
-<!-- File: /app/View/Posts/index.ctp -->
-<div class="listado">
+<div>
+  <table >
+  <caption>Filtrar Datos</caption>
+  <tbody>
+      <tr>
+        <td>Productos: </td>
+        <td>
+           <select name="data[filtros][producto_id]" id="ProductosStock">
+                         <option value=""></option>
+                         <? foreach ($productos as $key => $value) { ?>
+                             <option value="<?=$key?>"> <?=$value?></option>
+                         <? }?>
+            </select>
+        </td>
+        <td>
+            <input type="submit" name="Buscar" value="Buscar">
+        </td>
+     
+    </tr>
+  </tbody>
+  </table>
+</div>
+
 <hr />
+
+<div class="listado">
 <table >
-  <caption>Stock Bebidas - Movimientos</caption>
+  <caption>Stock Bebidas</caption>
   <thead>
     <tr>
         <th scope="col">Id</th>
@@ -22,7 +45,7 @@
            <?php echo $movimiento['MovimientoStock']['fecha'] ?>
         </td>
          <td>
-           <?php echo $movimiento['MovimientoStock']['Usuario'] ?>
+           <?php echo $movimiento['User']['nombre'] ?>
         </td>
          <td>
            <?php echo $movimiento['MovimientoStock']['motivo'] ?>
