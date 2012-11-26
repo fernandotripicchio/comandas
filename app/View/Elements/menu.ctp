@@ -74,7 +74,7 @@
             <div>
               <ul>
                 <li>
-                   <?=$this->Html->link('<span>Agregar Stock</span>', array('admin' => true,'controller' => 'stocks', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                   <?=$this->Html->link('<span>Registrar Movimiento</span>', array('admin' => true,'controller' => 'stocks', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
                  </li>
             </ul>
             </div>            

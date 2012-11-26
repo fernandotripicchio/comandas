@@ -1,4 +1,3 @@
-   <input type="hidden" name="data[caja][user_id]"
    <fieldset>
         <legend><?=$title?> </legend>  
         <table class="span-17">
@@ -6,7 +5,7 @@
                <tr>
                  <td>Tipo: </td>
                  <td>
-                   <?echo $this->form->select('tipo_id', $tipos) ?>
+                   <?echo $this->form->select('tipo_id', $tipos, array("class" => "required")) ?>
                  </td>
                </tr>
                <tr >
@@ -19,13 +18,13 @@
                <tr >
                  <td>Precio Normal:</td>
                  <td class="last">
-                     <?=$this->form->input('precio_normal',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
+                     $ <?=$this->form->input('precio_normal',    array('label'=> false,'type'=>'text', 'size'=>4, 'class' => 'required number', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr >
                  <td>Precio Local:</td>
                  <td class="last">
-                     <?=$this->form->input('precio_local',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => '', 'div' => array('tag' => '')));?>
+                    $ <?=$this->form->input('precio_local',    array('label'=> false,'type'=>'text','value' => "0", 'size'=>4, 'class' => 'number', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr >

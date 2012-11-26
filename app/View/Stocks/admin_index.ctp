@@ -29,32 +29,25 @@
   <thead>
     <tr>
         <th scope="col">Id</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Usuario</th>
-        <th scope="col">Motivo</th>
-        <th scope="col">Ingreso</th>
-        <th scope="col">Egreso</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th>&nbsp;</th>
     </tr>
 </thead>
     <!-- Here is where we loop through our $posts array, printing out post info -->
     <tbody>
-    <?php foreach ($movimientos as $movimiento): ?>
-       <tr>
-         <td ><?php echo $movimiento['MovimientoStock']['id']; ?></td>
+    <?php foreach ($stocks as $stock): ?>
+        
+       <tr >
+         <td ><?php echo $stock['Stock']['id']; ?></td>
          <td>
-           <?php echo $movimiento['MovimientoStock']['fecha'] ?>
+           <?php echo $stock['Producto']['nombre'] ?>
         </td>
          <td>
-           <?php echo $movimiento['User']['nombre'] ?>
+           <?php echo $stock['Stock']['cantidad'] ?>
         </td>
-         <td>
-           <?php echo $movimiento['MovimientoStock']['motivo'] ?>
-        </td>
-         <td>
-           <?php echo $movimiento['MovimientoStock']['ingreso'] ?>
-        </td>
-         <td>
-           <?php echo $movimiento['MovimientoStock']['egreso'] ?>
+        <td>
+           <?php echo $this->html->link("Ver Movimientos", array("admin" => true, "controller" => "stocks", "action" => "movimientos", $stock['Stock']['id'], $stock['Producto']['id']), array("class" => "button", "title" => "Ver Movimientos ")); ?>
         </td>
     </tr>
     <?php endforeach; ?>

@@ -1,4 +1,4 @@
-<?//echo $this->Html->script('user');?>
+<?echo $this->Html->script('producto');?>
 <div id="producto_add">
     <?=$this->form->create('Producto',array('action'=>'add'), array("autocomplete" => "off"));?>
     <?=$this->element("Productos/form", array("title"=>"Agregar Nuevo Producto"));?>

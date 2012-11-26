@@ -30,8 +30,8 @@
  
  public  function admin_index() {
      $this->getProductos();
-     $movimientos = $this->MovimientoStock->find("all", array("order" => "fecha DESC", "recursive" => 0));
-     $this->set(compact("movimientos"));
+     $stocks = $this->Stock->find("all", array("order" => "cantidad DESC", "recursive" => 0));
+     $this->set(compact("stocks"));
   }
 
  public function admin_add() {
@@ -43,10 +43,13 @@
 	//$this->Stock->create();
         //$this->MovimientoStock->create();
         //$this->data['User']['registration_number'] = $this->User->oneWayEncryp($this->data["User"]["registration_number"], $this->data["User"]["email"]) ;
+        $this->Stock->begin();        
 	if ($this->registrarMovimientoStock($this->data)) {
+                $this->Stock->commit();
 		$this->Session->setFlash(__('Se guardo el movimiento de stock con éxito', true));
-		//$this->redirect(array('action'=>'index'));
+		$this->redirect(array('action'=>'index'));
 	} else {
+                $this->Stock->rollback();
 		$this->Session->setFlash(__('El movimiento no se pudo guardar. Por favor intente de nuevo.', true));
                 
 	}
@@ -57,22 +60,32 @@
     $this->set(compact("tipo"));
  }
  
-
+ public function admin_movimientos($stock_id, $producto_id){
+     $prod = $this->Producto->find("first",array("conditions" => array("id" => $producto_id), "recursive" => -1));
+     $movimientos = $this->MovimientoStock->find("all", array("conditions" => array("stock_id" => $stock_id),"order" => "MovimientoStock.fecha DESC"));
+     
+     
+     
+     $this->set(compact("movimientos"));
+     $this->set(compact("prod"));
+ }
  
  private function registrarMovimientoStock($data){
      
-     
+     $ret = false;
      $producto_id = $data["Stock"]["producto_id"];
      $tipo        = $data["Stock"]["tipo"];
      $ingreso     = ($tipo == "ingreso") ? $data["Stock"]["ingreso"] : 0 ;
      $egreso      = ($tipo == "egreso") ? $data["Stock"]["egreso"] : 0 ;
      $usuario_id  = $data["Stock"]["user_id"];     
+     $motivo      = $data["Stock"]["motivo"];
           
      //Me fijo que haya stock para ese producto
-     $sql = "select * from stocks Stock where producto_id = $producto_id limit 1";
-     $result_stock = $this->Stock->query($sql);
-     
-     
+     //$sql = "select * from stocks Stock where producto_id = $producto_id limit 1";
+     //$result_stock = $this->Stock->query($sql);
+     //$result_stock = $this->Stock->find("first", array("recursive" => 0 ) ) ;
+     //$result_stock = $this->Stock->find("first",array("conditions" => array("producto_id" => $producto_id)));
+     $result_stock = $this->Stock->find('first', array('conditions' => array('Stock.producto_id' => 1) , "recursive" => -1 ));
      //Veo si guardo o actualizo
      $stock = $mov_stock = array();
      
@@ -83,28 +96,45 @@
      $mov_stock["egreso"]      = $egreso;
      $mov_stock["fecha"]       = date("Y-m-d H:i:s");
      $mov_stock["usuario_id"]  = $usuario_id;
+     $mov_stock["motivo"]      = $motivo;
      
      //Si no hay stock lo creo
-     print_r($result_stock);
-     
-     if (isset($result_stock) && count($result_stock[0]) == 0) {
+     if (!$result_stock) {
            $stock["cantidad"] = $ingreso;
            $this->Stock->create();
-           $this->Stock->save($stock);
+           $ret = $this->Stock->save($stock);
            $stock_id = $this->Stock->id;
            
-           //registro movi
-           $mov_stock["stock_id"] = $stock_id;
-           $this->MovimientoStock->create();
-           $this->MovimientoStock->save($mov_stock);
+           if ($ret ) {
+              $mov_stock["stock_id"] = $stock_id;
+              $this->MovimientoStock->create();
+              $this->MovimientoStock->save($mov_stock);
+           } else {
+               $ret = false;
+           }
+           
            
      } else {
            $stock["cantidad"] = $ingreso;
-           $stock["id"] = $result_stock[0]["Stock"]["id"];
-           $stock["cantidad"] = $stock["cantidad"] + ( $tipo == "ingreso" ? $ingreso : -1*$egreso);          
+           $stock["id"] = $result_stock["Stock"]["id"];
+           $stock["cantidad"] = $result_stock["Stock"]["cantidad"] + ( $tipo == "ingreso" ? $ingreso : -1*$egreso);    
+           
+           $ret = $this->Stock->save($stock);
+           
+           if ( $ret ) {
+              $mov_stock["stock_id"] = $stock["id"];
+              $this->MovimientoStock->create();
+              $this->MovimientoStock->save($mov_stock);
+           } else {
+               $ret = false;
+           }
+           
            
      }
-     return true;
+     
+     
+     
+     return $ret;
      
  }
          

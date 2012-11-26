@@ -2,11 +2,8 @@
  class Stock extends AppModel {
   var $name = 'Stock';
 
-  public $hasMany = array('MovimientoStock' => array(
-                     'className'  => 'Stock',
-                     'order'      => 'Stock.id DESC'
-                    )
-    );
+  public $hasMany = array('MovimientoStock');
+  public $belongsTo = array("Producto" => array('foreignKey'    => 'producto_id'));
 
 }
 ?>
