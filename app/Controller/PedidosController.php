@@ -362,11 +362,7 @@ private function saveData($data) {
       } else {
           $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
       }
-      
-//      $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
-//      $pedido['nombre']     =  $data["Pedidos"]["nombre"];
-//      $pedido['direccion']  =  $data["Pedidos"]["direccion"];
-//      $pedido['telefono']   =  $data["Pedidos"]["telefono"];
+
   }
   $pedido["tipo"]  = $data["Pedidos"]["tipo"];  
   $pedido["total"]  = $data["Pedidos"]["total_pedido"];  
@@ -412,6 +408,8 @@ private function saveData($data) {
     $nuevo_item["Item"]["observaciones"]    = $producto["observaciones"];
     $items[$i] = $nuevo_item;
     $i++;
+    
+    //Generar el Stock
   }
 
   if ( $ok_pedido ){
