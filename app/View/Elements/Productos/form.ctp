@@ -1,6 +1,6 @@
    <fieldset>
         <legend><?=$title?> </legend>  
-        <table class="span-17">
+        <table class="full">
              <tbody>
                <tr>
                  <td>Tipo: </td>
@@ -30,7 +30,7 @@
                <tr >
                  <td>Descripcion:</td>
                  <td class="last">
-                     <?=$this->form->textarea('descripcion',    array('label'=> false,'type'=>'text', 'rows'=>10, 'cols' => 40, 'class' => 'required', 'div' => array('tag' => '')));?>
+                     <?=$this->form->textarea('descripcion',    array('label'=> false,'type'=>'text', 'rows'=>10, 'cols' => 40, 'div' => array('tag' => '')));?>
                  </td>
                </tr>
 
@@ -39,14 +39,6 @@
                    <hr />
                  </td>
                </tr>
-               
-               <tr>
-                 <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button sleft' ) )?>
-                     <?=$this->html->link('Listado',array("controller"=>"productos", "action" => "index", "admin" => true), array('class' => 'button sleft'));?>
-                 </td>
-               </tr>
-                
                
              </tbody>
 

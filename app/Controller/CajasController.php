@@ -46,8 +46,7 @@
     $this->Caja->recursive = 0;
     $this->getTipos();
     $this->getUsers();  
-   $conditions = " 1 ";    
-    $conditions .= " AND  Caja.fecha >= CURDATE()";
+    $conditions = " 1 ";    
     $cajas = $this->Caja->query("Select * from cajas as Caja
                                        left join users as User on Caja.user_id = User.id
                                        left join tipo_movimientos TipoMovimiento on Caja.tipo_movimiento_id = TipoMovimiento.id
@@ -70,14 +69,9 @@
                                        left join tipo_movimientos TipoMovimiento on Caja.tipo_movimiento_id = TipoMovimiento.id
                                        where $conditions
                                        order by Caja.fecha DESC");
-     $this->set(compact("cajas"));
-    
+     $this->set(compact("cajas"));   
 
    }
-
-
-
-
 
   public function add(){
     $this->layout = "board";
@@ -106,10 +100,11 @@
 
   public function admin_add(){
 
+    $this->getTipos();
+    $this->getUsers();
     if (!empty($this->data)) {
 	$this->Caja->create();
-        //$this->data['User']['registration_number'] = $this->User->oneWayEncryp($this->data["User"]["registration_number"], $this->data["User"]["email"]) ;
-	if ($this->Caja->save($this->data)) {
+        if ($this->Caja->save($this->data)) {
 		$this->Session->setFlash(__('Se guardo la caja con éxito', true));
 		$this->redirect(array('action'=>'index'));
 	} else {
@@ -117,7 +112,10 @@
 
 	}
 
+
     }
+    $user_id = $this->Auth->user("id");
+    $this->set(compact("user_id"));
 
  }
 

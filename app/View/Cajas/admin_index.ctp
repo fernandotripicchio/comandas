@@ -1,29 +1,22 @@
-<div >
-<hr />
-  <table >
-  <caption>Filtrar Datos</caption>
-  <tbody>
-    <tr>
-     <td>Tipo de Movimiento</td>
-     <td>
-                     <select name="data[Caja][tipo_movimiento_id]" id="CajaTipoMovimientoId">
-                         <option value=""></option>
-                         <? foreach ($tipos as $tipo) { ?>
-                             <option value="<?=$tipo["id"]?>" tipo-mov="<?=$tipo["tipo"]?>"> <?=$tipo["nombre"]?></option>
-                         <? }?>
-                     </select>
-     </td>
-     <td>
-       Usuario Realizo Movimiento
-     </td>
-     <td>
-       <?echo $this->form->select('usuario', $users) ?>
-     </td>
-     
-       <td><input type="submit" name="Buscar" value="Buscar"></td>
-     
-    </tr>
-  </tbody>
+<div class="formulario_busqueda">
+  <table class ="span-10"> 
+      <caption>Filtrar Datos</caption>
+      <tbody>
+            <tr>
+                <td>Tipo de Movimiento:</td>
+                <td>
+                    <select name="data[Caja][tipo_movimiento_id]" id="CajaTipoMovimientoId">
+                                    <option value=""></option>
+                                    <? foreach ($tipos as $tipo) { ?>
+                                        <option value="<?=$tipo["id"]?>" tipo-mov="<?=$tipo["tipo"]?>"> <?=$tipo["nombre"]?></option>
+                                    <? }?>
+                    </select>
+                </td>
+                <td> Usuario Realizo Movimiento: </td>
+                <td>  <?echo $this->form->select('usuario', $users) ?> </td>
+                <td><input type="submit" name="Buscar" value="Buscar"></td>
+            </tr>
+      </tbody>
   </table>
 </div>
 
@@ -31,10 +24,7 @@
 <br />
 <br />
 <div class="listado">
-<?//= $this->form->create('Pedido',array('action'=>'actions_pedidos', 'id' => 'pedidoFormActions'));?>
-<?
-$total_ingresos = $total_egresos = 0;
-?>    
+<? $total_ingresos = $total_egresos = 0; ?>    
 <table >
     <hr />
   <caption>Movimientos de Caja</caption>

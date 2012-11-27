@@ -1,4 +1,4 @@
-<div>
+<div class="formulario_busqueda">
   <table >
   <caption>Filtrar Datos</caption>
   <tbody>

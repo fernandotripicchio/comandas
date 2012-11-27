@@ -1,4 +1,3 @@
-$(document).ready(function(){
-    
-   var validator =  $("#ProductoAddForm").validate();       
+$(document).ready(function(){    
+   var validator =  $("#productoForm").validate();       
 })

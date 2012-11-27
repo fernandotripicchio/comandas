@@ -1,8 +1,7 @@
-
-<h1>Movimientos de stock para: <?=$prod["Producto"]["nombre"]?> </h1>
 <div class="listado">
     
     <table>
+        <caption>Movimientos de stock para: <?=$prod["Producto"]["nombre"]?> </caption>
         <tr>
             <th>ID</th>
             <th>Tipo</th>

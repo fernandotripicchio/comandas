@@ -3,7 +3,7 @@
   var $name = 'Pedidos';
   public $helpers = array("Html","Form", "Paginator");
   var $components = array("RequestHandler");
-  var $uses = array('Pedido', 'Producto', 'Tipo','User', 'Cliente', 'Cadete', 'Item', 'Caja');
+  var $uses = array('Pedido', 'Producto', 'Tipo','User', 'Cliente', 'Cadete', 'Item', 'Caja', 'Stock', 'MovimientoStock');
   //var $paginate = array('limit' => 50,'order' => array('Cliente.id' => 'asc'));
  
   
@@ -219,11 +219,10 @@ public function getProductos(){
     } else {
         
          $ok = $this->Pedido->save($this->request->data["Pedidos"]);
-         //Cierro la caja
          
+         //Cierro la caja         
          $this->ingresarCaja($id);
-       
-
+         $this->registrarStock($id);
         if ($ok) {
             $this->Session->setFlash("Se Cerro el pedido $id con éxito");
             $this->redirect(array('action' => 'index'));
@@ -307,12 +306,79 @@ function getItems($pedidoId){
        }
    }
    $this->redirect(array('action' => 'index'));
-  // die;
-   //print_r($this->data);
-   //die;
  }
 
 
+ private function registrarStock($pedidoId){
+    $items = $this->Item->find("all", array("conditions" => array("pedido_id" => $pedidoId), "recursive" => 0));
+    $pedido_id = $pedidoId;
+    foreach ($items as $item) {
+        if ($item["Producto"]["tipo_id"] == "8") {
+            $cantidad = $item["Item"]["cantidad"];
+            $producto_id = $item["Item"]["producto_id"];
+            $this->registrarMovimientoStock($pedido_id, $producto_id, $cantidad);
+            
+        }
+    }
+    
+ }
+ 
+ private function registrarMovimientoStock($pedido_id, $producto_id, $cantidad){
+     
+     $ret = false;
+     $tipo        = "egreso";
+     $ingreso     = 0 ;
+     $egreso      =  $cantidad ;
+     $usuario_id  = $this->Auth->user("id");     
+     $motivo      = "Se descuenta $cantidad por uso en pedido nro: $pedido_id";
+          
+     $result_stock = $this->Stock->find('first', array('conditions' => array('Stock.producto_id' => $producto_id) , "recursive" => -1 ));
+     //Veo si guardo o actualizo
+     $stock = $mov_stock = array();
+     
+     $stock["producto_id"] = $producto_id;
+
+     $mov_stock["tipo"]        = $tipo;
+     $mov_stock["ingreso"]     = $ingreso;
+     $mov_stock["egreso"]      = $egreso;
+     $mov_stock["fecha"]       = date("Y-m-d H:i:s");
+     $mov_stock["usuario_id"]  = $usuario_id;
+     $mov_stock["motivo"]      = $motivo;
+     
+     //Si no hay stock lo creo
+     if (!$result_stock) {
+           $stock["cantidad"] = $ingreso;
+           $this->Stock->create();
+           $ret = $this->Stock->save($stock);
+           $stock_id = $this->Stock->id;           
+           if ($ret ) {
+              $mov_stock["stock_id"] = $stock_id;
+              $this->MovimientoStock->create();
+              $this->MovimientoStock->save($mov_stock);
+           } else {
+               $ret = false;
+           }
+           
+           
+     } else {
+           $stock["cantidad"] = $ingreso;
+           $stock["id"] = $result_stock["Stock"]["id"];
+           $stock["cantidad"] = $result_stock["Stock"]["cantidad"] + ( $tipo == "ingreso" ? $ingreso : -1*$egreso);               
+           $ret = $this->Stock->save($stock);           
+           if ( $ret ) {
+              $mov_stock["stock_id"] = $stock["id"];
+              $this->MovimientoStock->create();
+              $this->MovimientoStock->save($mov_stock);
+           } else {
+               $ret = false;
+           }
+     }
+     return $ret;
+     
+ }
+ 
+ 
+ 
 private function ingresarCaja($pedidoId){
   $caja = array();
 

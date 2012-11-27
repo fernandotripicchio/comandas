@@ -39,10 +39,6 @@
     $this->getProductos();
     $tipo=array("ingreso" => "Ingreso", "egreso" => "Egreso");
     if (!empty($this->data)) {
-        //$this->registrarMovimientoStock($this->data);
-	//$this->Stock->create();
-        //$this->MovimientoStock->create();
-        //$this->data['User']['registration_number'] = $this->User->oneWayEncryp($this->data["User"]["registration_number"], $this->data["User"]["email"]) ;
         $this->Stock->begin();        
 	if ($this->registrarMovimientoStock($this->data)) {
                 $this->Stock->commit();
@@ -80,12 +76,7 @@
      $usuario_id  = $data["Stock"]["user_id"];     
      $motivo      = $data["Stock"]["motivo"];
           
-     //Me fijo que haya stock para ese producto
-     //$sql = "select * from stocks Stock where producto_id = $producto_id limit 1";
-     //$result_stock = $this->Stock->query($sql);
-     //$result_stock = $this->Stock->find("first", array("recursive" => 0 ) ) ;
-     //$result_stock = $this->Stock->find("first",array("conditions" => array("producto_id" => $producto_id)));
-     $result_stock = $this->Stock->find('first', array('conditions' => array('Stock.producto_id' => 1) , "recursive" => -1 ));
+     $result_stock = $this->Stock->find('first', array('conditions' => array('Stock.producto_id' => $producto_id) , "recursive" => -1 ));
      //Veo si guardo o actualizo
      $stock = $mov_stock = array();
      

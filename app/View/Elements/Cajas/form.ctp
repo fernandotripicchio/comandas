@@ -1,6 +1,6 @@
     <fieldset>
         <legend><?=$title?> </legend>
-        <table class="span-17">
+        <table class="full">
              <tbody>
                <tr >
                  <td>Tipo</td>

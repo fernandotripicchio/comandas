@@ -1,6 +1,6 @@
     <fieldset>  
         <legend><?=$title?> </legend>  
-        <table class="span-17">
+        <table class="full">
              <tbody>
                <tr >
                  <td >
@@ -24,13 +24,7 @@
                    <hr />
                  </td>
                </tr>
-               
-               <tr>
-                 <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button left' ) )?>
-                     <?=$this->html->link('Listado','/admin/tipo_movimientos/', array('class' => 'button left'));?>
-                 </td>
-               </tr>
+
                 
                
              </tbody>
