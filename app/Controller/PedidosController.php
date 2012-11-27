@@ -410,8 +410,6 @@ private function ingresarCaja($pedidoId){
 private function saveData($data) {
   $pedido = array();
   $items = array();
-  //print_r($data);
- // Array ( [Pedidos] => Array ( [Cliente] => Array ( [id] => 2 [nombre] => Enzo Francescolli ) [Productos] => Array ( [id] => 5 [precio] => 45.00 [cantidad] => 1 ) [total_pedido] => 173 [paga_con] => 200 [vuelto] => 27 [observaciones] => ) [tipo] => delivery [data[Pedidos] => Array ( [Mesa] => ) )
   if ($data["Pedidos"]["tipo"]!="mesa"){
       if ($data["Pedidos"]["Cliente"]["nuevo"] == "1") {
           $cliente = array();
@@ -482,9 +480,6 @@ private function saveData($data) {
      $this->Item->create();
      $ok_item = $this->Item->saveAll($items);
   }
-
-
-  //$this->redirect(array('action'=>'index'));
   return true;
 }
 
