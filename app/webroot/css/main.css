@@ -316,13 +316,30 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 
 .productosListadoPedidos .columnaProductos{
   width: 35%;
+  margin: 0px;
+  padding: 0px;
+  float: left;
 }
 
 .productosListadoPedidos .columnaProductosSeleccionados{
   width: 50%;
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  
 }
+.productosListadoPedidos .columnaTotalPedido{
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  
+}
+
+
 .productosListadoPedidos .columnaProductosSeleccionados th{
   text-align: left;
+
+  
 }
 
 .pedidoTotal{

@@ -16,8 +16,8 @@
        </div>
      </div>
      <!-- Body con los productos --> 
-     <div class="productosListadoPedidos" >
-         <div class="column columnaProductos" >
+     <div class="productosListadoPedidos full" >
+         <div class="columnaProductos" >
                <table class="tablaProductos">
                  <?php foreach ($productos as $producto): ?>
                     <tr id="producto_<?=$producto['Producto']['id']; ?>" class="row_tipo_<?php echo $producto['Tipo']['id']?> row_productos">
@@ -32,7 +32,7 @@
                  <?php endforeach; ?>
                </table>
           </div>
-          <div class="column columnaProductosSeleccionados" >
+          <div class="columnaProductosSeleccionados" >
                 <table id="productos_seleccionados">
                   <tr>
                     <th>Cantidad</th>
@@ -43,11 +43,11 @@
                   </tr>
                 </table>
           </div>
-          <div class="column columnaTotalPedido" >
+          <div class="columnaTotalPedido" >
                   <span class="pedidoTotal">Total: $</span>
                   <span class="pedidoTotal" id="total">0</span>
                   <br />
-                  <div style="margin-top: 30px">
+                  <div>
                    <input type="button" name="terminar" value="Terminar Pedido" id="terminarPedido">
                   </div>
           </div>
