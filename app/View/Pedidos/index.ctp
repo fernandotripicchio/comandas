@@ -151,7 +151,7 @@
            <?php echo $pedido['Pedido']['estado'] ?>
          </td>
          <td class="center">
-            <? if ($pedido['Pedido']['tipo'] == "delivery" && ( $pedido['Pedido']['estado'] == "En Cocina")  ) { ?>
+            <? if ( $pedidosSession["estado"] == "activos" &&  $pedido['Pedido']['tipo'] == "delivery" ) { ?>
                <select name="Cadetes[<?=$pedido['Pedido']['id']?>]">
                  <option value="0"></option>
                  <?php for($i=0; $i < count($cadetes); $i++){ ?>
@@ -163,14 +163,21 @@
                echo $pedido['Cadete']['nombre'];
              }}?>
         </td>
-        <td class="last with-5" >
-             
-            
+        <td class="last with-5" >            
          <? echo $this->html->link("Ver", array("controller" => "pedidos", "action" => "show", $pedido['Pedido']['id']), array("class" => "button", "title" => "Ver Pedido"))?>            
          <? 
-
+         $mostrar_cerrar = false;
          if ($pedidosSession["estado"] == "activos")  { 
-                    echo $this->html->link("Cerr", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button", "title" => "Cerrar Pedido"));
+                     
+                     if ($pedido['Pedido']['tipo'] == "delivery") {
+                         $mostrar_cerrar = ( $pedido['Pedido']['cadete_id'] != 0) ? true : false ;
+                     } else {
+                         $mostrar_cerrar = true;
+                     }
+                     if ($mostrar_cerrar) {
+                         echo $this->html->link("Cerr", array("controller" => "pedidos", "action" => "cerrar", $pedido['Pedido']['id']), array("class" => "button", "title" => "Cerrar Pedido"));
+                     }
+                    
                     echo $this->html->link("Canc", array("controller" => "pedidos", "action" => "cancelar", $pedido['Pedido']['id']), array("class" => "button", "title" => "Cancelar Pedido"));
                     if ($pedido['Pedido']['tipo'] == "mesa") {
                           echo $this->html->link("Edi", array("controller" => "pedidos", "action" => "edit", $pedido['Pedido']['id']), array("class" => "button", "title" => "Editar Pedido"));
@@ -186,9 +193,10 @@
     </tfoot>
 
 </table>
-
-<div class="buttons_actions">
-  <input type="submit" name="asignar_cadete" value="Asignar Cadetes">
-</div>
+<? if ($pedidosSession["estado"] == "activos")  { ?>
+      <div class="buttons_actions">
+           <input type="submit" name="asignar_cadete" value="Asignar Cadetes">
+      </div>
+<? }?>
 <?= $this->form->end(); ?>
 </div>

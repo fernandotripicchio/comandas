@@ -292,7 +292,13 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
   border: 1px solid;
 }
 
-
+#pedidosProductos{
+    height: 100%;
+}
+.bottomProductos{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
 .filtros{
   padding:5px;
   margin-bottom: 10px;
@@ -301,9 +307,11 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
 }
 
 .productosListadoPedidos{
- overflow: auto;
- width: 95%
+ /*overflow: auto;*/
+ width: 100%
 }
+
+
 
 
 .productosListadoPedidos .columnaProductos{

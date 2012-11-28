@@ -1,15 +1,18 @@
-  <div style="width: 90%">
-    <div class="column">
-       Buscar:
-    </div>
-    <div class="column">
-       <input type="text" name="cliente_value" value="" size="20">
-     </div>
-    <div class="column">
-      <input type="submit" name="buscar" value="Buscar">
-    </div>
+<div class="formulario_busqueda">
+  <table class ="span-10">
+  <caption>Filtrar Datos</caption>
+  <tbody>
+    <tr>
+     <td>Buscar:</td>
+     <td>
+        <input type="text" name="data[Cliente][key]" value="" size="20">         
+     </td>
+       <td><input type="submit" name="Buscar" value="Buscar"></td>
+    </tr>
+  </tbody>
+  </table>
+</div>
 
-  </div>
 
  <table >
   <caption><?=$this->Paginator->numbers();?> Clientes</caption>

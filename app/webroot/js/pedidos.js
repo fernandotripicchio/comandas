@@ -7,9 +7,8 @@ function resetClientForm(){
 }
 
 $(document).ready(function(){
-    $("#buttonAgregar").colorbox({width:"100%", heigth: "900px", initialHeight: "900px", top: '1px'});
-    $("#buttonCliente").colorbox({width:"100%", heigth: "900px", initialHeight: "900px", top: '1px'});
-    
+    $("#buttonAgregar").colorbox({ transition:"none", width:"90%", height:"90%", top: '1px'});
+    $("#buttonCliente").colorbox({ transition:"none", width:"90%", height:"90%", top: '1px'});
     $("#buttonClienteBuscar").click(function(){
        var key = $("#keysCliente").attr("value");
        if (key.length > 4 ) {

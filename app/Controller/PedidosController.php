@@ -398,8 +398,6 @@ private function ingresarCaja($pedidoId){
   $caja["Caja"]["user_id"] = $this->Auth->user("id");
   $caja["Caja"]["fecha"] = date("Y-m-d H:i:s");
   $caja["Caja"]["motivo"] = "Ingreso correspondiente al pedido nro $pedidoId, de un total de $total, el cliente pago con $ingreso y se dio un vuelto de $egreso";
-  //print_r($caja);
-  //die;
   $this->Caja->Create();
   $this->Caja->save($caja);
 }
@@ -416,13 +414,9 @@ private function saveData($data) {
           $cliente["nombre"]    = $data["Pedidos"]["nombre"];
           $cliente["direccion"] = $data["Pedidos"]["direccion"];
           $cliente["telefono"] = $data["Pedidos"]["telefono"];
-
           $this->Cliente->create();
           $this->Cliente->save($cliente);
           $pedido["cliente_id"] = $this->Cliente->id;
-          //print_r($pedido);
-          //die();
-
       } else {
           $pedido["cliente_id"] = $data["Pedidos"]["Cliente"]["id"];
       }
@@ -440,7 +434,6 @@ private function saveData($data) {
     $pedido["paga_con"]  = 0;
     $pedido["vuelto"]  = 0;
     $pedido["mesa"] =$data["Pedidos"]["mesa"];
-
   }
   else {
     $estado = "En Cocina";
@@ -449,6 +442,9 @@ private function saveData($data) {
     $pedido["mesa"] = 0;
   }
   $pedido["estado"] = $estado;
+     
+   
+
 
 
 

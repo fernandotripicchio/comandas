@@ -1,10 +1,6 @@
 <div id="divClienteListado" style="height: 90%"> 
     <div class="listados" >
-        <h1>Seleccione Cliente</h1>
-        <hr />
-       <?php echo  $this->Paginator->counter('Pagina {:page} of {:pages}'); ?>
-        <br />
-
+       <?//php echo  $this->Paginator->counter('Pagina {:page} of {:pages}'); ?>
        <div id="tabla_clientes" style="margin-top: 10px;">
           <?=$this->element("Clientes/listado");?>
        </div>

@@ -13,6 +13,12 @@
 
      </li>
      <li>
+          <?=$this->Html->link('Productos <span class="left"></span>
+         <span class="right"></span>', array('admin' => false, 'controller' => 'productos', 'action' => 'index'), array('class' => 'tab green', 'escape' => false)); ?>
+
+     </li>
+     
+     <li>
           <?=$this->Html->link('Caja <span class="left"></span>
          <span class="right"></span>', array('admin' => false, 'controller' => 'cajas', 'action' => 'index'), array('class' => 'tab green', 'escape' => false)); ?>
 
