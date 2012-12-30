@@ -38,6 +38,8 @@
     $users = $new_users;
     $this->set(compact("users"));
  }
+ 
+ 
 
   /**
    * Admin functions, only the admin user can uses these functions

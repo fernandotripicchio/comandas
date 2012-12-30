@@ -25,6 +25,15 @@
           </td>
         </tr>
         <tr>
+          <td> <strong> <?=$this->Form->label("Sucursal:") ?> </strong> </td>
+          <td>
+            <?#=$this->Form->input('sucursal', array('div' => array('tag' => 'div'),'type'=> 'password','size'=> '50', 'label' => false, 'class' => 'required' ) ); ?>
+            <?=$this->form->select('sucursal_id', $sucursales, array("class" => "required")) ?>
+
+          </td>
+        </tr>
+        
+        <tr>
           <td colspan="2">
                &nbsp;
           </td>

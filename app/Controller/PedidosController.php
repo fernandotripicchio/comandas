@@ -10,6 +10,8 @@
   function beforeFilter() {
      parent::beforeFilter();
      $this->layout = "board";
+     
+     
   }
  
 
@@ -58,7 +60,10 @@ public function getProductos(){
  
  
  public function builtCondition($keys){
-     $condition = " 1 ";
+     
+     
+     $sucursal = $this->getSucursal();
+     $condition = " Pedido.sucursal_id =  ".$sucursal["id"];
      foreach ($keys as $key => $value) {
          //echo "$key --- $value";
          if ($key == "cliente" && $value!="") {
@@ -104,6 +109,9 @@ public function getProductos(){
  }
  
   function index($estado = "activos") {
+      
+     
+      
      $this->getCadetes();
      $this->getProductos();
      //Set Session variables
@@ -135,9 +143,10 @@ public function getProductos(){
      $condition_form = $this->builtCondition($pedidosSession);
      //Consulta principal
      $pedidos = $this->Pedido->query("Select Pedido.id, Pedido.estado, Pedido.fecha, Pedido.tipo, Pedido.demora_pedido,Pedido.mesa,Pedido.cadete_id,
-                                       Cliente.nombre, Cadete.nombre from pedidos as Pedido
+                                       Cliente.nombre, Cadete.nombre, Sucursal.nombre as sucursal_nombre from pedidos as Pedido
                                        left join clientes as Cliente on Pedido.cliente_id = Cliente.id
                                        left join cadetes as Cadete on Pedido.cadete_id = Cadete.id
+                                       left join sucursals as Sucursal on Pedido.sucursal_id = Sucursal.id
                                        where $condition_form
                                        order by Pedido.fecha ASC");
 
@@ -331,18 +340,20 @@ function getItems($pedidoId){
      $egreso      =  $cantidad ;
      $usuario_id  = $this->Auth->user("id");     
      $motivo      = "Se descuenta $cantidad por uso en pedido nro: $pedido_id";
-          
+     $sucursal = $this->getSucursal();          
      $result_stock = $this->Stock->find('first', array('conditions' => array('Stock.producto_id' => $producto_id) , "recursive" => -1 ));
      //Veo si guardo o actualizo
      $stock = $mov_stock = array();
      
      $stock["producto_id"] = $producto_id;
+     $stock["sucursal_id"]  = $sucursal["id"]; 
 
      $mov_stock["tipo"]        = $tipo;
      $mov_stock["ingreso"]     = $ingreso;
      $mov_stock["egreso"]      = $egreso;
      $mov_stock["fecha"]       = date("Y-m-d H:i:s");
      $mov_stock["usuario_id"]  = $usuario_id;
+     
      $mov_stock["motivo"]      = $motivo;
      
      //Si no hay stock lo creo
@@ -381,7 +392,7 @@ function getItems($pedidoId){
  
 private function ingresarCaja($pedidoId){
   $caja = array();
-
+  $sucursal = $this->getSucursal();
   $pedido = $this->Pedido->find("first", array("conditions" => array("Pedido.id" => $pedidoId), "recursive" => -1));
   
   $ingreso = ($pedido["Pedido"]["tipo"] == "mesa") ? $pedido["Pedido"]["total"] : $pedido["Pedido"]["paga_con"];
@@ -393,6 +404,7 @@ private function ingresarCaja($pedidoId){
   //die;
   $caja["Caja"]["ingresos"] = $ingreso;
   $caja["Caja"]["egresos"]  = $egreso;
+  $caja["Caja"]["sucursal_id"]  = $sucursal["id"];
   $caja["Caja"]["pedido_id"] = $pedidoId;
   $caja["Caja"]["tipo_movimiento_id"] = 3;
   $caja["Caja"]["user_id"] = $this->Auth->user("id");
@@ -408,6 +420,8 @@ private function ingresarCaja($pedidoId){
 private function saveData($data) {
   $pedido = array();
   $items = array();
+  $sucursal = $this->getSucursal();
+
   if ($data["Pedidos"]["tipo"]!="mesa"){
       if ($data["Pedidos"]["Cliente"]["nuevo"] == "1") {
           $cliente = array();
@@ -427,7 +441,9 @@ private function saveData($data) {
   $pedido["observaciones"]  = $data["Pedidos"]["observaciones"];
   $pedido["fecha"] = date('Y-m-d H:i:s');
   $pedido["user_id"] = $this->Auth->User("id");
-
+  $pedido["sucursal_id"] = $sucursal["id"];
+        
+    
 
   if ($pedido["tipo"] == "mesa"){
     $estado = "Mesa Abierta";

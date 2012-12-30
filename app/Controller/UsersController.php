@@ -3,7 +3,7 @@
   var $name = 'Users';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('User');  
+  var $uses = array('User', 'Sucursal');  
   var $paginate = array('limit' => 50,'order' => array('User.id' => 'asc'));
  
   
@@ -71,13 +71,27 @@ public function admin_delete($id) {
 
  public function login() {
     $this->layout = "login";
+    
+    $succ = $this->Sucursal->find("all", array("recursive" => -1));
+    $sucursales = array();
+    foreach ($succ as $sucursal){
+        $sucursales[$sucursal["Sucursal"]["id"]] =  $sucursal["Sucursal"]["nombre"] ;  
+    }
+    
     if ($this->request->is('post')) {        
         if ($this->Auth->login()) {
+            
+            $sucursal = $this->Sucursal->find("first", array("conditions" => array("id" => $this->data["sucursal_id"]), "recursive" => -1 ));
+            $this->Session->write('sucursal', $sucursal);
+            
+       
             return $this->redirect(array("controller" => "pedidos", "action" => "index"));
         } else {
             $this->Session->setFlash(__('Usuario or password es incorrecto'), 'default', array(), 'auth');
         }
     }
+    
+    $this->set(compact("sucursales"));
 }
 
 

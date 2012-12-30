@@ -99,6 +99,7 @@
         <th scope="col">Nro</th>
         <th scope="col">Tipo</th>        
         <th scope="col">Cliente</th>
+        <th scope="col">Sucursal</th>
         <th scope="col">Fecha</th>
         <th scope="col">Atraso</th>
         <th scope="col">Estado</th>
@@ -141,6 +142,10 @@
          <td>
            <?php echo $pedido['Cliente']['nombre'] ?>
         </td>
+         <td>
+           <?php echo $pedido['Sucursal']['sucursal_nombre'] ?>
+        </td>
+        
          <td class="center">
            <?php echo $pedido['Pedido']['fecha'] ?>
          </td>

@@ -44,6 +44,8 @@ class AppController extends Controller {
   function beforeFilter() {
     $this->set('username', $this->Auth->User("username"));
     $this->set('is_admin',$this->Auth->User("admin"));
+    $this->set('sucursal', $this->Session->read("sucursal"));
+    
  }
 
 
@@ -86,6 +88,13 @@ class AppController extends Controller {
      $new_fecha = explode(" ", $fecha);
      $new_fecha = $new_fecha[0];
      return $new_fecha[2]."/".$new_fecha[1]."/".$new_fecha[0];
+ }
+ 
+ 
+  public function getSucursal(){
+    $sucursal = $this->Session->read("sucursal");
+    $sucursal = $sucursal["Sucursal"];
+    return $sucursal;
  }
  
 
