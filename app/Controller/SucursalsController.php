@@ -30,8 +30,7 @@
 
     if (!empty($this->data)) {
 	$this->Sucursal->create();
-        //$this->data['User']['registration_number'] = $this->User->oneWayEncryp($this->data["User"]["registration_number"], $this->data["User"]["email"]) ;
-	if ($this->Sucursal->save($this->data)) {
+	if ($this->Sucursal->save($this->data["sucursal"])) {
 		$this->Session->setFlash(__('Se guardo la sucursal con éxito', true));
 		$this->redirect(array('action'=>'index'));
 	} else {

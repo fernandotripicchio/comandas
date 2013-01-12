@@ -41,11 +41,13 @@ $cakeDescription = __d('La Posta', 'La Posta');
            <br />
          </div>
          <div class="right">
+             
            <div>
+               
              <table style="float: right">
                  <tr>
-                   <td>
-                       <strong> Sucursal: <?=$sucursal["Sucursal"]["nombre"]; ?> </strong>    
+                   <td class="sucursal">
+                       Sucursal: <?=$sucursal["Sucursal"]["nombre"]; ?> 
                    </td>  
                    <td>
                         <strong> Usuario: <?=$username; ?> </strong>

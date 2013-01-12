@@ -17,14 +17,14 @@
                <tr >
                  <td>Telefono:</td>
                  <td class="last">
-                     <?=$this->form->input('telefono',    array('label'=> false,'type'=>'text', 'size'=>30,  'div' => array('tag' => '')));?>
+                     <?=$this->form->input('telefono',    array('label'=> false,'type'=>'text', 'class' => 'required', 'size'=>30,  'div' => array('tag' => '')));?>
                  </td>
                </tr>
                
                <tr >
                  <td>Codigo:</td>
                  <td class="last">
-                     <?=$this->form->input('codigo',    array('label'=> false,'type'=>'text', 'size'=>30,  'div' => array('tag' => '')));?>
+                     <?=$this->form->input('codigo',    array('label'=> false,'type'=>'text', 'class' => 'required','size'=>30,  'div' => array('tag' => '')));?>
                  </td>
                </tr>
                

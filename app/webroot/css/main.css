@@ -512,3 +512,11 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
  .mas_40{
   background: #FF4040 !important;
 }
+
+
+.sucursal{
+    font-size: 1.0em !important;
+    font-weight: bold;
+    color: red;
+    
+}

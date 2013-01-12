@@ -2,6 +2,6 @@
  class Caja extends AppModel {
   public $name = 'Caja';
 
-  public $belongsTo = array('TipoMovimiento', 'User');
+  public $belongsTo = array('TipoMovimiento', 'User', 'Sucursal');
 }
 ?>
