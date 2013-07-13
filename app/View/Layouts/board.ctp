@@ -13,8 +13,6 @@ $cakeDescription = __d('La Posta', 'La Posta');
                 echo $this->Html->css('main');
                 echo $this->Html->css('grid');
                 echo $this->Html->css('theme/jquery-ui');
-                //echo $this->Html->css('table');
-                // echo $this->Html->css('tablePedidos');
                 echo $this->Html->css('tableboard');
                 echo $this->Html->css('menu_board/menu_board');
                 echo $this->Html->css('popup');
@@ -35,41 +33,41 @@ $cakeDescription = __d('La Posta', 'La Posta');
 </head>
 <body>
      <div id="headerbg">
-       <div id="contenido">
-         <div class="left">
-           <?=$this->Html->image("logo2.png",array("width"=>160, "height"=>90, "style" => "padding:5px;marging:10px"))?>
-           <br />
-         </div>
-         <div class="right">
-             
-           <div>
-               
-             <table style="float: right">
-                 <tr>
-                   <td class="sucursal">
-                       Sucursal: <?=$sucursal["Sucursal"]["nombre"]; ?> 
-                   </td>  
-                   <td>
-                        <strong> Usuario: <?=$username; ?> </strong>
-                   </td>
-                   <td>
-                       <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('div'=> false,'class'=> 'right')); ?>
-                   </td>
-                   <td>
-                       <? if ($is_admin=="1") { ?> 
-                       <?=$this->html->link('Admin' , array('controller' => 'Admin', 'action' => 'index'), array('div'=> false,'class'=> 'right')); ?>
-                       <? } ?>
-                   </td>
-                 </tr>
-               </table>
-           </div>
-           <div>
-             <?=$this->element("menu_board");?>
-           </div>
-           
-         </div>
-         
-       </div>
+            <div id="contenido">
+                <div class="left">
+                  <?=$this->Html->image("logo2.png",array("width"=>160, "height"=>90, "style" => "padding:5px;marging:10px"))?>
+                  <br />
+                </div>
+                <div class="right">
+
+                  <div>
+
+                    <table style="float: right">
+                        <tr>
+                          <td class="sucursal">
+                              Sucursal: <?=$sucursal["Sucursal"]["nombre"]; ?> 
+                          </td>  
+                          <td>
+                               <strong> Usuario: <?=$username; ?> </strong>
+                          </td>
+                          <? if ($is_admin=="1") { ?> 
+                          <td>
+                              <?=$this->html->link('Administración' , array('controller' => 'Admin', 'action' => 'index'), array('div'=> false,'class'=> 'right')); ?>
+                          </td>
+                          <? } ?>
+                          <td>
+                              <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('div'=> false,'class'=> 'right')); ?>
+                          </td>                            
+                        </tr>
+                      </table>
+                  </div>
+                <div>
+                  <?=$this->element("menu_board");?>
+                </div>
+
+              </div>
+
+            </div>
      </div>
 
 
@@ -77,16 +75,18 @@ $cakeDescription = __d('La Posta', 'La Posta');
  <!-- CENTER CONTENT -->
 <div id="tabContent">
     <div id="contentHolder">
-        <!-- The AJAX fetched content goes here -->
 	<?php echo $this->Session->flash(); ?>
 	<?php echo $this->fetch('content'); ?>
     </div>
 </div>
 
- <div class="clear"></div>
- <div id="footer"><p>La Posta</p>
-    <?php echo $this->element('sql_dump'); ?>
-   </div>
+<div class="clear"></div>
+
+<div id="footer">
+     <div class="pinstripe">&nbsp;</div>
+     <div id="copyrightSection">La Posta - San Luis - Argentina - <?php echo date("Y"); ?> </div>
+</div>
+
 </body>
 </html>
 <?=$this->Html->scriptBlock("var root = '".$this->Html->url('/')."';");?>

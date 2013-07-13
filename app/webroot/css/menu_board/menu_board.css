@@ -6,7 +6,8 @@
 }
 
 #contentHolder{
-	background-color:#EEEEEE;
+	/*background-color:#EEEEEE;*/
+        background-color: #B0C0B0;
 	/*border:2px solid #FFFFFF;*/
 	margin:20px;
 	color:#444444;

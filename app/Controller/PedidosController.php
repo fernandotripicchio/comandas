@@ -110,16 +110,13 @@ public function getProductos(){
  
   function index($estado = "activos") {
       
-     
-      
      $this->getCadetes();
      $this->getProductos();
      //Set Session variables
      if ($this->request->is('post') ){
                     if (isset($this->data["keys"])) {
                           $this->setSessionKeys("Pedidos", $this->data["keys"]);
-                          $pedidosSession = $this->Session->read("Pedidos");
-                          
+                          $pedidosSession = $this->Session->read("Pedidos");                          
                     } else {
                         die("Error en la busqueda");
                     }
@@ -476,15 +473,13 @@ private function saveData($data) {
   foreach ($productos as $producto){
     $items[$i]  = array();
     $nuevo_item = array();
-
     $nuevo_item["Item"]["producto_id"]      = $producto["id"];
     $nuevo_item["Item"]["pedido_id"]        = $pedidoId;
     $nuevo_item["Item"]["precio"]           = $producto["precio"];
     $nuevo_item["Item"]["cantidad"]         = $producto["cantidad"];
     $nuevo_item["Item"]["observaciones"]    = $producto["observaciones"];
     $items[$i] = $nuevo_item;
-    $i++;
-    
+    $i++;    
     //Generar el Stock
   }
 

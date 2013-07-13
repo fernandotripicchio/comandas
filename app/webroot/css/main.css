@@ -130,8 +130,13 @@ textarea {
 
 textarea {
   resize: none;
-  overflow: auto; }
+  overflow: auto; 
+}
 
+a:link {text-decoration: underline; color: blue}
+a:visited {text-decoration: none; color: blue}
+a:active {text-decoration: none; color: blue}
+a:hover {text-decoration: underline; color: red;}
 
 
 /* Success, info, notice and error/alert boxes
@@ -519,4 +524,31 @@ legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
     font-weight: bold;
     color: red;
     
+}
+
+
+div.pinstripe{
+	clear:both;
+	font-size:0;
+	line-height:0;
+	height:4px;
+	background-color: #a9a9a9 ;
+}
+
+div#footerLegendControl{
+font-style:italic;
+padding:9px 0 0 0;
+margin:0 13px 0 9px;
+border:0 solid #CCC;
+}
+
+div#copyrightSection{
+padding:9px 0 0 0;
+text-align: center;
+color:  #a9a9a9;
+}
+
+div#footerLegendTitle{
+padding:0;
+margin:0 0 6px 7px;
 }
